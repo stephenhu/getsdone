@@ -1,0 +1,26 @@
+special symbols:
+@ - assignment (1 or more)
+# - hashtag (1 or more)
+- priority is set on the form
+- due date is set on the form
+
+action = 140 characters
+username = 15 characters
+groups = 15 characters
+hashtags = 24 characters
+
+all strings are case insensitive, stored as lowercase in the system
+
+1.  usernames must be unique, 15 character limit
+2.  usernames and groups share same namespace therefore group names must be
+unique
+3.  hashtags are unique
+4.  hashtags can refer to multiple actions
+5.  actions have a single owner
+6.  the same action can be assigned to multiple owners, but constitutes
+multiple actions, bound together by a unique guid
+
+return values are in the form of a json message:
+
+  { msg: "" }
+

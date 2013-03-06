@@ -1,0 +1,134 @@
+body {
+  font-family: sans-serif;
+  color: #484848;
+  font-weight: 100;
+  margin-top: 20px;
+}
+
+sup {
+  font-size: 9px;
+}
+
+input {
+  font-size: 28px;
+  height: 400px;
+  line-height: 28px;
+}
+
+h2 {
+  font-weight: normal;
+  color: #484848;
+}
+
+img {
+  float: none;
+}
+
+a, a:hover, a:visited, a:link {
+  text-decoration: none;
+  color: #484848;
+}
+
+a:hover {
+  color: #ff0000;
+}
+
+/* custom classes */
+
+.large {
+  font-size: 24px;
+}
+
+.medium {
+  font-size: 16px;
+}
+
+.gauge {
+  width: auto;
+  height: auto;
+  padding: 10px;
+  margin-right: 1px;
+  display: block;
+  float: left;
+}
+
+.value {
+  font-size: 42px;
+  font-weight: 800;
+  padding: 7px;
+  color: #005994;
+}
+
+.key {
+  color: #aaaaaa;
+  font-family: arial;
+  font-size: 22px;
+  font-weight: 500;
+  padding: 7px;
+}
+
+.action {
+  height: auto;
+  min-height: 80px;
+  margin-bottom: 1px;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  padding: 5px;
+  display: block;
+}
+
+.action:hover {
+  background: #e0f3ff;
+}
+
+.due {
+  width: 50px;
+  float: left;
+  padding: 5px;
+  min-height: 75px;
+  display: block;
+}
+
+.title {
+  width: 150px;
+  max-width: 150px;
+  float: left;
+  padding: 5px;
+  min-height: 70px;
+  display: block;
+  border-right: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+}
+
+div.title img {
+  float: none;
+}
+
+.content {
+  width: 670px;
+  margin-left: 220px;
+  min-height: 75px;
+  display: block;
+  padding-left: 20px;
+}
+
+.content p {
+  float: none;
+}
+
+.left {
+  float: left;
+  margin-right: 40px;
+}
+
+.since {
+  color: #888888;
+  font-size: 24px;
+}
+
+/* bootstrap overrides */
+
+.container {
+  margin-left: 20px;
+}
+

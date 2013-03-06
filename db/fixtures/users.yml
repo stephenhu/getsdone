@@ -1,0 +1,14 @@
+user1:
+  uuid: awefazvdv
+  name: stephenhu
+  salt: ouchwha
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+
+user2:
+  uuid: sefeadad
+  name: bigwurm
+  salt: tqwetpp
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+

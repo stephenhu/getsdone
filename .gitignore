@@ -1,3 +1,6 @@
 *.gem
 *.rbc
+jquery*
+bootstrap*
+json2*
 

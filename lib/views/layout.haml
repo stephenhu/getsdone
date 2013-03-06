@@ -1,0 +1,13 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %title getsdone.io
+    %link{:rel => "stylesheet", :href => url("bootstrap/css/bootstrap.css")}
+    %link{:rel => "stylesheet", :href => url("styles/getsdone.css")}
+    %script{:src => url("jquery/jquery-1.9.1.js")}
+    %script{:src => url("scripts/json2.js")}
+    %script{:src => url("scripts/getsdone.js")}
+  %body
+    = yield
+    = haml :navbar
+

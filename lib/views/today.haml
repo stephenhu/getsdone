@@ -1,0 +1,70 @@
+.container
+  .row-fluid
+    .span14
+      %form.form-inline
+        %input.input-xxlarge.big{:type => "text", :placeholder => "action text"}
+        %button.btn.btn-primary add action
+    .span14
+      %div.gauge.gauge-title
+        %h2.left mar 7:
+      %div.gauge
+        %div.value 3
+        %div.key open
+      %div.gauge
+        %div.value 5
+        %div.key overdue
+    .span14
+    .span14
+      %div.action
+        %div.due
+          %p.since 1m
+        %div.title
+          %img{:src => url("images/glyphicons_395_flickr.png"), :width => "32"}
+          %br
+          %a{:href => ""} @george
+        %div.content
+          %img.pull-right{:src => url("images/glyphicons_016_bin.png")}
+          %p.medium finish wrench README.rd updates for v0.0.2
+          %button.btn.btn-mini #cloud
+          %button.btn.btn-mini comments (2)
+          %button.btn.btn-success.btn-mini complete
+      %div.action
+        %div.due
+          %p.since 10m
+        %div.title
+          %img{:src => url("images/glyphicons_381_github.png"), :width => "32"}
+          %br
+          %a{:href => ""} @extremelylongem
+        %div.content
+          %img.pull-right{:src => url("images/glyphicons_016_bin.png")}
+          %p.medium here's an extremely long set of actions for us to take on as a team
+          %button.btn.btn-warning.btn-mini high priority
+          %button.btn.btn-mini #dilbert
+          %button.btn.btn-mini comments (13)
+          %button.btn.btn-success.btn-mini complete
+      %div.action
+        %div.due
+          %p.since 2h
+        %div.title
+          %img{:src => url("images/glyphicons_381_github.png"), :width => "32"}
+          %br
+          %a{:href => ""} @epynonymous
+        %div.content
+          %a{:href => ""}
+            %img.pull-right{:src => url("images/glyphicons_016_bin.png")}
+          %p.medium what happens if there are multiple owners of an action item?, then it's 1 action per person.
+          %button.btn.btn-mini comments (0)
+          %button.btn.btn-success.btn-mini complete
+      %div.action
+        %div.due
+          %p.since 3d
+        %div.title
+          %img{:src => url("images/glyphicons_381_github.png"), :width => "32"}
+          %br
+          %a{:href => ""} @hu183cm
+        %div.content
+          %img.pull-right{:src => url("images/glyphicons_016_bin.png")}
+          %p.medium blah blah blah blah make this a really long action item, with lots of text, but 140 max characters is the limit, have i reached that yet?
+          %button.btn.btn-mini comments (0)
+          %button.btn.btn-success.btn-mini complete
+
