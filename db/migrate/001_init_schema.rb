@@ -26,6 +26,7 @@ class InitSchema < ActiveRecord::Migration
       t.boolean :visible, :default => false
       t.integer :estimate, :default => 1
       t.timestamp :finished
+      t.boolean :completed, :default => false
       t.integer :priority, :default => 1
       t.timestamps
     end

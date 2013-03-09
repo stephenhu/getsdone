@@ -1,17 +1,17 @@
 .container
   .row-fluid
-    .span14
-      %form.form-inline
-        %input.input-xxlarge.big{:type => "text", :placeholder => "action", :id => "action"}
-        %button.btn.btn-primary{:onclick => "add_action(); return false;"} add action
+    %div.form-inline
+      %input.input-xxlarge.big{:type => "text", :placeholder => "action", :id => "action"}
+      %button.btn.btn-primary{:onclick => "add_action(); return false;"} add action
+  .row
     .span14
       %div.gauge
+        %div.value= @actions.length
         %div.key open
-        %div.value 7
       %div.gauge
-        %div.key overdue
         %div.value 5
-    .span14
+        %div.key overdue
+  .row
     .span14
       - @actions.each do |a|
         %div.action
@@ -27,6 +27,4 @@
             %p.medium= a.action
             %button.btn.btn-mini comments (2)
             %button.btn.btn-success.btn-mini complete
-    .span14
-    .span14
 

@@ -16,5 +16,11 @@ class User < ActiveRecord::Base
     self.uuid = Digest::MD5.hexdigest(self.uuid + self.salt)
   end
 
+  def open_actions
+    actions = Action.where(
+      "id = :user_id AND completed = true",
+      { :user_id => self.id  } )
+  end
+
 end
 

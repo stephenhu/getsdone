@@ -29,6 +29,8 @@ module Getsdone
       puts Tag.inspect
       puts Action.inspect
       puts Hashtag.inspect
+      user = User.find_by_id(1)
+      puts user.actions
     end
 
     # restful api
@@ -39,7 +41,7 @@ module Getsdone
 
       add_action(params)
 
-      return "user created" 
+      return "{ \"status\": 200, \"msg\": \"ok\" }"
 
     end
 

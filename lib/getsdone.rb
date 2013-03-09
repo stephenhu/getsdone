@@ -1,7 +1,10 @@
 require "active_record"
+require "active_support/core_ext/time/calculations"
+require "base64"
 require "haml"
 require "json"
 require "sinatra"
+#require "sinatra/cookies"
 require "sqlite3"
 require "thin"
 
