@@ -1,6 +1,6 @@
 module Getsdone
 
-  helpers do
+  module AppHelper
 
     def decode_token(token)
 

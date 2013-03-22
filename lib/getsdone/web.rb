@@ -1,6 +1,6 @@
 module Getsdone 
 
-  class Server
+  class Web < App
 
     get "/" do
       haml :index
@@ -31,18 +31,6 @@ module Getsdone
       puts Hashtag.inspect
       user = User.find_by_id(1)
       puts user.actions
-    end
-
-    # restful api
-#TODO: api_key
-    post "/api/actions" do
-
-#TODO: validation
-
-      add_action(params)
-
-      return "{ \"status\": 200, \"msg\": \"ok\" }"
-
     end
 
   end
