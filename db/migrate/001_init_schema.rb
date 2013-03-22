@@ -24,7 +24,8 @@ class InitSchema < ActiveRecord::Migration
       t.integer :delegate_id
       t.string :action, :null => false, :limit => 140
       t.boolean :visible, :default => false
-      t.integer :estimate, :default => 1
+      t.integer :duration, :default => 1
+      t.timestamp :estimate
       t.timestamp :finished
       t.boolean :completed, :default => false
       t.integer :priority, :default => 1

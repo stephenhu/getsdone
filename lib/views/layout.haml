@@ -8,6 +8,7 @@
     %script{:src => url("scripts/json2.js")}
     %script{:src => url("scripts/getsdone.js")}
   %body
+    = haml :navbartop
     = yield
-    = haml :navbar
+    = haml :navbarbottom
 

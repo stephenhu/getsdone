@@ -5,17 +5,27 @@ class Action < ActiveRecord::Base
 
   belongs_to :user
 
-  def open_actions
+  after_create :set_estimate
 
-    actions = Actions.where( :finished => nil ).all
-
-    return actions
-
+  def set_estimate
+    self.estimate = self.created_at + self.duration.days.to_i
+    self.save
   end
 
-  def closed_actions
+  def time_remaining
 
-    closed = Actions.where( :finished => :timestamp ).all
+    rem = Getsdone::AppHelper.duration_calc(self.estimate)
+
+    return rem
+    #if now < self.estimate
+  
+    #  delta = self.estimate - now
+
+    #  return delta
+
+    #else
+    #  return 0
+    #end
 
   end
 

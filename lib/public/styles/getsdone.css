@@ -2,11 +2,13 @@ body {
   font-family: sans-serif;
   color: #484848;
   font-weight: 100;
-  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
 sup {
   font-size: 9px;
+  color: #ff1010;
 }
 
 input {
@@ -20,17 +22,22 @@ h2 {
   color: #484848;
 }
 
+h3 {
+  font-weight: normal;
+  color: #484848;
+}
+
 img {
   float: none;
 }
 
 a, a:hover, a:visited, a:link {
   text-decoration: none;
-  color: #484848;
+  /*color: #484848;*/
 }
 
 a:hover {
-  color: #ff0000;
+  /*color: #ff0000;*/
 }
 
 /* custom classes */
@@ -41,6 +48,10 @@ a:hover {
 
 .medium {
   font-size: 16px;
+}
+
+.small {
+  font-size: 1px;
 }
 
 .gauge {
@@ -69,6 +80,7 @@ a:hover {
 
 .action {
   height: auto;
+  width: auto;
   min-height: 80px;
   margin-bottom: 1px;
   border: 1px solid #eeeeee;
@@ -85,35 +97,45 @@ a:hover {
   width: 50px;
   float: left;
   padding: 5px;
-  min-height: 75px;
+  min-height: 35px;
   display: block;
 }
 
 .title {
-  width: 150px;
-  max-width: 150px;
+  width: 35px;
+  max-width: 35px;
   float: left;
-  padding: 5px;
-  min-height: 70px;
+  padding: 2px;
+  min-height: 30px;
   display: block;
-  border-right: 1px solid #dddddd;
-  border-left: 1px solid #dddddd;
 }
 
 div.title img {
   float: none;
 }
 
+.atext {
+  max-width: 260px;
+}
+
 .content {
-  width: 570px;
-  margin-left: 220px;
-  min-height: 75px;
+  width: 550px;
+  margin-left: 40px;
+  min-height: 70px;
   display: block;
-  padding-left: 20px;
+  padding-left: 10px;
+  border-left: 1px solid #dddddd;
+  float: left;
 }
 
 .content p {
-  float: none;
+}
+
+.operations {
+  margin-left: 660px;
+  width: 100px;
+  min-height: 30px;
+  display: block;
 }
 
 .left {
@@ -123,12 +145,13 @@ div.title img {
 
 .since {
   color: #888888;
-  font-size: 24px;
+  font-size: 12px;
 }
 
 /* bootstrap overrides */
 
 .container {
-  margin-left: 20px;
+  margin: 0 auto;
+  max-width: 920px;
 }
 

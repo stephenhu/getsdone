@@ -1,0 +1,19 @@
+.container
+  .masthead
+    %p 140
+    %div.form-inline
+      %input.input-xxlarge{:id => "action", :placeholder => "action", :type => "text", :maxlength => "140"}
+      %button.btn.btn-primary{:onclick => "add_action(); return false;"} add action
+    %br
+    %ul.nav.nav-pills
+      %li.active 
+        %a{:href => ""} today (7)
+      %li
+        %a{:href => "home"} this week (3)
+      %li
+        %a{:href => ""} open (24)
+      %li
+        %a{:href => ""} history
+      %li
+        %a{:href => ""} statistics
+

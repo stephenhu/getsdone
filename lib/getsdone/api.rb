@@ -7,7 +7,9 @@ module Getsdone
 
 #TODO: validation
 
-      add_action(params)
+      AppHelper.validate(params)
+
+      AppHelper.add_action(params)
 
       return "{ \"status\": 200, \"msg\": \"ok\" }"
 

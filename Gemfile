@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Specify your gem's dependencies in getsdone.gemspec
 
+gem "actionpack"
 gem "activerecord"
 gem "highline"
 gem "json"

@@ -1,4 +1,7 @@
-getsdone
-========
+# getsdone
 
-social task management site
+getting things done socially
+
+##
+
+

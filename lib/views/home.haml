@@ -1,30 +1,16 @@
 .container
-  .row-fluid
-    %div.form-inline
-      %input.input-xxlarge.big{:type => "text", :placeholder => "action", :id => "action"}
-      %button.btn.btn-primary{:onclick => "add_action(); return false;"} add action
-  .row
-    .span14
-      %div.gauge
-        %div.value= @actions.length
-        %div.key open
-      %div.gauge
-        %div.value 5
-        %div.key overdue
   .row
     .span14
       - @actions.each do |a|
         %div.action
-          %div.due
-            %p.since 1m
           %div.title
-            %img{:src => url("images/glyphicons_395_flickr.png"), :width => "32"}
-            %br
-            %a{:href => ""} @username
+            %img{:src => url("images/glyphicons_395_flickr.png"), :width => "64"}
+            %p.since= a.time_remaining
           %div.content
-            %a{:href => ""}
-              %img.pull-right{:src => url("images/glyphicons_016_bin.png")}
             %p.medium= a.action
             %button.btn.btn-mini comments (2)
             %button.btn.btn-success.btn-mini complete
+          %div.operations
+            %a.pull-right{:href => ""}
+              %img{:src => url("images/glyphicons_256_delete_point.png"), :width => "32"}
 

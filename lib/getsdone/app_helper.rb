@@ -2,7 +2,38 @@ module Getsdone
 
   module AppHelper
 
-    def decode_token(token)
+    def self.duration_calc(estimate)
+
+      now = Time.now
+
+      delta = estimate - now
+      puts delta
+
+      if delta > 0
+# get largest denominator
+        puts time_ago_in_words(estimate)
+        return "10"
+      else
+        return "0"
+      end
+
+    end
+
+    def self.validate(params)
+
+      params.each do |k,v|
+
+        if v == ""
+          params[k] = nil
+        else
+          params[k] = v.strip
+        end
+          
+      end
+
+    end
+
+    def self.decode_token(token)
 
       if token.nil?
         return nil
@@ -12,7 +43,7 @@ module Getsdone
 
     end
 
-    def check_token
+    def self.check_token
 
       token = request.cookies["getsdone"]
 
@@ -24,10 +55,10 @@ module Getsdone
  
     end
 
-    def add_action(params)
+    def self.add_action(params)
 
 # check owner
-      u = User.find_by_name(params["owner"].strip)
+      u = User.find_by_name(params["owner"])
 
       if u.nil?
         halt 400, "User not found."
@@ -38,15 +69,15 @@ module Getsdone
         a = Action.create(
           :user_id => 1,
           :delegate_id => 1,
-          :action => params["action"].strip,
-          :priority => params["priority"].strip )
+          :action => params["action"],
+          :priority => params["priority"] )
 
         a.save
 
         unless params["hashtag"].nil?
  
           a.tags.create(
-            :tag => params["hashtag"].strip )
+            :tag => params["hashtag"] )
 
           a.save
 
