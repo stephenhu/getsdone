@@ -93,7 +93,7 @@ module Getsdone
       u = User.find_by_name(params["owner"])
 
       if u.nil?
-        halt 400, "User not found."
+        return false
       end
 
       Action.transaction do
@@ -116,7 +116,9 @@ module Getsdone
         end
 
       end
-      
+     
+      return true
+ 
     end
 
   end

@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem "activerecord"
 gem "highline"
 gem "json"
+gem "oauth2"
 gem "sinatra"
 gem "thin"
 

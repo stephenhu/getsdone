@@ -9,9 +9,12 @@ module Getsdone
 
       AppHelper.validate(params)
 
-      AppHelper.add_action(params)
-
-      return "{ \"status\": 200, \"msg\": \"ok\" }"
+      if AppHelper.add_action(params)
+        return "{ \"status\": 200, \"msg\": \"ok\" }"
+      else
+        return { :status => "401", 
+                 :msg => "User not found" }.to_json
+      end
 
     end
 

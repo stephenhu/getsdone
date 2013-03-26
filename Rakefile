@@ -62,6 +62,21 @@ task :config do
   file.write(contents)
   file.close
 
+  puts "conf/database.yml created"
+
+  client_id		= ask("client_id: ")
+  client_secret         = ask("client_secret: ")
+#TODO encrypt
+
+  config	= ERB.new(File.read("./conf/config.yml.erb"))
+  contents      = config.result(binding)
+
+  file2 = File.open( "./conf/config.yml", "w" )
+  file2.write(contents)
+  file2.close
+
+  puts "conf/config.yml created"
+  
 end
 
 desc "generate help text"
