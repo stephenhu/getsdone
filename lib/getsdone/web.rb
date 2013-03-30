@@ -6,15 +6,27 @@ module Getsdone
       haml :index
     end
 
+    get "/user/:id" do
+
+      @nohead = true
+      puts params[:id]
+      @user = User.find_by_name(params[:id])
+
+      if @user.nil?
+        halt 404, "User not found"
+      end
+
+      haml :user
+
+    end
+
     get "/home" do
 
       authenticate
 
       u = User.find_by_id(session[:user][:id])
 
-      @actions = u.open_actions
-      @stats   = AppHelper.get_action_info(u.open_actions)
-      @info    = AppHelper.get_user_info(u)
+      @user    = u
 
       haml :home
 

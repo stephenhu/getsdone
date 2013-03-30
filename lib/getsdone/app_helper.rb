@@ -42,53 +42,6 @@ module Getsdone
 
     end
 
-
-    def self.get_action_info(actions)
-
-      t = Time.now
-
-      today     = 0
-      week      = 0
-      overdue   = 0
-
-      today_begin = t.beginning_of_day
-      today_end   = t.end_of_day
-
-      week_begin  = t.beginning_of_week
-      week_end    = t.end_of_week
-
-      actions.each do |a|
-
-        if a.estimate >= today_begin and a.estimate <= today_end
-          today = today + 1
-        end
-
-        if a.estimate < today_end
-          overdue = overdue + 1
-        end
-
-        if a.estimate >= week_begin and a.estimate <= week_end
-          week = week + 1
-        end
-
-      end
-
-      return { :today => today, :week => week, :overdue => overdue }
-
-    end
-
-    def self.get_user_info(user)
-
-      completed = user.actions.where( :completed => true ).count
-
-      followers = user.followers.length
-      following = user.following.length
-
-      return { :completed => completed, :followers => followers,
-        :following => following }
-
-    end
-
     def self.validate(params)
 
       params.each do |k,v|

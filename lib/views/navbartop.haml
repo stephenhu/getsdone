@@ -5,21 +5,21 @@
         %a.gauge{:href => ""}
           %p.large @stephenhu
         %a.gauge{:href => ""}
-          %div.value #{@info[:followers]}
+          %div.value #{@user.info[:followers]}
           %div.key followers
         %a.gauge{:href => ""}
-          %div.value #{@info[:following]}
+          %div.value #{@user.info[:following]}
           %div.key following
         %a.gauge{:href => ""}
-          %div.value #{@info[:completed]} 
+          %div.value #{@user.info[:completed]} 
           %div.key completed
     %ul.nav.nav-pills
       %li.active
-        %a{:href => ""} today (#{@stats[:today]+@stats[:overdue]})
+        %a{:href => ""} today (#{@user.action_info[:today]+@user.action_info[:overdue]})
       %li
-        %a{:href => ""} this week (#{@stats[:week]+@stats[:overdue]})
+        %a{:href => ""} this week (#{@user.action_info[:week]+@user.action_info[:overdue]})
       %li
-        %a{:href => ""} open (#{@actions.length})
+        %a{:href => ""} open (#{@user.open_actions.length})
       %li
         %a{:href => ""} history
       %li
@@ -30,3 +30,4 @@
       %input.input-xxlarge{:id => "action", :placeholder => "action", :type => "text", :maxlength => "140"}
       %button.btn.btn-primary{:onclick => "addAction(); return false;"} add action
     %br
+

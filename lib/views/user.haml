@@ -1,0 +1,17 @@
+.container
+  .row-fluid
+    .span14
+      %h2= @user.name
+      %div.gauge
+        %div.value= @user.info[:followers]
+        %div.key followers
+      %div.gauge
+        %div.value= @user.info[:following]
+        %div.key following
+      %div.gauge
+        %div.value= @user.info[:completed]
+        %div.key completed
+    %br
+    .span14
+      %button.btn.btn-success follow
+
