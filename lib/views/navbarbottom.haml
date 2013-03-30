@@ -15,5 +15,6 @@
           %a{:href => "about"} about
       %ul.nav.pull-right
         %li
-          %a{:href => ""} login
+          - if session[:user].nil?
+            %button.btn{:onclick => "login(); return false;"} login
 

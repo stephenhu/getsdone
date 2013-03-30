@@ -52,6 +52,7 @@ task :config do
   require "erb"
 
   file = File.dirname(__FILE__) + "/db/getsdone.db"
+  puts "configure postgresql"
   username = ask("username: ")
   password = ask("password: ") {|q| q.echo = "*"}
 
@@ -64,6 +65,7 @@ task :config do
 
   puts "conf/database.yml created"
 
+  puts "configure google oauth"
   client_id		= ask("client_id: ")
   client_secret         = ask("client_secret: ")
 #TODO encrypt

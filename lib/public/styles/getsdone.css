@@ -36,10 +36,9 @@ a, a:hover, a:visited, a:link {
   /*color: #484848;*/
 }
 
-a:hover {
-  /*color: #ff0000;*/
+hr {
+  margin: 2px;
 }
-
 /* custom classes */
 
 .large {
@@ -57,25 +56,25 @@ a:hover {
 .gauge {
   width: auto;
   height: auto;
-  padding: 10px;
+  padding: 5px;
   margin-right: 1px;
   display: block;
   float: left;
 }
 
 .value {
-  font-size: 42px;
-  font-weight: 800;
-  padding: 7px;
-  color: #005994;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 1px;
+  color: #282828;
 }
 
 .key {
   color: #aaaaaa;
   font-family: arial;
-  font-size: 22px;
+  font-size: 11px;
   font-weight: 500;
-  padding: 7px;
+  padding: 1px;
 }
 
 .action {
@@ -120,8 +119,8 @@ div.title img {
 
 .content {
   width: 550px;
-  margin-left: 40px;
-  min-height: 70px;
+  margin-left: 45px;
+  min-height: 75px;
   display: block;
   padding-left: 10px;
   border-left: 1px solid #dddddd;
@@ -132,7 +131,7 @@ div.title img {
 }
 
 .operations {
-  margin-left: 660px;
+  margin-left: 600px;
   width: 100px;
   min-height: 30px;
   display: block;
@@ -146,6 +145,8 @@ div.title img {
 .since {
   color: #888888;
   font-size: 12px;
+  padding: 0;
+  margin: 0;
 }
 
 /* bootstrap overrides */
@@ -153,5 +154,9 @@ div.title img {
 .container {
   margin: 0 auto;
   max-width: 920px;
+}
+
+.nav {
+  margin-bottom: 0px;
 }
 

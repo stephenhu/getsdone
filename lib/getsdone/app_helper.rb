@@ -4,8 +4,6 @@ module Getsdone
 
     def self.time_ago_in_web(seconds)
 
-      puts seconds
-
       seconds_in_day 	= 24 * 60 * 60
       seconds_in_hours	= 60 * 60
       seconds_in_mins	= 60
@@ -35,14 +33,59 @@ module Getsdone
       now = Time.now
 
       delta = estimate - now
-      puts delta
 
       if delta > 0
-# get largest denominator
         return time_ago_in_web(delta)
       else
-        return "0"
+        return "overdue"
       end
+
+    end
+
+
+    def self.get_action_info(actions)
+
+      t = Time.now
+
+      today     = 0
+      week      = 0
+      overdue   = 0
+
+      today_begin = t.beginning_of_day
+      today_end   = t.end_of_day
+
+      week_begin  = t.beginning_of_week
+      week_end    = t.end_of_week
+
+      actions.each do |a|
+
+        if a.estimate >= today_begin and a.estimate <= today_end
+          today = today + 1
+        end
+
+        if a.estimate < today_end
+          overdue = overdue + 1
+        end
+
+        if a.estimate >= week_begin and a.estimate <= week_end
+          week = week + 1
+        end
+
+      end
+
+      return { :today => today, :week => week, :overdue => overdue }
+
+    end
+
+    def self.get_user_info(user)
+
+      completed = user.actions.where( :completed => true ).count
+
+      followers = user.followers.length
+      following = user.following.length
+
+      return { :completed => completed, :followers => followers,
+        :following => following }
 
     end
 
@@ -65,42 +108,17 @@ module Getsdone
 
     end
 
-    def self.decode_token(token)
+    def self.add_action( params, user )
 
-      if token.nil?
-        return nil
-      else
-        return User.find_by_token(Base64.decode64(token))
-      end
-
-    end
-
-    def self.check_token
-
-      token = request.cookies["getsdone"]
-
-      user = decode_token(token)
-
-      user.nil? ? @logged = false : @logged = true
-
-      return user
- 
-    end
-
-    def self.add_action(params)
-
-# check owner
-      u = User.find_by_name(params["owner"])
-
-      if u.nil?
+      if user[:name].nil?
         return false
       end
 
+      u = User.find_by_name(user[:name])
+
       Action.transaction do
 
-        a = Action.create(
-          :user_id => 1,
-          :delegate_id => 1,
+        a = u.actions.create(
           :action => params["action"],
           :priority => params["priority"] )
 
@@ -114,6 +132,22 @@ module Getsdone
           a.save
 
         end
+      
+        owner = params["owner"]
+
+        o = User.find_by_name(owner) unless owner.nil?
+
+        
+        if o.nil?
+          id = u.id
+        else
+          id = o.id
+        end
+
+        a.delegates.create(
+          :user_id => id )
+
+        a.save
 
       end
      

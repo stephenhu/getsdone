@@ -6,7 +6,9 @@ gem "activerecord"
 gem "highline"
 gem "json"
 gem "oauth2"
+gem "rest-client"
 gem "sinatra"
+gem "sinatra-contrib"
 gem "thin"
 
 group :production do

@@ -8,7 +8,8 @@
     %script{:src => url("scripts/json2.js")}
     %script{:src => url("scripts/getsdone.js")}
   %body
-    = haml :navbartop
+    - unless session[:user].nil?
+      = haml :navbartop
     = yield
     = haml :navbarbottom
 

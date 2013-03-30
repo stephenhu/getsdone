@@ -21,7 +21,6 @@ class InitSchema < ActiveRecord::Migration
     create_table :actions do |t|
       t.belongs_to :user
       t.integer :user_id
-      t.integer :delegate_id
       t.string :action, :null => false, :limit => 140
       t.boolean :visible, :default => false
       t.integer :duration, :default => 1
@@ -29,6 +28,13 @@ class InitSchema < ActiveRecord::Migration
       t.timestamp :finished
       t.boolean :completed, :default => false
       t.integer :priority, :default => 1
+      t.timestamps
+    end
+
+    create_table :delegates do |t|
+      t.belongs_to :action
+      t.integer :action_id
+      t.integer :user_id
       t.timestamps
     end
 
@@ -59,6 +65,7 @@ class InitSchema < ActiveRecord::Migration
     drop_table :users
     drop_table :followers
     drop_table :actions
+    drop_table :delegates
     drop_table :tags
     drop_table :hashtags
     drop_table :comments

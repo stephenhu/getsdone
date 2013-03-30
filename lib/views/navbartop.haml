@@ -1,19 +1,32 @@
 .container
   .masthead
-    %p 140
-    %div.form-inline
-      %input.input-xxlarge{:id => "action", :placeholder => "action", :type => "text", :maxlength => "140"}
-      %button.btn.btn-primary{:onclick => "add_action(); return false;"} add action
-    %br
+    %ul.nav.pull-right
+      %li
+        %a.gauge{:href => ""}
+          %p.large @stephenhu
+        %a.gauge{:href => ""}
+          %div.value #{@info[:followers]}
+          %div.key followers
+        %a.gauge{:href => ""}
+          %div.value #{@info[:following]}
+          %div.key following
+        %a.gauge{:href => ""}
+          %div.value #{@info[:completed]} 
+          %div.key completed
     %ul.nav.nav-pills
-      %li.active 
-        %a{:href => ""} today (7)
+      %li.active
+        %a{:href => ""} today (#{@stats[:today]+@stats[:overdue]})
       %li
-        %a{:href => "home"} this week (10)
+        %a{:href => ""} this week (#{@stats[:week]+@stats[:overdue]})
       %li
-        %a{:href => ""} open (24)
+        %a{:href => ""} open (#{@actions.length})
       %li
         %a{:href => ""} history
       %li
         %a{:href => ""} statistics
-
+    %hr
+    %p.since 140
+    %div.form-inline
+      %input.input-xxlarge{:id => "action", :placeholder => "action", :type => "text", :maxlength => "140"}
+      %button.btn.btn-primary{:onclick => "addAction(); return false;"} add action
+    %br

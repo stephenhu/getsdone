@@ -8,3 +8,7 @@ map "/api" do
   run Getsdone::Api
 end
 
+map "/auth" do
+  run Getsdone::Auth
+end
+

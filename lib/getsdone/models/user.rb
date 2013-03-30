@@ -17,9 +17,14 @@ class User < ActiveRecord::Base
   end
 
   def open_actions
-    actions = Action.where(
-      "id = :user_id AND completed = true",
-      { :user_id => self.id  } )
+
+    return Action.joins(:delegates).where(
+      :user_id => self.id, "delegates.user_id" => 1, :completed => false )
+
+  end
+
+  def following
+    return Follower.where( :user_id => self.id )
   end
 
 end

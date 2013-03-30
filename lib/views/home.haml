@@ -4,13 +4,13 @@
       - @actions.each do |a|
         %div.action
           %div.title
-            %img{:src => url("images/glyphicons_387_amazon.png"), :width => "64"}
+            %img{:src => url("images/glyphicons_387_amazon.png"), :width => "32"}
             %p.since= a.time_remaining
           %div.content
             %p.medium= a.action
-            %button.btn.btn-mini comments (2)
-            %button.btn.btn-success.btn-mini complete
+            %button.btn.btn-mini comments (245)
+            %button.btn.btn-success.btn-mini{:onclick => "completeAction(#{a.id}); return false;"} complete
           %div.operations
-            %a.pull-right{:href => ""}
-              %img{:src => url("images/glyphicons_256_delete.png"), :width => "32"}
+            %a.pull-right{:href => "", :onclick => "deleteAction(#{a.id}); return false;"}
+              %img{:src => url("images/glyphicons_207_remove_2.png"), :width => "16"}
 

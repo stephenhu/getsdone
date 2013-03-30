@@ -1,7 +1,8 @@
 class Action < ActiveRecord::Base
 
-  has_many :hashtags
+  has_many :hashtags, :dependent => :destroy
   has_many :tags, :through => :hashtags
+  has_many :delegates, :dependent => :destroy
 
   belongs_to :user
 
