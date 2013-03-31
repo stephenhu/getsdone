@@ -26,6 +26,24 @@ class User < ActiveRecord::Base
 
   end
 
+  def todays_actions
+
+    return self.actions.joins(:delegates).where(
+      :user_id => self.id, "delegates.user_id" => self.id,
+      :completed => false ).where( ["DATE(estimate) = DATE(?)", Time.now] )
+
+  end
+
+  def weeks_actions
+
+    return self.actions.joins(:delegates).where(
+      :user_id => self.id, "delegates.user_id" => self.id,
+      :completed => false ).where(
+      [ "DATE(estimate) BETWEEN DATE(?) AND DATE(?)",
+      Time.now.beginning_of_week, Time.now.end_of_week ] )
+
+  end
+
   def completed_actions
     return self.actions.joins(:delegates).where(
       :user_id => self.id, "delegates.user_id" => self.id,
@@ -66,7 +84,7 @@ class User < ActiveRecord::Base
         today = today + 1
       end
 
-      if a.estimate < today_end
+      if a.estimate < today_begin
         overdue = overdue + 1
       end
 

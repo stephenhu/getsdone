@@ -41,6 +41,14 @@ hr {
 }
 /* custom classes */
 
+.xxlarge {
+  font-size: 96px;
+}
+
+.xlarge {
+  font-size: 48px;
+}
+
 .large {
   font-size: 24px;
 }

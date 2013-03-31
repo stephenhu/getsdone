@@ -1,7 +1,7 @@
 .container
   .row
     .span14
-      - @user.open_actions.each do |a|
+      - @actions.each do |a|
         %div.action
           %div.title
             %img{:src => url("images/glyphicons_387_amazon.png"), :width => "32"}

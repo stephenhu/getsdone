@@ -38,6 +38,21 @@ module Getsdone
 
     end
 
+    put "/logout" do
+
+      authenticate
+
+      u = User.find_by_id(session[:user][:id])
+
+      if u.nil?
+        halt 404
+      else
+        u.token = ""
+        u.save
+      end
+
+    end
+
   end
 
 end

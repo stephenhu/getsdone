@@ -2,6 +2,11 @@ module Getsdone
 
   class Web < App
 
+    not_found do
+      @nohead = true
+      haml :error
+    end
+
     get "/" do
       haml :index
     end
@@ -9,7 +14,6 @@ module Getsdone
     get "/user/:id" do
 
       @nohead = true
-      puts params[:id]
       @user = User.find_by_name(params[:id])
 
       if @user.nil?
@@ -24,9 +28,25 @@ module Getsdone
 
       authenticate
 
+      @view = params[:view]
+
       u = User.find_by_id(session[:user][:id])
 
       @user    = u
+
+      if @view == "week"
+        @actions = u.weeks_actions
+      elsif @view == "open"
+        @actions = u.open_actions
+      elsif @view == "history"
+#TODO: need these views
+        @actions = u.open_actions
+      elsif @view == "statistics"
+        @actions = u.open_actions
+      else
+        @actions = u.todays_actions
+      end
+
 
       haml :home
 

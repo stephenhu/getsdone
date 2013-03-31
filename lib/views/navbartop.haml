@@ -14,16 +14,36 @@
           %div.value #{@user.info[:completed]} 
           %div.key completed
     %ul.nav.nav-pills
-      %li.active
-        %a{:href => ""} today (#{@user.action_info[:today]+@user.action_info[:overdue]})
-      %li
-        %a{:href => ""} this week (#{@user.action_info[:week]+@user.action_info[:overdue]})
-      %li
-        %a{:href => ""} open (#{@user.open_actions.length})
-      %li
-        %a{:href => ""} history
-      %li
-        %a{:href => ""} statistics
+      - if @view.nil? or @view == "today"
+        %li.active
+          %a{:href => "/home?view=today"} today (#{@user.action_info[:today]+@user.action_info[:overdue]})
+      - else
+        %li
+          %a{:href => "/home?view=today"} today (#{@user.action_info[:today]+@user.action_info[:overdue]})
+      - if @view == "week"
+        %li.active
+          %a{:href => "/home?view=week"} this week (#{@user.action_info[:week]+@user.action_info[:overdue]})
+      - else
+        %li
+          %a{:href => "/home?view=week"} this week (#{@user.action_info[:week]+@user.action_info[:overdue]})
+      - if @view == "open"
+        %li.active
+          %a{:href => "/home?view=open"} open (#{@user.open_actions.length})
+      - else
+        %li
+          %a{:href => "/home?view=open"} open (#{@user.open_actions.length})
+      - if @view == "history"
+        %li.active
+          %a{:href => "/home?view=history"} history
+      - else
+        %li
+          %a{:href => "/home?view=history"} history
+      - if @view == "statistics"
+        %li.active
+          %a{:href => "/home?view=statistics"} statistics
+      - else
+        %li
+          %a{:href => "/home?view=statistics"} statistics
     %hr
     %p.since 140
     %div.form-inline

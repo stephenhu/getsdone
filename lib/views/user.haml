@@ -1,17 +1,23 @@
 .container
-  .row-fluid
+  %br
+  %br
+  .row
     .span14
-      %h2= @user.name
-      %div.gauge
+      %a.xlarge{:href => ""}= "@#{@user.name}"
+  %br
+  .row
+    .span14
+      %a.gauge{:href => ""}
         %div.value= @user.info[:followers]
         %div.key followers
-      %div.gauge
+      %a.gauge{:href => ""}
         %div.value= @user.info[:following]
         %div.key following
-      %div.gauge
+      %a.gauge{:href => ""}
         %div.value= @user.info[:completed]
         %div.key completed
-    %br
+  %br
+  .row 
     .span14
-      %button.btn.btn-success follow
+      %button.btn.btn-large follow
 

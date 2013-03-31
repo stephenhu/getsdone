@@ -16,5 +16,7 @@
       %ul.nav.pull-right
         %li
           - if session[:user].nil?
-            %button.btn{:onclick => "login(); return false;"} login
+            %button.btn.btn-success{:onclick => "login(); return false;"} login
+          - else
+            %button.btn.btn-success{:onclick => "logout(); return false;"} logout
 
