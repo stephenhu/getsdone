@@ -18,15 +18,6 @@ class Action < ActiveRecord::Base
     rem = Getsdone::AppHelper.duration_calc(self.estimate)
 
     return rem
-    #if now < self.estimate
-  
-    #  delta = self.estimate - now
-
-    #  return delta
-
-    #else
-    #  return 0
-    #end
 
   end
 

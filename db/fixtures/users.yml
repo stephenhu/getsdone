@@ -12,3 +12,24 @@ user2:
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
 
+user3:
+  uuid: asdasdes
+  name: pimp
+  salt: jdsfdfd
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+
+user4:
+  uuid: esfpasdf
+  name: segue
+  salt: aasdappp
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+
+user5:
+  uuid: rasdfddf
+  name: xqj
+  salt: sdssdgdd
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+

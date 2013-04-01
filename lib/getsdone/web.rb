@@ -13,10 +13,11 @@ module Getsdone
 
     get "/user/:id" do
 
-      @nohead = true
-      @user = User.find_by_name(params[:id])
+      @nohead  = true
+      @user    = User.find_by_id(1) 
+      @profile = User.find_by_name(params[:id])
 
-      if @user.nil?
+      if @profile.nil?
         halt 404, "User not found"
       end
 
@@ -32,12 +33,16 @@ module Getsdone
 
       u = User.find_by_id(session[:user][:id])
 
-      @user    = u
+      @user = u
 
       if @view == "week"
         @actions = u.weeks_actions
+      elsif @view == "upcoming"
+        @actions = u.overdue_actions + u.upcoming_actions
       elsif @view == "open"
         @actions = u.open_actions
+      elsif @view == "hashtags"
+        @actions = u.hashtag_actions
       elsif @view == "history"
 #TODO: need these views
         @actions = u.open_actions
@@ -46,7 +51,6 @@ module Getsdone
       else
         @actions = u.todays_actions
       end
-
 
       haml :home
 
@@ -57,9 +61,6 @@ module Getsdone
     end
 
     get "/test" do
-
-      u = User.find_by_id(session[:user][:id])
-      AppHelper.get_user_info(u)
 
       return ""
 

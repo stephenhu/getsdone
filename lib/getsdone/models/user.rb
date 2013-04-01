@@ -26,6 +26,14 @@ class User < ActiveRecord::Base
 
   end
 
+  def overdue_actions
+
+    return self.actions.joins(:delegates).where(
+      :user_id => self.id, "delegates.user_id" => self.id,
+      :completed => false ).where( ["DATE(estimate) <= DATE(?)", Time.now] )
+
+  end
+
   def todays_actions
 
     return self.actions.joins(:delegates).where(
@@ -34,20 +42,48 @@ class User < ActiveRecord::Base
 
   end
 
+  def upcoming_actions
+
+    t = Time.now
+
+    return self.actions.joins(:delegates).where(
+      :user_id => self.id, "delegates.user_id" => self.id,
+      :completed => false ).where(
+      [ "DATE(estimate) BETWEEN DATE(?) AND DATE(?)", t,
+      t + Getsdone::UPCOMING.days ] )
+
+  end
+
   def weeks_actions
+
+    t = Time.now
 
     return self.actions.joins(:delegates).where(
       :user_id => self.id, "delegates.user_id" => self.id,
       :completed => false ).where(
       [ "DATE(estimate) BETWEEN DATE(?) AND DATE(?)",
-      Time.now.beginning_of_week, Time.now.end_of_week ] )
+      t.beginning_of_week, t.end_of_week ] )
 
   end
 
   def completed_actions
+
     return self.actions.joins(:delegates).where(
       :user_id => self.id, "delegates.user_id" => self.id,
       :completed => true )
+
+  end
+
+  def hashtag_actions
+
+    actions = self.actions.joins(:delegates).where(
+      :user_id => self.id, "delegates.user_id" => self.id,
+      :completed => false )
+
+    actions.reject! {|a| a.hashtags.length == 0}
+
+    return actions
+
   end
 
   def info
@@ -67,11 +103,14 @@ class User < ActiveRecord::Base
     t = Time.now
 
     today     = 0
+    upcoming  = 0
     week      = 0
     overdue   = 0
 
-    today_begin = t.beginning_of_day
+    today_begin = t
     today_end   = t.end_of_day
+
+    upcoming_end  = t.end_of_day + Getsdone::UPCOMING.days
 
     week_begin  = t.beginning_of_week
     week_end    = t.end_of_week
@@ -84,6 +123,10 @@ class User < ActiveRecord::Base
         today = today + 1
       end
 
+      if a.estimate >= today_begin and a.estimate <= upcoming_end
+        upcoming = upcoming + 1
+      end
+
       if a.estimate < today_begin
         overdue = overdue + 1
       end
@@ -94,12 +137,36 @@ class User < ActiveRecord::Base
 
     end
 
-    return { :today => today, :week => week, :overdue => overdue }
+    return { :today => today, :week => week, :overdue => overdue,
+      :upcoming => upcoming }
 
   end
 
   def following
     return Follower.where( :user_id => self.id )
+  end
+
+  def is_following(id)
+
+    puts self.followers.inspect
+
+    if self.followers.include?(id)
+      return true
+    else
+      return false
+    end
+
+  end
+
+  def add_follower(id)
+
+    unless is_following(id)
+
+      self.followers.create(
+        :follow_id => id )
+
+    end
+
   end
 
 end

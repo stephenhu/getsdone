@@ -14,24 +14,24 @@
           %div.value #{@user.info[:completed]} 
           %div.key completed
     %ul.nav.nav-pills
-      - if @view.nil? or @view == "today"
+      - if @view.nil? or @view == "upcoming"
         %li.active
-          %a{:href => "/home?view=today"} today (#{@user.action_info[:today]+@user.action_info[:overdue]})
+          %a{:href => "/home?view=upcoming"} upcoming (#{@user.action_info[:upcoming]+@user.action_info[:overdue]})
       - else
         %li
-          %a{:href => "/home?view=today"} today (#{@user.action_info[:today]+@user.action_info[:overdue]})
-      - if @view == "week"
-        %li.active
-          %a{:href => "/home?view=week"} this week (#{@user.action_info[:week]+@user.action_info[:overdue]})
-      - else
-        %li
-          %a{:href => "/home?view=week"} this week (#{@user.action_info[:week]+@user.action_info[:overdue]})
+          %a{:href => "/home?view=upcoming"} upcoming (#{@user.action_info[:upcoming]+@user.action_info[:overdue]})
       - if @view == "open"
         %li.active
           %a{:href => "/home?view=open"} open (#{@user.open_actions.length})
       - else
         %li
           %a{:href => "/home?view=open"} open (#{@user.open_actions.length})
+      - if @view == "hashtags"
+        %li.active
+          %a{:href => "/home?view=hashtags"} hashtags (#{@user.hashtag_actions.length})
+      - else
+        %li
+          %a{:href => "/home?view=hashtags"} hashtags (#{@user.hashtag_actions.length})
       - if @view == "history"
         %li.active
           %a{:href => "/home?view=history"} history

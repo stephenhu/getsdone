@@ -6,4 +6,6 @@ json2*
 database.yml
 getsdone.db
 *.swp
+images*
+*.yml
 

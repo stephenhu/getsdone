@@ -32,5 +32,7 @@ module Getsdone
   REDIRECT_URI    = "http://localhost:9292/auth/oauth2callback"
   GOOGLE_EMAIL    = "https://www.googleapis.com/oauth2/v1/userinfo?alt=json"
 
+  UPCOMING        = 3
+
 end
 

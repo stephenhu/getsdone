@@ -3,21 +3,26 @@
   %br
   .row
     .span14
-      %a.xlarge{:href => ""}= "@#{@user.name}"
+      %a.xlarge{:href => ""}= "@#{@profile.name}"
   %br
   .row
     .span14
       %a.gauge{:href => ""}
-        %div.value= @user.info[:followers]
+        %div.value= @profile.info[:followers]
         %div.key followers
       %a.gauge{:href => ""}
-        %div.value= @user.info[:following]
+        %div.value= @profile.info[:following]
         %div.key following
       %a.gauge{:href => ""}
-        %div.value= @user.info[:completed]
+        %div.value= @profile.info[:completed]
         %div.key completed
   %br
   .row 
     .span14
-      %button.btn.btn-large follow
+      - if @user.nil? or @profile.id == @user.id
+        %button.btn.btn-large.disabled{:disabled => "disabled"} follow
+      - elsif @user.is_following(@profile.id)
+        %button.btn.btn-large{:onclick => "unfollow(#{@profile.id}); return false;"} unfollow
+      - else
+        %button.btn.btn-large{:onclick => "follow(#{@profile.id}); return false;"} follow
 

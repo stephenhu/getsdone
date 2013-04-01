@@ -2,6 +2,10 @@ module Getsdone
 
   class Api < App
 
+    get "/version" do
+      return VERSION
+    end
+
 #TODO: api key
     post "/actions" do
 
@@ -80,6 +84,21 @@ module Getsdone
 
       return { :status => "200",
                :msg => "" }.to_json
+
+    end
+
+    post "/user/:id?:verb?" do
+
+      # make sure user exists
+      # make sure not following
+      puts params[:id]
+      puts params[:verb]
+      puts "line break"
+      u = User.find_by_id(session[:user][:id])
+
+      unless u.is_following(params[:id])
+        u.add_follower(params[:id])
+      end
 
     end
 
