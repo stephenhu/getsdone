@@ -86,6 +86,14 @@ class User < ActiveRecord::Base
 
   end
 
+  def assigned_actions
+
+    return self.actions.joins(:delegates).where(
+      :user_id => self.id, :completed => false).where(
+      ["delegates.user_id != ?", self.id] )
+
+  end
+
   def info
 
     completed = completed_actions.length

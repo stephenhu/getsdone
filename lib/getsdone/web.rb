@@ -43,6 +43,8 @@ module Getsdone
         @actions = u.open_actions
       elsif @view == "hashtags"
         @actions = u.hashtag_actions
+      elsif @view == "assigned"
+        @actions = u.assigned_actions
       elsif @view == "history"
 #TODO: need these views
         @actions = u.open_actions
