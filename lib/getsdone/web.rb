@@ -46,15 +46,41 @@ module Getsdone
       elsif @view == "assigned"
         @actions = u.assigned_actions
       elsif @view == "history"
-#TODO: need these views
-        @actions = u.open_actions
+        redirect "/history"
       elsif @view == "statistics"
-        @actions = u.open_actions
+        redirect "/statistics"
       else
         @actions = u.todays_actions
       end
 
       haml :home
+
+    end
+
+    get "/history" do
+
+      authenticate
+
+      u = User.find_by_id(session[:user][:id])
+
+      @user = u
+      @view = "history"
+
+      @actions = u.completed_actions
+
+      haml :history
+    end
+
+    get "/statistics" do
+
+      authenticate
+
+      u = User.find_by_id(session[:user][:id])
+
+      @user = u
+      @view = "statistics"
+
+      haml :statistics
 
     end
 

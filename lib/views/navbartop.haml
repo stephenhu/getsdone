@@ -14,13 +14,7 @@
           %div.value #{@user.info[:completed]} 
           %div.key completed
     %ul.nav.nav-pills
-      - if @view.nil? or @view == "upcoming"
-        %li.active
-          %a{:href => "/home?view=upcoming"} upcoming (#{@user.action_info[:upcoming]+@user.action_info[:overdue]})
-      - else
-        %li
-          %a{:href => "/home?view=upcoming"} upcoming (#{@user.action_info[:upcoming]+@user.action_info[:overdue]})
-      - if @view == "open"
+      - if @view.nil? or @view == "open"
         %li.active
           %a{:href => "/home?view=open"} open (#{@user.open_actions.length})
       - else
@@ -40,16 +34,16 @@
           %a{:href => "/home?view=assigned"} assigned (#{@user.assigned_actions.length})
       - if @view == "history"
         %li.active
-          %a{:href => "/home?view=history"} history
+          %a{:href => "/history"} history
       - else
         %li
-          %a{:href => "/home?view=history"} history
+          %a{:href => "/history"} history
       - if @view == "statistics"
         %li.active
-          %a{:href => "/home?view=statistics"} statistics
+          %a{:href => "/statistics"} statistics
       - else
         %li
-          %a{:href => "/home?view=statistics"} statistics
+          %a{:href => "/statistics"} statistics
     %hr
     %p.since 140
     %div.form-inline

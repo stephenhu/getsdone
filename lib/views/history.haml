@@ -1,0 +1,12 @@
+.container
+  .row
+    .span14
+      - @actions.each do |a|
+        %div.action
+          %div.title
+            %img{:src => url("images/glyphicons_387_amazon.png"), :width => "32"}
+            %p.since= a.time_remaining
+          %div.content
+            %p.medium= a.action
+            %button.btn.btn-mini comments (245)
+

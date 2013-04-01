@@ -2,6 +2,17 @@ open:
 - access privileges
 - dashboard for index page, new comments, statistics
 - multiple hashtags
+- comments
+- statistics
+- groups
+- ability to delete actions (user or delegate?)
+- character counter
+- make hashtag and @ a link
+- followers, following
+- comments for completed actions?
+- denying an action
+- trial period, beta?
+- 
 
 closed:
 
