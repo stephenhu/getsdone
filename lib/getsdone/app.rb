@@ -37,16 +37,6 @@ module Getsdone
 
     def authenticate
 
-      #mock google auth since it's so slow in china
-
-      u = User.find_by_id(1)
-
-      session[:user] = {
-        :id => u.id,
-        :name => u.name }
-
-      return
-
       if session[:user].nil?
   
         check_token

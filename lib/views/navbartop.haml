@@ -2,8 +2,8 @@
   .masthead
     %ul.nav.pull-right
       %li
-        %a.gauge{:href => ""}
-          %p.large @stephenhu
+        %a.gauge{:href => "/user/#{@user.name}"}
+          %p.large= "@#{@user.name}"
         %a.gauge{:href => ""}
           %div.value #{@user.info[:followers]}
           %div.key followers

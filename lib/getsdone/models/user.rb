@@ -20,25 +20,24 @@ class User < ActiveRecord::Base
 
     #return Action.joins(:delegates).where(
     #  :user_id => self.id, "delegates.user_id" => 1, :completed => false )
-    return self.actions.joins(:delegates).where(
-      :user_id => self.id, "delegates.user_id" => self.id,
-      :completed => false )
+    return Action.joins(:delegate).where(
+      "delegates.user_id" => self.id, :completed => false )
 
   end
 
   def overdue_actions
 
-    return self.actions.joins(:delegates).where(
-      :user_id => self.id, "delegates.user_id" => self.id,
-      :completed => false ).where( ["DATE(estimate) <= DATE(?)", Time.now] )
+    return Action.joins(:delegate).where(
+      "delegates.user_id" => self.id, :completed => false ).where(
+      ["DATE(estimate) <= DATE(?)", Time.now] )
 
   end
 
   def todays_actions
 
-    return self.actions.joins(:delegates).where(
-      :user_id => self.id, "delegates.user_id" => self.id,
-      :completed => false ).where( ["DATE(estimate) = DATE(?)", Time.now] )
+    return Action.joins(:delegate).where(
+      "delegates.user_id" => self.id, :completed => false ).where(
+      ["DATE(estimate) = DATE(?)", Time.now] )
 
   end
 
@@ -46,9 +45,8 @@ class User < ActiveRecord::Base
 
     t = Time.now
 
-    return self.actions.joins(:delegates).where(
-      :user_id => self.id, "delegates.user_id" => self.id,
-      :completed => false ).where(
+    return Action.joins(:delegate).where(
+      "delegates.user_id" => self.id, :completed => false ).where(
       [ "DATE(estimate) BETWEEN DATE(?) AND DATE(?)", t,
       t + Getsdone::UPCOMING.days ] )
 
@@ -58,8 +56,7 @@ class User < ActiveRecord::Base
 
     t = Time.now
 
-    return self.actions.joins(:delegates).where(
-      :user_id => self.id, "delegates.user_id" => self.id,
+    return Action.joins(:delegate).where( "delegates.user_id" => self.id,
       :completed => false ).where(
       [ "DATE(estimate) BETWEEN DATE(?) AND DATE(?)",
       t.beginning_of_week, t.end_of_week ] )
@@ -68,17 +65,15 @@ class User < ActiveRecord::Base
 
   def completed_actions
 
-    return self.actions.joins(:delegates).where(
-      :user_id => self.id, "delegates.user_id" => self.id,
-      :completed => true )
+    return Action.joins(:delegate).where(
+      "delegates.user_id" => self.id, :completed => true )
 
   end
 
   def hashtag_actions
 
-    actions = self.actions.joins(:delegates).where(
-      :user_id => self.id, "delegates.user_id" => self.id,
-      :completed => false )
+    actions = Action.joins(:delegate).where(
+      "delegates.user_id" => self.id, :completed => false )
 
     actions.reject! {|a| a.hashtags.length == 0}
 
@@ -88,9 +83,8 @@ class User < ActiveRecord::Base
 
   def assigned_actions
 
-    return self.actions.joins(:delegates).where(
-      :user_id => self.id, :completed => false).where(
-      ["delegates.user_id != ?", self.id] )
+    return Action.joins(:delegate).where( :user_id => self.id,
+      :completed => false ).where( ["delegates.user_id != ?", self.id] )
 
   end
 
@@ -98,10 +92,11 @@ class User < ActiveRecord::Base
 
     completed = completed_actions.length
 
-    followers = self.followers.length
+    followers = Follower.where( :follow_id => self.id )
+
     f = following.length
 
-    return { :completed => completed, :followers => followers,
+    return { :completed => completed, :followers => followers.length,
       :following => f }
 
   end
@@ -156,12 +151,12 @@ class User < ActiveRecord::Base
 
   def is_following(id)
 
-    puts self.followers.inspect
+    f = self.followers.where( :follow_id => id )
 
-    if self.followers.include?(id)
-      return true
-    else
+    if f.length == 0
       return false
+    else
+      return true
     end
 
   end

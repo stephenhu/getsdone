@@ -10,9 +10,12 @@ open:
 - make hashtag and @ a link
 - followers, following
 - comments for completed actions?
-- denying an action
+- denying an action, re-assign
 - trial period, beta?
-- 
+- audit trail
+- table view for history
+- timezones
+- langauges
 
 closed:
 

@@ -51,6 +51,9 @@ module Getsdone
         u.save
       end
 
+      return { :status => "200",
+        :msg => "logged out" }.to_json
+
     end
 
   end

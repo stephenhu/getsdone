@@ -8,13 +8,14 @@ module Getsdone
     end
 
     get "/" do
+      @nohead = true
       haml :index
     end
 
     get "/user/:id" do
 
       @nohead  = true
-      @user    = User.find_by_id(1) 
+      @user    = User.find_by_id(session[:user][:id]) 
       @profile = User.find_by_name(params[:id])
 
       if @profile.nil?
@@ -27,10 +28,10 @@ module Getsdone
 
     get "/home" do
 
-      authenticate
+      #authenticate
 
       @view = params[:view]
-
+ 
       u = User.find_by_id(session[:user][:id])
 
       @user = u
@@ -50,7 +51,8 @@ module Getsdone
       elsif @view == "statistics"
         redirect "/statistics"
       else
-        @actions = u.todays_actions
+        @view = "open"
+        @actions = u.open_actions
       end
 
       haml :home
@@ -59,7 +61,7 @@ module Getsdone
 
     get "/history" do
 
-      authenticate
+      #authenticate
 
       u = User.find_by_id(session[:user][:id])
 
@@ -73,7 +75,7 @@ module Getsdone
 
     get "/statistics" do
 
-      authenticate
+      #authenticate
 
       u = User.find_by_id(session[:user][:id])
 
@@ -86,12 +88,6 @@ module Getsdone
 
     get "/login" do
       haml :login
-    end
-
-    get "/test" do
-
-      return ""
-
     end
 
   end

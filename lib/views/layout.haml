@@ -11,5 +11,6 @@
     - unless session[:user].nil? or @nohead
       = haml :navbartop
     = yield
-    = haml :navbarbottom
+    - unless @nofoot
+      = haml :navbarbottom
 

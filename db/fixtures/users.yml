@@ -33,3 +33,10 @@ user5:
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
 
+user6:
+  uuid: szxcdwep
+  name: abcdefghijklmnop
+  salt: fagegggga
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+

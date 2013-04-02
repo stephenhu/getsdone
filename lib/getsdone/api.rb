@@ -9,7 +9,7 @@ module Getsdone
 #TODO: api key
     post "/actions" do
 
-      authenticate
+      #authenticate
 
       unless AppHelper.validate(params)
         return { :status => "400",
@@ -28,7 +28,7 @@ module Getsdone
 
     put "/actions/:id" do
 
-      authenticate
+      #authenticate
 
       a = Action.find_by_id(params[:id])
 
@@ -53,7 +53,7 @@ module Getsdone
 
     delete "/actions/:id" do
 
-      authenticate
+      #authenticate
 
       a = Action.find_by_id(params[:id])
 
@@ -91,9 +91,6 @@ module Getsdone
 
       # make sure user exists
       # make sure not following
-      puts params[:id]
-      puts params[:verb]
-      puts "line break"
       u = User.find_by_id(session[:user][:id])
 
       unless u.is_following(params[:id])

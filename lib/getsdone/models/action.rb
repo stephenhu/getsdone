@@ -2,7 +2,7 @@ class Action < ActiveRecord::Base
 
   has_many :hashtags, :dependent => :destroy
   has_many :tags, :through => :hashtags
-  has_many :delegates, :dependent => :destroy
+  has_one :delegate, :dependent => :destroy
 
   belongs_to :user
 
@@ -18,6 +18,14 @@ class Action < ActiveRecord::Base
     rem = Getsdone::AppHelper.duration_calc(self.estimate)
 
     return rem
+
+  end
+
+  def get_assigner_name
+
+    u = User.find_by_id(self.user_id)
+
+    return u.name
 
   end
 

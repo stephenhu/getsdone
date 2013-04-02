@@ -24,7 +24,14 @@ return values are in the form of a json message:
 
   { msg: "" }
 
-upcoming
 open
 hashtags
+assigned
+
+1.  action creators may delete action
+2.  action owner may assign action to someone else
+3.  action owner may not delete
+4.  if an action is assigned to a random person then he/she may reject,
+in this case press the delete button which should not delete but return
+to the sender
 

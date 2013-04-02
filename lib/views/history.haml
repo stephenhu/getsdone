@@ -1,12 +1,19 @@
 .container
   .row
     .span14
-      - @actions.each do |a|
-        %div.action
-          %div.title
-            %img{:src => url("images/glyphicons_387_amazon.png"), :width => "32"}
-            %p.since= a.time_remaining
-          %div.content
-            %p.medium= a.action
-            %button.btn.btn-mini comments (245)
+      %table.table.table-hover
+        %th
+        %th action
+        %th finished
+        %th estimate
+        %th comments
+        - @actions.each do |a|
+          %tr
+            %td
+              %img{:src => url("images/glyphicons_387_amazon.png"), :width => "32"}
+            %td= a.action
+            %td= a.finished
+            %td= a.estimate
+            %td
+              %a{:href => ""} comments (3)
 

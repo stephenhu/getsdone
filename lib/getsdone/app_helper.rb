@@ -63,11 +63,11 @@ module Getsdone
 
     def self.add_action( params, user )
 
-      if user[:name].nil?
+      u = User.find_by_id(user[:id])
+
+      if u.nil?
         return false
       end
-
-      u = User.find_by_name(user[:name])
 
       Action.transaction do
 
@@ -97,8 +97,7 @@ module Getsdone
           id = o.id
         end
 
-        a.delegates.create(
-          :user_id => id )
+        a.create_delegate( :user_id => id )
 
         a.save
 

@@ -12,3 +12,11 @@ map "/auth" do
   run Getsdone::Auth
 end
 
+if ENV["RACK_ENV"] == "development"
+
+  map "/debug" do
+    run Getsdone::Debug
+  end
+
+end
+

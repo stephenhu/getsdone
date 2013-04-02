@@ -5,10 +5,13 @@
         %div.action
           %div.title
             %img{:src => url("images/glyphicons_387_amazon.png"), :width => "32"}
+            %a.since{:href =>""}= "@#{a.get_assigner_name}"
             %p.since= a.time_remaining
           %div.content
             %p.medium= a.action
             %button.btn.btn-mini comments (245)
+            - if @view != "assigned"
+              %button.btn.btn-info.btn-mini{:onclick => "assignDialog(#{a.id}); return false;"} assign
             %button.btn.btn-success.btn-mini{:onclick => "completeAction(#{a.id}); return false;"} complete
           %div.operations
             %a.pull-right{:href => "", :onclick => "deleteAction(#{a.id}); return false;"}

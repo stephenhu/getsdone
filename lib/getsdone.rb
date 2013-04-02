@@ -20,6 +20,10 @@ require File.join( File.dirname(__FILE__), "getsdone", "google_helper" )
 require File.join( File.dirname(__FILE__), "getsdone", "version" )
 require File.join( File.dirname(__FILE__), "getsdone", "web" )
 
+if ENV["RACK_ENV"] == "development"
+  require File.join( File.dirname(__FILE__), "getsdone", "debug" )
+end
+
 Dir.glob("./getsdone/models/*").each {|r| require r }
 
 module Getsdone
