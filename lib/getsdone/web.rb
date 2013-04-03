@@ -12,6 +12,40 @@ module Getsdone
       haml :index
     end
 
+    get "/blog" do
+
+      @nohead = true
+      haml :blog
+
+    end
+    get "/company" do
+
+      @nohead = true
+      haml :company
+
+    end
+
+    get "/about" do
+
+      @nohead = true
+      haml :about
+
+    end
+
+    get "/terms" do
+
+      @nohead = true
+      haml :terms
+
+    end
+
+    get "/privacy" do
+
+      @nohead = true
+      haml :privacy
+
+    end
+
     get "/users/:id" do
 
       @nohead  = true

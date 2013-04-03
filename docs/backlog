@@ -1,16 +1,13 @@
 open:
 - multiple hashtags
 - comments
-- groups
 - character counter
 - make hashtag and @ a link
 - comments for completed actions?
 - denying an action, re-assign
 - unfollow
-- blog
-- company
-- about
 - new comments notification
+- terms
 
 icebox:
 - email newsletter
@@ -24,6 +21,7 @@ icebox:
 - audit trail
 - trial period, beta?
 - access privileges
+- groups
 
 
 closed:
@@ -31,3 +29,8 @@ closed:
 - hashtag page
 - table view for history
 - ability to delete actions (user or delegate?)
+- blog
+- about
+- company
+- privacy
+
