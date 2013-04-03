@@ -17,12 +17,35 @@ module Getsdone
       @nohead  = true
       @user    = User.find_by_id(session[:user][:id]) 
       @profile = User.find_by_name(params[:id])
+      @info    = @profile.info
 
       if @profile.nil?
         halt 404, "User not found"
       end
 
       haml :user
+
+    end
+
+    get "/user/:id/following" do
+
+      @nohead = true
+
+      @profile = User.find_by_name(params[:id])
+      @info    = @profile.info
+
+      haml :following
+
+    end
+
+    get "/user/:id/followers" do
+
+      @nohead = true
+
+      @profile = User.find_by_name(params[:id])
+      @info    = @profile.info
+
+      haml :followers
 
     end
 
@@ -35,6 +58,7 @@ module Getsdone
       u = User.find_by_id(session[:user][:id])
 
       @user = u
+      @info = @user.info
 
       if @view == "week"
         @actions = u.weeks_actions

@@ -3,7 +3,7 @@ require "securerandom"
 
 class User < ActiveRecord::Base
 
-  has_many :followers
+  has_many :follows
   has_many :actions
   has_many :comments
 
@@ -92,12 +92,8 @@ class User < ActiveRecord::Base
 
     completed = completed_actions.length
 
-    followers = Follower.where( :follow_id => self.id )
-
-    f = following.length
-
-    return { :completed => completed, :followers => followers.length,
-      :following => f }
+    return { :completed => completed, :follows => self.follows.length,
+      :followers => followers.length }
 
   end
 
@@ -145,13 +141,13 @@ class User < ActiveRecord::Base
 
   end
 
-  def following
-    return Follower.where( :user_id => self.id )
+  def followers
+    return Follow.where( :follow_id => self.id )
   end
 
   def is_following(id)
 
-    f = self.followers.where( :follow_id => id )
+    f = self.follows.where( :follow_id => id )
 
     if f.length == 0
       return false
@@ -165,7 +161,7 @@ class User < ActiveRecord::Base
 
     unless is_following(id)
 
-      self.followers.create(
+      self.follows.create(
         :follow_id => id )
 
     end

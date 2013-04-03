@@ -19,6 +19,7 @@ unique
 5.  actions have a single owner
 6.  the same action can be assigned to multiple owners, but constitutes
 multiple actions, bound together by a unique guid
+7.  usernames cannot start with a number?
 
 return values are in the form of a json message:
 

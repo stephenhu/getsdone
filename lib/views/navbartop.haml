@@ -4,14 +4,14 @@
       %li
         %a.gauge{:href => "/user/#{@user.name}"}
           %p.large= "@#{@user.name}"
-        %a.gauge{:href => ""}
-          %div.value #{@user.info[:followers]}
+        %a.gauge{:href => url("/user/#{@user.name}/followers")}
+          %div.value #{@info[:followers]}
           %div.key followers
-        %a.gauge{:href => ""}
-          %div.value #{@user.info[:following]}
+        %a.gauge{:href => url("/user/#{@user.name}/following")}
+          %div.value #{@info[:follows]}
           %div.key following
         %a.gauge{:href => ""}
-          %div.value #{@user.info[:completed]} 
+          %div.value #{@info[:completed]} 
           %div.key completed
     %ul.nav.nav-pills
       - if @view.nil? or @view == "open"

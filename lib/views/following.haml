@@ -1,0 +1,32 @@
+.container
+  .row
+    .span14
+      %a.xlarge{:href => url("/user/#{@profile.name}")}= "@#{@profile.name}"
+  .row
+    .span14
+      %br
+      %img{:src => url("images/#{@profile.icon}"), :width => "32"}
+  %br
+  .row
+    .span14
+      %a.gauge{:href => url("/user/#{@profile.name}/followers")}
+        %div.value= @info[:followers]
+        %div.key followers
+      %a.gauge{:href => url("/user/#{@profile.name}/following")}
+        %div.value= @info[:follows]
+        %div.key following
+      %a.gauge{:href => ""}
+        %div.value= @info[:completed]
+        %div.key completed
+  %br
+  .row
+    .span14
+      %h2 following
+      %table.table
+        - @profile.follows.each do |f|
+          %tr
+            %td
+              %img{:src => url("images/#{f.get_profile(f.follow_id)[:icon]}"), :width => "32"}
+            %td
+              %a{:href => url("/user/#{f.get_profile(f.follow_id)[:name]}")}= "@#{f.get_profile(f.follow_id)[:name]}"
+

@@ -8,10 +8,11 @@ class InitSchema < ActiveRecord::Migration
       t.string :salt
       t.string :token
       t.string :guid
+      t.string :icon, :default => "glyphicons_003_user.png"
       t.timestamps
     end
 
-    create_table :followers do |t|
+    create_table :follows do |t|
       t.belongs_to :user
       t.integer :user_id
       t.integer :follow_id

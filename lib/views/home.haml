@@ -4,7 +4,7 @@
       - @actions.each do |a|
         %div.action
           %div.title
-            %img{:src => url("images/glyphicons_387_amazon.png"), :width => "32"}
+            %img{:src => url("images/#{@user.icon}"), :width => "32"}
             %a.since{:href =>""}= "@#{a.get_assigner_name}"
             %p.since= a.time_remaining
           %div.content
@@ -13,7 +13,8 @@
             - if @view != "assigned"
               %button.btn.btn-info.btn-mini{:onclick => "assignDialog(#{a.id}); return false;"} assign
             %button.btn.btn-success.btn-mini{:onclick => "completeAction(#{a.id}); return false;"} complete
-          %div.operations
-            %a.pull-right{:href => "", :onclick => "deleteAction(#{a.id}); return false;"}
-              %img{:src => url("images/glyphicons_207_remove_2.png"), :width => "16"}
+          - if a.user_id == session[:user][:id]
+            %div.operations
+              %a.pull-right{:href => "", :onclick => "deleteAction(#{a.id}); return false;"}
+                %img{:src => url("images/glyphicons_207_remove_2.png"), :width => "16"}
 
