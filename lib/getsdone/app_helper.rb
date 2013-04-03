@@ -78,11 +78,21 @@ module Getsdone
         a.save
 
         unless params["hashtag"].nil?
- 
-          a.tags.create(
-            :tag => params["hashtag"] )
 
-          a.save
+          t = Tag.find_by_tag(params["hashtag"])
+
+          if t.nil?
+
+            a.tags.create(
+              :tag => params["hashtag"] )
+
+            a.save
+
+          else
+
+            a.hashtags.create( :tag_id => t.id )
+
+          end
 
         end
       
@@ -105,6 +115,33 @@ module Getsdone
      
       return true
  
+    end
+
+    def self.get_hashtags(actions)
+
+      hashtags = []
+
+      actions.each do |a|
+
+        a.tags.each do |t|
+          hashtags.append(t.tag)
+        end
+
+      end
+
+      return hashtags.uniq
+
+    end
+
+    def self.get_hashtag_actions(hashtag)
+
+      tag_id = Tag.joins(:hashtags).where( :tag => hashtag ).first()
+
+      t = Action.joins(:hashtags).where( "hashtags.tag_id" => tag_id.id,
+        :completed => false )
+
+      return t
+
     end
 
   end

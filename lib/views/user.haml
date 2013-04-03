@@ -9,10 +9,10 @@
   %br
   .row
     .span14
-      %a.gauge{:href => url("user/#{@profile.name}/followers")}
+      %a.gauge{:href => url("users/#{@profile.name}/followers")}
         %div.value= @info[:followers]
         %div.key followers
-      %a.gauge{:href => url("user/#{@profile.name}/following")}
+      %a.gauge{:href => url("users/#{@profile.name}/following")}
         %div.value= @info[:follows]
         %div.key following
       %a.gauge{:href => ""}

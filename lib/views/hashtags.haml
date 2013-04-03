@@ -1,0 +1,17 @@
+.container
+  .row
+    .span14
+      %a.large{:href => ""}= "##{@hashtag}"
+  .row
+    .span14
+      %br
+      - @actions.each do |a|
+        %div.action
+          %div.title
+            %img{:src => url("images/#{a.get_delegate_profile[:icon]}"), :width => "32"}
+            %a.since{:href => "/users/#{a.get_delegate_profile[:name]}"}= "@#{a.get_delegate_profile[:name]}"
+            %p.since= a.time_remaining
+          %div.content
+            %p.medium= a.action
+            %button.btn.btn-mini comments (12)
+

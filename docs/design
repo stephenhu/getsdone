@@ -32,7 +32,7 @@ assigned
 1.  action creators may delete action
 2.  action owner may assign action to someone else
 3.  action owner may not delete
-4.  if an action is assigned to a random person then he/she may reject,
-in this case press the delete button which should not delete but return
-to the sender
+4.  if an action is assigned to a random person then he/she may assign to
+someone else (including sender)
+5.  only the originator of the action has delete privilege.
 

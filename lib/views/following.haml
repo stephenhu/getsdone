@@ -1,7 +1,7 @@
 .container
   .row
     .span14
-      %a.xlarge{:href => url("/user/#{@profile.name}")}= "@#{@profile.name}"
+      %a.xlarge{:href => url("/users#{@profile.name}")}= "@#{@profile.name}"
   .row
     .span14
       %br
@@ -9,10 +9,10 @@
   %br
   .row
     .span14
-      %a.gauge{:href => url("/user/#{@profile.name}/followers")}
+      %a.gauge{:href => url("/users/#{@profile.name}/followers")}
         %div.value= @info[:followers]
         %div.key followers
-      %a.gauge{:href => url("/user/#{@profile.name}/following")}
+      %a.gauge{:href => url("/users/#{@profile.name}/following")}
         %div.value= @info[:follows]
         %div.key following
       %a.gauge{:href => ""}
@@ -28,5 +28,5 @@
             %td
               %img{:src => url("images/#{f.get_profile(f.follow_id)[:icon]}"), :width => "32"}
             %td
-              %a{:href => url("/user/#{f.get_profile(f.follow_id)[:name]}")}= "@#{f.get_profile(f.follow_id)[:name]}"
+              %a{:href => url("/users/#{f.get_profile(f.follow_id)[:name]}")}= "@#{f.get_profile(f.follow_id)[:name]}"
 

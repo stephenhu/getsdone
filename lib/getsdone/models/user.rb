@@ -168,5 +168,9 @@ class User < ActiveRecord::Base
 
   end
 
+  def profile
+    return { :name => self.name, :icon => self.icon }
+  end
+
 end
 

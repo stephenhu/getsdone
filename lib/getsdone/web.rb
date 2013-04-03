@@ -12,7 +12,7 @@ module Getsdone
       haml :index
     end
 
-    get "/user/:id" do
+    get "/users/:id" do
 
       @nohead  = true
       @user    = User.find_by_id(session[:user][:id]) 
@@ -27,7 +27,7 @@ module Getsdone
 
     end
 
-    get "/user/:id/following" do
+    get "/users/:id/following" do
 
       @nohead = true
 
@@ -38,7 +38,7 @@ module Getsdone
 
     end
 
-    get "/user/:id/followers" do
+    get "/users/:id/followers" do
 
       @nohead = true
 
@@ -66,10 +66,10 @@ module Getsdone
         @actions = u.overdue_actions + u.upcoming_actions
       elsif @view == "open"
         @actions = u.open_actions
-      elsif @view == "hashtags"
-        @actions = u.hashtag_actions
       elsif @view == "assigned"
         @actions = u.assigned_actions
+      elsif @view == "hashtags"
+        @hashtags = AppHelper.get_hashtags(u.hashtag_actions)
       elsif @view == "history"
         redirect "/history"
       elsif @view == "statistics"
@@ -83,6 +83,23 @@ module Getsdone
 
     end
 
+    get "/hashtags/:hashtag" do
+
+      #authenticate
+
+      u = User.find_by_id(session[:user][:id])
+
+      @nohead   = true
+      @user     = u
+      @info     = @user.info
+
+      @hashtag  = params[:hashtag]
+      @actions  = AppHelper.get_hashtag_actions(params[:hashtag])
+
+      haml :hashtags
+
+    end
+
     get "/history" do
 
       #authenticate
@@ -91,6 +108,7 @@ module Getsdone
 
       @user = u
       @view = "history"
+      @info = u.info
 
       @actions = u.completed_actions
 
@@ -103,8 +121,9 @@ module Getsdone
 
       u = User.find_by_id(session[:user][:id])
 
-      @user = u
-      @view = "statistics"
+      @user     = u
+      @view     = "statistics"
+      @info     = u.info
 
       haml :statistics
 

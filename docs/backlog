@@ -1,22 +1,33 @@
 open:
-- access privileges
-- dashboard for index page, new comments, statistics
 - multiple hashtags
 - comments
-- statistics
 - groups
-- ability to delete actions (user or delegate?)
 - character counter
 - make hashtag and @ a link
-- followers, following
 - comments for completed actions?
 - denying an action, re-assign
-- trial period, beta?
-- audit trail
-- table view for history
-- timezones
-- langauges
+- unfollow
+- blog
+- company
+- about
+- new comments notification
+
+icebox:
+- email newsletter
+- refactor 
+- bookmarked actions
 - search
+- langauges
+- timezones
+- statistics
+- dashboard for index page, new comments, statistics
+- audit trail
+- trial period, beta?
+- access privileges
+
 
 closed:
-
+- followers, following
+- hashtag page
+- table view for history
+- ability to delete actions (user or delegate?)

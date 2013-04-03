@@ -1,18 +1,18 @@
 .navbar.navbar-fixed-bottom
   .navbar-inner
     .container
-      %a.brand{:href => ""}
+      %a.brand{:href => "/"}
         getsdone.io
         %sup alpha
       %ul.nav
         %li
-          %a{:href => "home"} home
+          %a{:href => "/home"} home
         %li
-          %a{:href => "blog"} blog
+          %a{:href => "/blog"} blog
         %Li
-          %a{:href => "company"} company
+          %a{:href => "/company"} company
         %li
-          %a{:href => "about"} about
+          %a{:href => "/about"} about
       %ul.nav.pull-right
         %li
           - if session[:user].nil?

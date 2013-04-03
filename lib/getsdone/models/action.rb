@@ -21,12 +21,16 @@ class Action < ActiveRecord::Base
 
   end
 
-  def get_assigner_name
+  def get_assigner_profile
 
     u = User.find_by_id(self.user_id)
+    return u.profile
 
-    return u.name
+  end
 
+  def get_delegate_profile
+    u = User.find_by_id(self.delegate.user_id)
+    return u.profile
   end
 
 end

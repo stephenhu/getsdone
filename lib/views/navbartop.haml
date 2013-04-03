@@ -2,12 +2,12 @@
   .masthead
     %ul.nav.pull-right
       %li
-        %a.gauge{:href => "/user/#{@user.name}"}
+        %a.gauge{:href => "/users/#{@user.name}"}
           %p.large= "@#{@user.name}"
-        %a.gauge{:href => url("/user/#{@user.name}/followers")}
+        %a.gauge{:href => url("/users/#{@user.name}/followers")}
           %div.value #{@info[:followers]}
           %div.key followers
-        %a.gauge{:href => url("/user/#{@user.name}/following")}
+        %a.gauge{:href => url("/users/#{@user.name}/following")}
           %div.value #{@info[:follows]}
           %div.key following
         %a.gauge{:href => ""}
@@ -20,18 +20,18 @@
       - else
         %li
           %a{:href => "/home?view=open"} open (#{@user.open_actions.length})
-      - if @view == "hashtags"
-        %li.active
-          %a{:href => "/home?view=hashtags"} hashtags (#{@user.hashtag_actions.length})
-      - else
-        %li
-          %a{:href => "/home?view=hashtags"} hashtags (#{@user.hashtag_actions.length})
       - if @view == "assigned"
         %li.active
           %a{:href => "/home?view=assigned"} assigned (#{@user.assigned_actions.length})
       - else
         %li
           %a{:href => "/home?view=assigned"} assigned (#{@user.assigned_actions.length})
+      - if @view == "hashtags"
+        %li.active
+          %a{:href => "/home?view=hashtags"} hashtags
+      - else
+        %li
+          %a{:href => "/home?view=hashtags"} hashtags
       - if @view == "history"
         %li.active
           %a{:href => "/history"} history
