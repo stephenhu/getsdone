@@ -9,7 +9,7 @@
               %a.since{:href =>""}= "@#{a.get_assigner_profile[:name]}"
               %p.since= a.time_remaining
             %div.content
-              %p.medium= a.action
+              %p.medium= a.encoded_action
               %button.btn.btn-mini comments (245)
               - if @view != "assigned"
                 %button.btn.btn-info.btn-mini{:onclick => "assignDialog(#{a.id}); return false;"} assign

@@ -19,7 +19,8 @@ unique
 5.  actions have a single owner
 6.  the same action can be assigned to multiple owners, but constitutes
 multiple actions, bound together by a unique guid
-7.  usernames cannot start with a number?
+7.  usernames and hashtags can start with a number
+8.  usernames and hashtags can contain alpha numerics only
 
 return values are in the form of a json message:
 

@@ -33,5 +33,16 @@ class Action < ActiveRecord::Base
     return u.profile
   end
 
+  def encoded_action
+
+    e = self.action.gsub(/@[a-zA-Z0-9]+/){|m| "<a href=\"\">#{m}</a>"}
+
+    e = e.gsub(/#[a-zA-Z0-9]+/){|m| "<a href=\"\">#{m}</a>"}
+
+    return e  
+    #return self.action
+
+  end
+
 end
 
