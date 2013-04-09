@@ -1,7 +1,6 @@
 open:
 - multiple hashtags
 - comments
-- character counter
 - make hashtag and @ a link
 - denying an action, re-assign
 - terms
@@ -22,6 +21,7 @@ icebox:
 - groups
 - badges for completed actions
 - new comments notification
+- hashtag link
 
 closed:
 - followers, following
@@ -33,4 +33,5 @@ closed:
 - company
 - privacy
 - unfollow
+- character counter
 

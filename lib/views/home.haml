@@ -20,5 +20,5 @@
                   %img{:src => url("images/glyphicons_207_remove_2.png"), :width => "16"}
       - else
         - @hashtags.each do |h|
-          %button.btn.btn-info{:onclick => ""}= "##{h}"
+          %button.btn.btn-info{:onclick => "goto('#{h}'); return false;"}= "##{h}"
 
