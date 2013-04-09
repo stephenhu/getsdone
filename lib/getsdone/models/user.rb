@@ -3,7 +3,7 @@ require "securerandom"
 
 class User < ActiveRecord::Base
 
-  has_many :follows
+  has_many :follows, :dependent => :destroy 
   has_many :actions
   has_many :comments
 
@@ -161,8 +161,19 @@ class User < ActiveRecord::Base
 
     unless is_following(id)
 
-      self.follows.create(
-        :follow_id => id )
+      self.follows.create( :follow_id => id )
+      self.save
+    end
+
+  end
+
+  def remove_follower(id)
+
+    if is_following(id)
+
+      f = self.follows.find_by_follow_id(id)
+
+      self.follows.delete(f) unless f.nil?
 
     end
 

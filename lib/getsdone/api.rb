@@ -87,15 +87,25 @@ module Getsdone
 
     end
 
-    post "/user/:id?:verb?" do
+    put "/users/:id/followers" do
 
       # make sure user exists
       # make sure not following
       u = User.find_by_id(session[:user][:id])
 
-      unless u.is_following(params[:id])
-        u.add_follower(params[:id])
-      end
+      u.add_follower(params[:id])
+
+      return { :status => "200", :msg => "" }.to_json
+
+    end
+
+    delete "/users/:id/followers" do
+
+      u = User.find_by_id(session[:user][:id])
+
+      u.remove_follower(params[:id])
+
+      return { :status => "200", :msg => "" }.to_json
 
     end
 

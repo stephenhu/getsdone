@@ -8,6 +8,7 @@ open:
 - unfollow
 - new comments notification
 - terms
+- oauth2
 
 icebox:
 - email newsletter
