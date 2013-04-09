@@ -3,10 +3,7 @@ open:
 - comments
 - character counter
 - make hashtag and @ a link
-- comments for completed actions?
 - denying an action, re-assign
-- unfollow
-- new comments notification
 - terms
 - oauth2
 
@@ -24,6 +21,7 @@ icebox:
 - access privileges
 - groups
 - badges for completed actions
+- new comments notification
 
 closed:
 - followers, following
@@ -34,4 +32,5 @@ closed:
 - about
 - company
 - privacy
+- unfollow
 

@@ -45,9 +45,9 @@
         %li
           %a{:href => "/statistics"} statistics
     %hr
-    %p.since 140
+    %p.since{:id => "counter"} 140
     %div.form-inline
-      %input.input-xxlarge{:id => "action", :placeholder => "action", :type => "text", :maxlength => "140"}
+      %input.input-xxlarge{:id => "action", :placeholder => "action", :type => "text", :maxlength => "140", :onkeyup => "count(); return false;"}
       %button.btn.btn-primary{:onclick => "addAction(); return false;"} add action
     %br
 
