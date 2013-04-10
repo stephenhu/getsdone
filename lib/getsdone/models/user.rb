@@ -188,21 +188,25 @@ class User < ActiveRecord::Base
     a = self.actions.create( :action => action )
     a.save
 
-    hashtags.each do |h|
+    unless hashtags.nil?
 
-      t = Tag.find_by_tag(h)
+      hashtags.each do |h|
 
-      if t.nil?
-        a.tags.create( :tag => h )
-      else
-        a.hashtags.create( :tag_id => t.id )
+        t = Tag.find_by_tag(h)
+
+        if t.nil?
+          a.tags.create( :tag => h )
+        else
+          a.hashtags.create( :tag_id => t.id )
+        end
+
+        a.save
+
       end
-
-      a.save
 
     end
 
-    o = User.find_by_name(owner)
+    o = User.find_by_name(owner) unless owner.nil?
 
     if o.nil?
       id = self.id
