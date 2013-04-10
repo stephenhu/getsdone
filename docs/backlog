@@ -1,10 +1,8 @@
 open:
-- multiple hashtags
 - comments
-- make hashtag and @ a link
 - denying an action, re-assign
-- terms
 - oauth2
+- registration
 
 icebox:
 - email newsletter
@@ -34,4 +32,7 @@ closed:
 - privacy
 - unfollow
 - character counter
+- multiple hashtags
+- make hashtag and @ a link
+- terms
 
