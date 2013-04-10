@@ -46,11 +46,11 @@ module Getsdone
 
       params.each do |k,v|
 
-        if v == ""
-          params[k] = nil
-        else
-          params[k] = v.strip
-        end
+        #if v == ""
+        #  params[k] = nil
+        #else
+        #  params[k] = v.strip
+        #end
 
         case k
         when "action"
@@ -61,61 +61,6 @@ module Getsdone
 
     end
 
-    def self.add_action( params, user )
-
-      u = User.find_by_id(user[:id])
-
-      if u.nil?
-        return false
-      end
-
-      Action.transaction do
-
-        a = u.actions.create(
-          :action => params["action"],
-          :priority => params["priority"] )
-
-        a.save
-
-        unless params["hashtag"].nil?
-
-          t = Tag.find_by_tag(params["hashtag"])
-
-          if t.nil?
-
-            a.tags.create(
-              :tag => params["hashtag"] )
-
-            a.save
-
-          else
-
-            a.hashtags.create( :tag_id => t.id )
-
-          end
-
-        end
-      
-        owner = params["owner"]
-
-        o = User.find_by_name(owner) unless owner.nil?
-
-        
-        if o.nil?
-          id = u.id
-        else
-          id = o.id
-        end
-
-        a.create_delegate( :user_id => id )
-
-        a.save
-
-      end
-     
-      return true
- 
-    end
 
     def self.get_hashtags(actions)
 

@@ -11,18 +11,18 @@ module Getsdone
 
       #authenticate
 
+      u = User.find_by_id(session[:user][:id])
+
       unless AppHelper.validate(params)
         return { :status => "400",
                  :msg => "Bad parameters" }.to_json
       end
 
-      unless AppHelper.add_action( params, session[:user] )
-        return { :status => "401",
-                 :msg => "User not found" }.to_json
+      unless u.add_actions(params)
+        return { :status => "500", :msg => "Unable to add action" }.to_json
       end
 
-      return { :status => "200",
-               :msg => "" }.to_json
+      return { :status => "200", :msg => "" }.to_json
 
     end
 
@@ -34,8 +34,7 @@ module Getsdone
 
       if a.nil?
 
-        return { :status => "404",
-                 :msg => "Action not found" }.to_json
+        return { :status => "404", :msg => "Action not found" }.to_json
 
       end
 
@@ -89,6 +88,8 @@ module Getsdone
 
     put "/users/:id/followers" do
 
+      #authenticate
+
       # make sure user exists
       # make sure not following
       u = User.find_by_id(session[:user][:id])
@@ -100,6 +101,8 @@ module Getsdone
     end
 
     delete "/users/:id/followers" do
+
+      #authenticate
 
       u = User.find_by_id(session[:user][:id])
 

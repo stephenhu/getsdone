@@ -183,5 +183,61 @@ class User < ActiveRecord::Base
     return { :name => self.name, :icon => self.icon }
   end
 
+  def add_action( action, owner, hashtags )
+
+    a = self.actions.create( :action => action )
+    a.save
+
+    hashtags.each do |h|
+
+      t = Tag.find_by_tag(h)
+
+      if t.nil?
+        a.tags.create( :tag => h )
+      else
+        a.hashtags.create( :tag_id => t.id )
+      end
+
+      a.save
+
+    end
+
+    o = User.find_by_name(owner)
+
+    if o.nil?
+      id = self.id
+    else
+      id = o.id
+    end
+
+    a.create_delegate( :user_id => id )
+    a.save
+
+    return true
+
+  end
+
+  def add_actions(params)
+
+    owners    = params[:owners]
+    hashtags  = params[:hashtags]
+    action    = params[:action]
+
+    Action.transaction do
+
+      if owners.nil?
+        add_action( action, nil, hashtags )
+      else
+
+        owners.each do |o|
+          add_action( action, o, hashtags )          
+        end
+
+      end
+
+    end
+
+  end
+
 end
 

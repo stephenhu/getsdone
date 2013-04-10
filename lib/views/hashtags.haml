@@ -12,6 +12,6 @@
             %a.since{:href => "/users/#{a.get_delegate_profile[:name]}"}= "@#{a.get_delegate_profile[:name]}"
             %p.since= a.time_remaining
           %div.content
-            %p.medium= a.action
+            %p.medium= a.encoded_action
             %button.btn.btn-mini comments (12)
 

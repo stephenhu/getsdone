@@ -10,6 +10,7 @@ gem "rest-client"
 gem "sinatra"
 gem "sinatra-contrib"
 gem "thin"
+gem "twitter-text"
 
 group :production do
   gem "pg"

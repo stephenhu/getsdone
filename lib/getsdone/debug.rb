@@ -21,6 +21,7 @@ module Getsdone
 
       u = User.find_by_id(params[:id])
 
+      session[:user]         = u
       session[:user][:id]    = u.id
       session[:user][:name]  = u.name
 

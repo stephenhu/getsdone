@@ -13,7 +13,8 @@
               %button.btn.btn-mini comments (245)
               - if @view != "assigned"
                 %button.btn.btn-info.btn-mini{:onclick => "assignDialog(#{a.id}); return false;"} assign
-              %button.btn.btn-success.btn-mini{:onclick => "completeAction(#{a.id}); return false;"} complete
+              - if @view != "assigned"
+                %button.btn.btn-success.btn-mini{:onclick => "completeAction(#{a.id}); return false;"} complete
             - if a.user_id == session[:user][:id]
               %div.operations
                 %a.pull-right{:href => "", :onclick => "deleteAction(#{a.id}); return false;"}

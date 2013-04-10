@@ -11,6 +11,7 @@ require "sinatra"
 require "sqlite3"
 require "thin"
 require "time"
+require "twitter-text"
 
 require File.join( File.dirname(__FILE__), "getsdone", "app_helper" )
 require File.join( File.dirname(__FILE__), "getsdone", "app" )
