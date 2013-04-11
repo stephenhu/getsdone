@@ -179,8 +179,30 @@ module Getsdone
     end
 
     get "/login" do
+
       @title  = "getsdone.io - login"
+      @nohead = true
+
       haml :login
+
+    end
+
+    get "/signup" do
+
+      @title    = "getsdone.io - signup"
+      @nohead   = true
+
+      haml :signup
+
+    end
+
+    get "/forgot" do
+
+      @title    = "getsdone.io - forgot"
+      @nohead   = true
+
+      haml :forgot
+
     end
 
   end

@@ -2,12 +2,11 @@ open:
 - comments
 - oauth2
 - registration
-- titles for each page
 - open source readiness
-- deletes should change state, not physically be deleted.
 - security: api key
 - ssl?
 - register email account
+- landing page
 
 icebox:
 - email newsletter
@@ -35,6 +34,7 @@ icebox:
 - forgotten password
 - use media-list from bootstrap
 - rake config, ask to delete existing files with read only permission
+- actions view in home page needs padding after between navbarbottom
 
 closed:
 - followers, following
@@ -54,4 +54,6 @@ closed:
 - if original is deleted, what happens to a reassignment? #this is a dup, now actions shouldn't ever be deleted, only marked in deleted state.
 - copyright on about page
 - chmod permissions to 400 for all yaml files
+- titles for each page
+- deletes should change state, not physically be deleted.
 
