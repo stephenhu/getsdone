@@ -30,12 +30,16 @@ Dir.glob("./getsdone/models/*").each {|r| require r }
 module Getsdone
 
 #  SCOPE           = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
-  SCOPE           = "https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"
-  AUTH_ENDPOINT   = "https://accounts.google.com"
-  AUTH_RESOURCE   = "/o/oauth2/auth"
-  TOKEN_RESOURCE  = "/o/oauth2/token"
-  REDIRECT_URI    = "http://localhost:9292/auth/oauth2callback"
-  GOOGLE_EMAIL    = "https://www.googleapis.com/oauth2/v1/userinfo?alt=json"
+  SCOPE           =
+    "https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email".freeze
+  AUTH_ENDPOINT   = "https://accounts.google.com".freeze
+  AUTH_RESOURCE   = "/o/oauth2/auth".freeze
+  TOKEN_RESOURCE  = "/o/oauth2/token".freeze
+  REDIRECT_URI    = "http://localhost:9292/auth/oauth2callback".freeze
+  GOOGLE_EMAIL    = "https://www.googleapis.com/oauth2/v1/userinfo?alt=json".freeze
+
+  DEFAULT_USERNAME_URL_BASE   = "http://192.168.174.135:9292/users/".freeze
+  DEFAULT_HASHTAG_URL_BASE    = "http://192.168.174.135:9292/hashtags/".freeze
 
   UPCOMING        = 3
 

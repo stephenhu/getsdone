@@ -1,4 +1,5 @@
 class Action < ActiveRecord::Base
+  include Twitter::Autolink
 
   has_many :hashtags, :dependent => :destroy
   has_many :tags, :through => :hashtags
@@ -35,13 +36,20 @@ class Action < ActiveRecord::Base
 
   def encoded_action
 
-    e = self.action.gsub(
-      /\B@{1}[a-zA-Z0-9]+/){|m| "<a href=\"/users/#{m.gsub(/^@/,'')}\">#{m}</a>"}
+    #e = self.action.gsub(
+    #  /\B@{1}[a-zA-Z0-9]+/){|m| "<a href=\"/users/#{m.gsub(/^@/,'')}\">#{m}</a>"}
 
-    e = e.gsub(
-      /\B\#{1}[a-zA-Z0-9]+/){|m| "<a href=\"/hashtags/#{m.gsub(/^#/,'')}\">#{m}</a>"}
+    #e = e.gsub(
+    #  /\B\#{1}[a-zA-Z0-9]+/){|m| "<a href=\"/hashtags/#{m.gsub(/^#/,'')}\">#{m}</a>"}
 
-    return e  
+    #return e
+
+    options = {
+      :username_url_base => Getsdone::DEFAULT_USERNAME_URL_BASE,
+      :hashtag_url_base => Getsdone::DEFAULT_HASHTAG_URL_BASE,
+      :username_include_symbol => "@" }
+
+    return auto_link( self.action, options )
 
   end
 
