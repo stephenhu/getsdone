@@ -184,16 +184,12 @@ module Getsdone
  
     def add_action( action, owner, hashtags, originid=nil, seriesid=nil )
   
-      if originid.nil? or originid.empty?
+      if originid.nil?
         a = self.actions.create( :action => action )
       else
 
-        if seriesid.nil? or seriesid.empty?
-          a = self.actions.create( :action => action, :origin_id => originid )
-        else
-          a = self.actions.create( :action => action, :origin_id => originid,
-            :series_id => seriesid )
-        end
+        a = self.actions.create( :action => action, :origin_id => originid,
+          :series_id => seriesid )
 
       end
 
@@ -239,15 +235,9 @@ module Getsdone
       action    = params[:action]
       originid  = params[:originid]
 
-      if originid.nil? or originid.empty?
-        seriesid = nil
-      else
-
-        seriesid = Digest::MD5.hexdigest(
-          originid.to_s + action)[0,12].downcase
-
-      end
-
+      id        = get_origin(originid)
+      seriesid  = get_series( id, action )
+ 
       Action.transaction do
   
         if owners.nil?
@@ -255,17 +245,66 @@ module Getsdone
         else
   
           owners.each do |o|
-            add_action( action, o, hashtags, originid, seriesid )
+            add_action( action, o, hashtags, id, seriesid )
           end
+
+          add_series( id, seriesid )
   
         end
   
-        complete_action(originid)
+        complete_action(id)
 
       end
   
     end
-  
+
+    def add_series( id, seriesid )
+
+      a = Action.find_by_id(id)
+
+      a.series_id = seriesid
+
+      a.save
+
+    end
+
+    def get_series( id, action )
+
+      if id.nil?
+        return nil
+      else
+        Digest::MD5.hexdigest(
+          id.to_s + action)[0,12].downcase
+      end
+
+    end
+
+    def get_origin(id)
+
+      if id.nil?
+        return nil
+      else
+
+        a = Action.find_by_id(id)
+
+        if a.nil?
+          return nil
+        else
+
+          if a.origin_id.nil?
+            originid = id
+          else
+            originid = get_origin(a.origin_id)
+          end
+
+        end
+
+      end
+        
+      return originid
+     
+    end
+
     def complete_action(id)
 
       a = self.actions.find_by_id(id)
