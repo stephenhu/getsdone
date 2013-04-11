@@ -30,7 +30,6 @@ class InitSchema < ActiveRecord::Migration
       t.timestamp :estimate
       t.timestamp :finished
       t.integer :state, :default => 0
-      t.boolean :completed, :default => false
       t.integer :priority, :default => 1
       t.timestamps
     end

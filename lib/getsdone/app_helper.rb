@@ -85,7 +85,7 @@ module Getsdone
       tag_id = Tag.joins(:hashtags).where( :tag => hashtag ).first()
 
       t = Action.joins(:hashtags).where( "hashtags.tag_id" => tag_id.id,
-        :completed => false )
+        :state => STATE[:open] )
 
       return t
 

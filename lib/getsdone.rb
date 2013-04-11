@@ -54,5 +54,11 @@ module Getsdone
 
   UPCOMING        = 3
 
+  STATE = {
+    :open => 0,
+    :closed => 1,
+    :deleted => 2,
+    :reassigned => 3 }
+
 end
 

@@ -4,23 +4,27 @@ module Getsdone
 
     not_found do
       @nohead = true
+      @title  = "getsdone.io - page not found"
       haml :error
     end
 
     get "/" do
       @nohead = true
+      @title  = "getsdone.io"
       haml :index
     end
 
     get "/blog" do
 
       @nohead = true
+      @title  = "getsdone.io - blog"
       haml :blog
 
     end
     get "/company" do
 
       @nohead = true
+      @title  = "getsdone.io - company"
       haml :company
 
     end
@@ -28,6 +32,7 @@ module Getsdone
     get "/about" do
 
       @nohead = true
+      @title  = "getsdone.io - about"
       haml :about
 
     end
@@ -35,6 +40,7 @@ module Getsdone
     get "/terms" do
 
       @nohead = true
+      @title  = "getsdone.io - terms of service"
       haml :terms
 
     end
@@ -42,6 +48,7 @@ module Getsdone
     get "/privacy" do
 
       @nohead = true
+      @title  = "getsdone.io - privacy"
       haml :privacy
 
     end
@@ -49,6 +56,7 @@ module Getsdone
     get "/users/:id" do
 
       @nohead  = true
+      @title  = "getsdone.io - user"
       @user    = User.find_by_id(session[:user][:id]) 
       @profile = User.find_by_name(params[:id])
       @info    = @profile.info
@@ -64,6 +72,7 @@ module Getsdone
     get "/users/:id/following" do
 
       @nohead = true
+      @title  = "getsdone.io - following"
 
       @profile = User.find_by_name(params[:id])
       @info    = @profile.info
@@ -75,6 +84,7 @@ module Getsdone
     get "/users/:id/followers" do
 
       @nohead = true
+      @title  = "getsdone.io - followers"
 
       @profile = User.find_by_name(params[:id])
       @info    = @profile.info
@@ -87,6 +97,7 @@ module Getsdone
 
       #authenticate
 
+      @title  = "getsdone.io - home"
       @view = params[:view]
  
       u = User.find_by_id(session[:user][:id])
@@ -121,6 +132,8 @@ module Getsdone
 
       #authenticate
 
+      @title  = "getsdone.io - hashtags"
+
       u = User.find_by_id(session[:user][:id])
 
       @nohead   = true
@@ -138,6 +151,7 @@ module Getsdone
 
       #authenticate
 
+      @title  = "getsdone.io - history"
       u = User.find_by_id(session[:user][:id])
 
       @user = u
@@ -153,6 +167,7 @@ module Getsdone
 
       #authenticate
 
+      @title  = "getsdone.io - statistics"
       u = User.find_by_id(session[:user][:id])
 
       @user     = u
@@ -164,6 +179,7 @@ module Getsdone
     end
 
     get "/login" do
+      @title  = "getsdone.io - login"
       haml :login
     end
 

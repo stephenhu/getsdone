@@ -65,6 +65,8 @@ task :config do
 
   puts "conf/database.yml created"
 
+  File.chmod( 0400, file.path )
+
   puts "configure google oauth"
   client_id		= ask("client_id: ")
   client_secret         = ask("client_secret: ")
@@ -79,10 +81,12 @@ task :config do
 
   puts "conf/config.yml created"
 
+  File.chmod( 0400, file2.path )
+
   puts "configure nginx"
   root_dir = ask("root dir: ")
 
-  config    = ERB.new(File.read(".conf/nginx.conf.erb"))
+  config    = ERB.new(File.read("./conf/nginx.conf.erb"))
   contents  = config.result(binding)
 
   file3 = File.open( "./conf/nginx.conf", "w" )
@@ -90,6 +94,8 @@ task :config do
   file3.close
 
   puts "conf/nginx.conf created"
+
+  File.chmod( 0400, file3.path )
    
 end
 

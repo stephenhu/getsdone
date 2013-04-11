@@ -3,10 +3,10 @@
 jquery*
 bootstrap*
 json2*
-database.yml
 getsdone.db
 *.swp
 images*
 *.yml
 other*
 twitter*
+nginx.conf

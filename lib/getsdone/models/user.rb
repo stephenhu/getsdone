@@ -20,14 +20,14 @@ module Getsdone
       #return Action.joins(:delegates).where(
       #  :user_id => self.id, "delegates.user_id" => 1, :completed => false )
       return Action.joins(:delegate).where(
-        "delegates.user_id" => self.id, :completed => false )
+        "delegates.user_id" => self.id, :state => STATE[:open] )
   
     end
   
     def overdue_actions
   
       return Action.joins(:delegate).where(
-        "delegates.user_id" => self.id, :completed => false ).where(
+        "delegates.user_id" => self.id, :state => STATE[:open] ).where(
         ["DATE(estimate) <= DATE(?)", Time.now] )
   
     end
@@ -35,7 +35,7 @@ module Getsdone
     def todays_actions
   
       return Action.joins(:delegate).where(
-        "delegates.user_id" => self.id, :completed => false ).where(
+        "delegates.user_id" => self.id, :state => STATE[:open] ).where(
         ["DATE(estimate) = DATE(?)", Time.now] )
   
     end
@@ -45,7 +45,7 @@ module Getsdone
       t = Time.now
   
       return Action.joins(:delegate).where(
-        "delegates.user_id" => self.id, :completed => false ).where(
+        "delegates.user_id" => self.id, :state => STATE[:open] ).where(
         [ "DATE(estimate) BETWEEN DATE(?) AND DATE(?)", t,
         t + Getsdone::UPCOMING.days ] )
   
@@ -56,7 +56,7 @@ module Getsdone
       t = Time.now
   
       return Action.joins(:delegate).where( "delegates.user_id" => self.id,
-        :completed => false ).where(
+        :state => STATE[:open] ).where(
         [ "DATE(estimate) BETWEEN DATE(?) AND DATE(?)",
         t.beginning_of_week, t.end_of_week ] )
   
@@ -65,14 +65,14 @@ module Getsdone
     def completed_actions
   
       return Action.joins(:delegate).where(
-        "delegates.user_id" => self.id, :completed => true )
+        "delegates.user_id" => self.id, :state => STATE[:open] )
   
     end
   
     def hashtag_actions
   
       actions = Action.joins(:delegate).where(
-        "delegates.user_id" => self.id, :completed => false )
+        "delegates.user_id" => self.id, :state => STATE[:open] )
   
       actions.reject! {|a| a.hashtags.length == 0}
   
@@ -83,7 +83,7 @@ module Getsdone
     def assigned_actions
   
       return Action.joins(:delegate).where( :user_id => self.id,
-        :completed => false ).where( ["delegates.user_id != ?", self.id] )
+        :state => STATE[:open] ).where( ["delegates.user_id != ?", self.id] )
   
     end
   
@@ -250,7 +250,7 @@ module Getsdone
   
         end
   
-        complete_action(reassignid)
+        reassign_action_state(reassignid)
 
       end
   
@@ -311,14 +311,12 @@ module Getsdone
      
     end
 
-    def complete_action(id)
+    def reassign_action_state(id)
 
       a = Action.find_by_id(id)
-      puts id
-      puts a.inspect
       unless a.nil?
 
-        a.completed = true
+        a.state     = STATE[:reassigned]
         a.finished  = Time.now
         a.save
 

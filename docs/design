@@ -54,3 +54,11 @@ actions:
 
 immutable.
 
+action state:
+
+0 - open
+1 - complete
+2 - deleted
+3 - reassigned
+
+

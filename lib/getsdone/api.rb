@@ -39,7 +39,7 @@ module Getsdone
 
       Action.transaction do
 
-        a.completed = true
+        a.state = STATE[:closed]
 
         a.finished = Time.now
 
