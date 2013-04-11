@@ -1,7 +1,10 @@
-class Hashtag < ActiveRecord::Base
+module Getsdone
 
-  belongs_to :action
-  belongs_to :tag
+  class Hashtag < ActiveRecord::Base
+  
+    belongs_to :action
+    belongs_to :tag
+  
+  end
 
 end
-

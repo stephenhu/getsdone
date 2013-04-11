@@ -41,6 +41,10 @@ hr {
 }
 /* custom classes */
 
+.strong {
+  font-weight: 600;
+}
+
 .xxlarge {
   font-size: 96px;
 }

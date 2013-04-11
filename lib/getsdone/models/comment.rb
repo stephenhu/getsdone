@@ -1,7 +1,10 @@
-class Comment < ActiveRecord::Base
+module Getsdone
 
-  belongs_to :users
-  belongs_to :actions
+  class Comment < ActiveRecord::Base
+  
+    belongs_to :users
+    belongs_to :actions
+  
+  end
 
 end
-

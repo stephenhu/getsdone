@@ -2,16 +2,28 @@ require "active_record"
 require "active_support/core_ext/numeric/time"
 require "active_support/core_ext/time/calculations"
 require "base64"
+require "digest/md5"
 require "haml"
 require "json"
 require "oauth2"
 require "rest_client"
+require "securerandom"
 require "sinatra"
 #require "sinatra/cookies"
 require "sqlite3"
 require "thin"
 require "time"
 require "twitter-text"
+
+#Dir.glob("./getsdone/models/*").each {|r| require r }
+
+require File.join( File.dirname(__FILE__), "getsdone/models", "action" )
+require File.join( File.dirname(__FILE__), "getsdone/models", "comment" )
+require File.join( File.dirname(__FILE__), "getsdone/models", "delegate" )
+require File.join( File.dirname(__FILE__), "getsdone/models", "follow" )
+require File.join( File.dirname(__FILE__), "getsdone/models", "hashtag" )
+require File.join( File.dirname(__FILE__), "getsdone/models", "tag" )
+require File.join( File.dirname(__FILE__), "getsdone/models", "user" )
 
 require File.join( File.dirname(__FILE__), "getsdone", "app_helper" )
 require File.join( File.dirname(__FILE__), "getsdone", "app" )
@@ -25,7 +37,6 @@ if ENV["RACK_ENV"] == "development"
   require File.join( File.dirname(__FILE__), "getsdone", "debug" )
 end
 
-Dir.glob("./getsdone/models/*").each {|r| require r }
 
 module Getsdone
 

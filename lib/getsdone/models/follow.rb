@@ -1,14 +1,17 @@
-class Follow < ActiveRecord::Base
+module Getsdone
 
-  has_many :users
-
-  def get_profile(id)
-
-    u = User.find_by_id(id)
-
-    return { :name => u.name, :icon => u.icon }
-
+  class Follow < ActiveRecord::Base
+  
+    has_many :users
+  
+    def get_profile(id)
+  
+      u = User.find_by_id(id)
+  
+      return { :name => u.name, :icon => u.icon }
+  
+    end
+  
   end
 
 end
-

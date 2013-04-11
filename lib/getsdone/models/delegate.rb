@@ -1,7 +1,7 @@
-require "digest/md5"
-require "securerandom"
+module Getsdone
 
-class Delegate < ActiveRecord::Base
-  belongs_to :action
+  class Delegate < ActiveRecord::Base
+    belongs_to :action
+  end
+
 end
-

@@ -1,4 +1,4 @@
-require "./getsdone"
+require File.join( File.dirname(__FILE__), "lib", "getsdone" )
 
 map "/" do
   run Getsdone::Web
