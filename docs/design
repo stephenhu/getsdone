@@ -43,3 +43,14 @@ to owner
 a new action, the new action has a reference to the original action id.
 
 
+origin id's:
+
+the origin id is the original action id, an action can be reassigned
+multiple times, each reassigned action will point to the original action,
+not the preceeding action.  the series will signify all actions belonging
+to this reassigned action and can be sorted based on date.
+
+actions:
+
+immutable.
+

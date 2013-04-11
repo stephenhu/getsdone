@@ -8,6 +8,10 @@ open:
 - if original is deleted, what happens to a reassignment?
 - open source readiness
 - copyright on about page
+- deletes should change state, not physically be deleted.
+- security: api key
+- chmod permissions to 400 for all yaml files
+- ssl?
 
 icebox:
 - email newsletter
@@ -32,6 +36,7 @@ icebox:
 - url shortener
 - action state
 - logging
+- forgotten password
 
 closed:
 - followers, following

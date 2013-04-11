@@ -71,6 +71,10 @@ hr {
   float: left;
 }
 
+.nofloat {
+  float: none;
+}
+
 .value {
   font-size: 18px;
   font-weight: 400;

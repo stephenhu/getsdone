@@ -15,7 +15,7 @@
         - @actions.each do |a|
           %div.action
             %div.title
-              %img{:src => url("images/#{@user.icon}"), :width => "32"}
+              %img.nofloat{:src => url("images/#{@user.icon}"), :width => "32"}
               %a.since{:href =>""}= "@#{a.get_assigner_profile[:name]}"
               %p.since= a.time_remaining
             %div.content

@@ -192,8 +192,6 @@ module Getsdone
           :series_id => seriesid )
 
       end
-
-      a.save
   
       unless hashtags.nil?
   
@@ -230,13 +228,13 @@ module Getsdone
   
     def add_actions(params)
  
-      owners    = params[:owners]
-      hashtags  = params[:hashtags]
-      action    = params[:action]
-      originid  = params[:originid]
+      owners      = params[:owners]
+      hashtags    = params[:hashtags]
+      action      = params[:action]
+      reassignid  = params[:reassignid]
 
-      id        = get_origin(originid)
-      seriesid  = get_series( id, action )
+      id        = get_origin(reassignid)
+      seriesid  = get_series(id)
  
       Action.transaction do
   
@@ -252,30 +250,38 @@ module Getsdone
   
         end
   
-        complete_action(id)
+        complete_action(reassignid)
 
       end
   
     end
 
-    def add_series( id, seriesid )
+    def add_series( id, series )
 
       a = Action.find_by_id(id)
 
-      a.series_id = seriesid
+      a.series_id = series
 
       a.save
 
     end
 
-    def get_series( id, action )
+    def get_series(id)
 
       if id.nil?
         return nil
       else
-        Digest::MD5.hexdigest(
-          id.to_s + action)[0,12].downcase
+
+        a = Action.find_by_id(id)
+
+        unless a.nil?
+          return Digest::MD5.hexdigest(
+            id.to_s + a.action)[0,12].downcase
+        end
+
       end
+
+      return nil
 
     end
 
@@ -294,7 +300,7 @@ module Getsdone
           if a.origin_id.nil?
             originid = id
           else
-            originid = get_origin(a.origin_id)
+            originid = a.origin_id
           end
 
         end
@@ -307,8 +313,9 @@ module Getsdone
 
     def complete_action(id)
 
-      a = self.actions.find_by_id(id)
-
+      a = Action.find_by_id(id)
+      puts id
+      puts a.inspect
       unless a.nil?
 
         a.completed = true
