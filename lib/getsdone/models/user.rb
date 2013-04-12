@@ -181,10 +181,15 @@ module Getsdone
     def profile
       return { :name => self.name, :icon => self.icon }
     end
+ 
+    def add_action( action, owner, hashtags, originid=nil )
   
-    def add_action( action, owner, hashtags )
-  
-      a = self.actions.create( :action => action )
+      if originid.nil?
+        a = self.actions.create( :action => action )
+      else
+        a = self.actions.create( :action => action, :origin_id => originid )
+      end
+
       a.save
   
       unless hashtags.nil?
@@ -221,11 +226,12 @@ module Getsdone
     end
   
     def add_actions(params)
-  
+ 
       owners    = params[:owners]
       hashtags  = params[:hashtags]
       action    = params[:action]
-  
+      originid  = params[:originid]
+
       Action.transaction do
   
         if owners.nil?
@@ -233,15 +239,32 @@ module Getsdone
         else
   
           owners.each do |o|
-            add_action( action, o, hashtags )          
+            add_action( action, o, hashtags, originid )
           end
   
         end
   
+        complete_action(originid)
+
       end
   
     end
   
+    def complete_action(id)
+
+      a = self.actions.find_by_id(id)
+
+      unless a.nil?
+
+        a.completed = true
+        a.finished  = Time.now
+        a.save
+
+      end
+ 
+    end
+
   end
 
 end
+

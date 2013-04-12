@@ -3,6 +3,9 @@ open:
 - denying an action, re-assign
 - oauth2
 - registration
+- titles for each page
+- use media-list from bootstrap
+- if original is deleted, what happens to a reassignment?
 
 icebox:
 - email newsletter
@@ -21,6 +24,11 @@ icebox:
 - new comments notification
 - hashtag link
 - edit action item
+- user view has list of actions
+- use textarea instead of input for action
+- refactor rakefile config
+- url shortener
+- action state
 
 closed:
 - followers, following

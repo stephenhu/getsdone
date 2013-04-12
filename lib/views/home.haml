@@ -1,3 +1,13 @@
+:javascript
+  $(function() {
+    $("#reassign-dialog").dialog({
+      autoOpen: false,
+      height: 350,
+      width: 350,
+      title: "reassign action",
+      modal: true
+    });
+  });
 .container
   .row
     .span14
@@ -9,10 +19,10 @@
               %a.since{:href =>""}= "@#{a.get_assigner_profile[:name]}"
               %p.since= a.time_remaining
             %div.content
-              %p.medium= a.encoded_action
+              %p.medium{:id => "#{a.id}"}= a.encoded_action
               %button.btn.btn-mini comments (245)
               - if @view != "assigned"
-                %button.btn.btn-info.btn-mini{:onclick => "assignDialog(#{a.id}); return false;"} assign
+                %button.btn.btn-info.btn-mini{:onclick => "reassignDialog(#{a.id}); return false;"} reassign
               - if @view != "assigned"
                 %button.btn.btn-success.btn-mini{:onclick => "completeAction(#{a.id}); return false;"} complete
             - if a.user_id == session[:user][:id]
@@ -22,4 +32,14 @@
       - else
         - @hashtags.each do |h|
           %button.btn.btn-info{:onclick => "goto('#{h}'); return false;"}= "##{h}"
+.container
+  .row
+    .span8
+      %div{:id => "reassign-dialog"}
+        %input{:id => "actionid", :type => "hidden"}
+        %p.alert.alert-info.small{:id => "current"}
+        %p.since{:id => "rcounter"} 140
+        %textarea.input-xlarge{:id => "reassignment", :maxlength => "140", :rows => "4", :onkeyup => "count( this, 'rcounter' ); return false;"}
+        %br
+        %button.btn.btn-danger{:onclick => "addAction(true); return false;"} reassign
 

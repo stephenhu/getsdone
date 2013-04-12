@@ -10,7 +10,6 @@ module Getsdone
     post "/actions" do
 
       #authenticate
-
       u = User.find_by_id(session[:user][:id])
 
       unless AppHelper.validate(params)

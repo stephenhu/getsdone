@@ -50,11 +50,22 @@ module Getsdone
         :username_url_base => Getsdone::DEFAULT_USERNAME_URL_BASE,
         :hashtag_url_base => Getsdone::DEFAULT_HASHTAG_URL_BASE,
         :username_include_symbol => "@" }
-  
-      return auto_link( self.action, options )
+ 
+      if self.origin_id.nil? 
+        return auto_link( self.action, options )
+      else
+
+        old = Action.find_by_id(self.origin_id)
+
+        unless old.nil?
+          return auto_link( self.action + " // " + old.action, options )
+        end
+
+      end
   
     end
-  
+
   end
 
 end
+

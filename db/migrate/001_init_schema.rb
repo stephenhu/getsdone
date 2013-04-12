@@ -21,12 +21,14 @@ class InitSchema < ActiveRecord::Migration
 
     create_table :actions do |t|
       t.belongs_to :user
+      t.integer :origin_id
       t.integer :user_id
       t.string :action, :null => false, :limit => 140
       t.boolean :visible, :default => false
       t.integer :duration, :default => 1
       t.timestamp :estimate
       t.timestamp :finished
+      t.integer :state, :default => 0
       t.boolean :completed, :default => false
       t.integer :priority, :default => 1
       t.timestamps

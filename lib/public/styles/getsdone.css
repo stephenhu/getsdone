@@ -41,9 +41,6 @@ hr {
 }
 /* custom classes */
 
-.strong {
-  font-weight: 600;
-}
 
 .xxlarge {
   font-size: 96px;
@@ -62,13 +59,13 @@ hr {
 }
 
 .small {
-  font-size: 1px;
+  font-size: 11px;
 }
 
 .gauge {
   width: auto;
   height: auto;
-  padding: 5px;
+  padding: 10px;
   margin-right: 1px;
   display: block;
   float: left;

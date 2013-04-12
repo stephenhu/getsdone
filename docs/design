@@ -19,21 +19,27 @@ unique
 5.  actions have a single owner
 6.  the same action can be assigned to multiple owners, but constitutes
 multiple actions, bound together by a unique guid
-7.  usernames and hashtags can start with a number
-8.  usernames and hashtags can contain alpha numerics only
+7.  usernames can start with a number
+8.  usernames and hashtags can contain alpha numerics and underscore,
+hyphen.
+9.  hashtags cannot start with a number
+10. hashtags cannot start with a hyphen
+11. usernames may not start with a hyphen
 
 return values are in the form of a json message:
 
-  { msg: "" }
+  { status: "", msg: "" }
 
 open
 hashtags
 assigned
 
-1.  action creators may delete action
-2.  action owner may assign action to someone else
+1.  only action creators may delete action
+2.  action owner may assign action to someone else including reassigning back
+to owner
 3.  action owner may not delete
-4.  if an action is assigned to a random person then he/she may assign to
-someone else (including sender)
-5.  only the originator of the action has delete privilege.
+4.  the @username remains the same even after a re-assignment
+5.  a reassign constitutes the action of completing an action and creating
+a new action, the new action has a reference to the original action id.
+
 

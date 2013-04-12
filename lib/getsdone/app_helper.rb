@@ -59,6 +59,8 @@ module Getsdone
 
       end
 
+      return true
+
     end
 
 

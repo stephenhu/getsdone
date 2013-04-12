@@ -78,7 +78,19 @@ task :config do
   file2.close
 
   puts "conf/config.yml created"
-  
+
+  puts "configure nginx"
+  root_dir = ask("root dir: ")
+
+  config    = ERB.new(File.read(".conf/nginx.conf.erb"))
+  contents  = config.result(binding)
+
+  file3 = File.open( "./conf/nginx.conf", "w" )
+  file3.write(contents)
+  file3.close
+
+  puts "conf/nginx.conf created"
+   
 end
 
 desc "generate help text"
