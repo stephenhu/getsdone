@@ -182,12 +182,19 @@ module Getsdone
       return { :name => self.name, :icon => self.icon }
     end
  
-    def add_action( action, owner, hashtags, originid=nil )
+    def add_action( action, owner, hashtags, originid=nil, seriesid=nil )
   
-      if originid.nil?
+      if originid.nil? or originid.empty?
         a = self.actions.create( :action => action )
       else
-        a = self.actions.create( :action => action, :origin_id => originid )
+
+        if seriesid.nil? or seriesid.empty?
+          a = self.actions.create( :action => action, :origin_id => originid )
+        else
+          a = self.actions.create( :action => action, :origin_id => originid,
+            :series_id => seriesid )
+        end
+
       end
 
       a.save
@@ -232,6 +239,15 @@ module Getsdone
       action    = params[:action]
       originid  = params[:originid]
 
+      if originid.nil? or originid.empty?
+        seriesid = nil
+      else
+
+        seriesid = Digest::MD5.hexdigest(
+          originid.to_s + action)[0,12].downcase
+
+      end
+
       Action.transaction do
   
         if owners.nil?
@@ -239,7 +255,7 @@ module Getsdone
         else
   
           owners.each do |o|
-            add_action( action, o, hashtags, originid )
+            add_action( action, o, hashtags, originid, seriesid )
           end
   
         end

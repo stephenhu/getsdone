@@ -6,6 +6,8 @@ open:
 - titles for each page
 - use media-list from bootstrap
 - if original is deleted, what happens to a reassignment?
+- open source readiness
+- copyright on about page
 
 icebox:
 - email newsletter
@@ -29,6 +31,7 @@ icebox:
 - refactor rakefile config
 - url shortener
 - action state
+- logging
 
 closed:
 - followers, following

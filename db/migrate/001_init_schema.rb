@@ -22,6 +22,7 @@ class InitSchema < ActiveRecord::Migration
     create_table :actions do |t|
       t.belongs_to :user
       t.integer :origin_id
+      t.string :series_id
       t.integer :user_id
       t.string :action, :null => false, :limit => 140
       t.boolean :visible, :default => false
