@@ -10,7 +10,7 @@ module Getsdone
 
     get "/" do
       @nohead = true
-      @title  = "getsdone.io"
+      @title  = "getsdone.io - getting things done socially"
       haml :index
     end
 

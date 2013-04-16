@@ -2,7 +2,8 @@ module Getsdone
 
   class Action < ActiveRecord::Base
     include Twitter::Autolink
-  
+
+    has_many :comments  
     has_many :hashtags, :dependent => :destroy
     has_many :tags, :through => :hashtags
     has_one :delegate, :dependent => :destroy
@@ -55,32 +56,21 @@ module Getsdone
         return auto_link( self.action, options )
       else
 
-          #return auto_link( self.action + " // " + old.action, options )
-        return auto_link( get_origin_text, options )
+        old = Action.find_by_id(self.origin_id)
+
+        unless old.nil?
+          return auto_link( self.action + " // " + old.action, options )
+        end
 
       end
   
     end
 
-    def get_origin_text
+    def get_nested_action(id)
 
-      all = Action.where( :series_id => self.series_id ).order(
-        "created_at desc" )
+      action = Action.find_by_id(id)
 
-      text = ""
-
-      all.each do |a|
-
-        if text.empty?
-          text = text + a.action
-        else
-          text = text + " // " + a.action
-        end
-
-      end
-
-      return text
-
+      
     end
 
   end

@@ -15,12 +15,12 @@
         - @actions.each do |a|
           %div.action
             %div.title
-              %img.nofloat{:src => url("images/#{@user.icon}"), :width => "32"}
+              %img{:src => url("images/#{@user.icon}"), :width => "32"}
               %a.since{:href =>""}= "@#{a.get_assigner_profile[:name]}"
               %p.since= a.time_remaining
             %div.content
               %p.medium{:id => "#{a.id}"}= a.encoded_action
-              %button.btn.btn-mini comments (245)
+              %button.btn.btn-mini{:onclick => "viewComments(#{a.id}); return false;"} comments (245)
               - if @view != "assigned"
                 %button.btn.btn-info.btn-mini{:onclick => "reassignDialog(#{a.id}); return false;"} reassign
               - if @view != "assigned"
@@ -29,6 +29,17 @@
               %div.operations
                 %a.pull-right{:href => "", :onclick => "deleteAction(#{a.id}); return false;"}
                   %img{:src => url("images/glyphicons_207_remove_2.png"), :width => "16"}
+          %div.comments.form-inline{:id => "c#{a.id}"}
+            %input.input-xxlarge{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
+            %button.btn comment
+            - a.comments.each do |c|
+              %div.comment
+                %div.comment-header.form-inline
+                  %img.pull-left.spacing{:src => url("images/glyphicons_410_facebook.png"), :width => "16"}
+                  %a{:href => "/users/bigwurm"} @bigwurm
+                  %p.since.pull-right Tue, Jan 18, 2013 13:50:12
+                %div.comment-body
+                  %p this is a test comment
       - else
         - @hashtags.each do |h|
           %button.btn.btn-info{:onclick => "goto('#{h}'); return false;"}= "##{h}"

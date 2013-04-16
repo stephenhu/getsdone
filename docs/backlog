@@ -7,7 +7,8 @@ open:
 - ssl?
 - register email account
 - landing page
-- reassign requires additional time?
+- server side validation to block sql injection
+- profile page
 
 icebox:
 - email newsletter
@@ -36,6 +37,8 @@ icebox:
 - use media-list from bootstrap
 - rake config, ask to delete existing files with read only permission
 - actions view in home page needs padding after between navbarbottom
+- process monitor
+- view of today's accomplishments
 
 closed:
 - followers, following
@@ -57,4 +60,6 @@ closed:
 - chmod permissions to 400 for all yaml files
 - titles for each page
 - deletes should change state, not physically be deleted.
+- reassign requires additional time?
+- completed count bug
 

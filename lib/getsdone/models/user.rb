@@ -65,7 +65,7 @@ module Getsdone
     def completed_actions
   
       return Action.joins(:delegate).where(
-        "delegates.user_id" => self.id, :state => STATE[:open] )
+        "delegates.user_id" => self.id, :state => STATE[:closed] )
   
     end
   
