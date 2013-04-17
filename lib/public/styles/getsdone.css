@@ -132,18 +132,11 @@ hr {
   border-radius: 5px;
   padding: 5px;
   display: block;
+  float: left;
 }
 
 .action:hover {
   background: #e0f3ff;
-}
-
-.due {
-  width: 50px;
-  float: left;
-  padding: 5px;
-  min-height: 35px;
-  display: block;
 }
 
 .title {
@@ -153,6 +146,7 @@ hr {
   padding: 2px;
   min-height: 30px;
   display: block;
+  height: auto;
 }
 
 div.title img {
@@ -165,7 +159,8 @@ div.title img {
 
 .content {
   width: 550px;
-  margin-left: 45px;
+  margin-left: 40px;
+  height: auto;
   min-height: 75px;
   display: block;
   padding-left: 10px;
@@ -177,8 +172,8 @@ div.title img {
 }
 
 .operations {
-  margin-left: 600px;
-  width: 100px;
+  margin-left: 660px;
+  width: 50px;
   min-height: 30px;
   display: block;
 }

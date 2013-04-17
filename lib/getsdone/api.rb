@@ -99,8 +99,10 @@ module Getsdone
 
       else
 
-        a.comments.create( :comment => params[:comment] )
+        c = a.comments.create( :user_id => u.id, :comment => params[:comment] )
 
+        return { :status => "200",
+                 :msg => c }.to_json
       end
 
     end

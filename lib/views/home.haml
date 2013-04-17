@@ -7,6 +7,7 @@
       title: "reassign action",
       modal: true
     });
+    openComments();
   });
 .container
   .row
@@ -20,25 +21,26 @@
               %p.since= a.time_remaining
             %div.content
               %p.medium{:id => "#{a.id}"}= a.encoded_action
-              %button.btn.btn-mini{:onclick => "viewComments(#{a.id}); return false;"} comments (245)
+              %button.btn.btn-mini{:id => "vc#{a.id}", :onclick => "viewComments(#{a.id}); return false;"}= "comments (#{a.comments.length})"
               - if @view != "assigned"
                 %button.btn.btn-info.btn-mini{:onclick => "reassignDialog(#{a.id}); return false;"} reassign
               - if @view != "assigned"
                 %button.btn.btn-success.btn-mini{:onclick => "completeAction(#{a.id}); return false;"} complete
-            - if a.user_id == session[:user][:id]
-              %div.operations
+            %div.operations
+              - if a.user_id == session[:user][:id]
                 %a.pull-right{:href => "", :onclick => "deleteAction(#{a.id}); return false;"}
                   %img{:src => url("images/glyphicons_207_remove_2.png"), :width => "16"}
+            %br
           %div.comments.form-inline.hide{:id => "c#{a.id}"}
             %input.input-xxlarge{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
             %button.btn{:onclick => "addComment(#{a.id}); return false"} comment
             %br
             %br
             - a.comments.order("created_at DESC").each do |c|
-              %div.comment
+              %div.comment{:id => "dd#{c.id}"}
                 %div.comment-header.form-inline
-                  %img.pull-left.spacing{:src => url("images/glyphicons_410_facebook.png"), :width => "32"}
-                  %a.pull-left.spacing{:href => "/users/bigwurm"} @bigwurm: 
+                  %img.pull-left.spacing{:src => url("images/#{c.get_profile[:icon]}"), :width => "32"}
+                  %a.pull-left.spacing{:href => "/users/#{c.get_profile[:name]}"}= "@#{c.get_profile[:name]}: " 
                   %p= c.comment
                   %hr
       - else
