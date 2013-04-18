@@ -11,6 +11,14 @@ module Getsdone
       return u.profile
 
     end
+
+    def time_remaining
+
+      delta = Time.now - self.created_at
+
+      return Getsdone::AppHelper.time_ago_in_web(delta)
+
+    end
   
   end
 

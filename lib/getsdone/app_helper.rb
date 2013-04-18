@@ -4,28 +4,30 @@ module Getsdone
 
     def self.time_ago_in_web(seconds)
 
-      seconds_in_day 	= 24 * 60 * 60
+      seconds_in_day 	  = 24 * 60 * 60
       seconds_in_hours	= 60 * 60
-      seconds_in_mins	= 60
+      seconds_in_mins	  = 60
 
-      days = seconds / seconds_in_day
+      days = (seconds / seconds_in_day).to_i
 
       if days > 1
         return "#{days.truncate}d"
       end
 
-      hours = seconds / seconds_in_hours
+      hours = (seconds / seconds_in_hours).to_i
 
       if hours < 24 and hours > 0
         return "#{hours.truncate}h"
       end
 
-      mins  = seconds / seconds_in_mins
+      mins  = (seconds / seconds_in_mins).to_i
 
       if mins > 0 and mins < 60
         return "#{mins.truncate}m"
       end
 
+      return "#{seconds.to_i.truncate}s"
+ 
     end
 
     def self.duration_calc(estimate)

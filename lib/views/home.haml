@@ -14,14 +14,16 @@
     .span14
       - if @hashtags.nil?
         - @actions.each do |a|
+          - profile  = a.get_assigner_profile
+          - comments = a.get_origin_comments
           %div.action
             %div.title
               %img{:src => url("images/#{@user.icon}"), :width => "32"}
-              %a.since{:href =>""}= "@#{a.get_assigner_profile[:name]}"
+              %a.since{:href =>""}= "@#{profile[:name]}"
               %p.since= a.time_remaining
             %div.content
               %p.medium{:id => "#{a.id}"}= a.encoded_action
-              %button.btn.btn-mini{:id => "vc#{a.id}", :onclick => "viewComments(#{a.id}); return false;"}= "comments (#{a.comments.length})"
+              %button.btn.btn-mini{:id => "vc#{a.id}", :onclick => "viewComments(#{a.id}); return false;"}= "comments (#{comments.length})"
               - if @view != "assigned"
                 %button.btn.btn-info.btn-mini{:onclick => "reassignDialog(#{a.id}); return false;"} reassign
               - if @view != "assigned"
@@ -33,16 +35,16 @@
             %br
           %div.comments.form-inline.hide{:id => "c#{a.id}"}
             %input.input-xxlarge{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
-            %button.btn{:onclick => "addComment(#{a.id}); return false"} comment
+            %button.btn{:onclick => "addComment(#{a.id}); return false;"} comment
             %br
             %br
-            - a.comments.order("created_at DESC").each do |c|
+            - comments.each do |c|
+              - comment = c.get_profile
               %div.comment{:id => "dd#{c.id}"}
                 %div.comment-header.form-inline
-                  %img.pull-left.spacing{:src => url("images/#{c.get_profile[:icon]}"), :width => "32"}
-                  %a.pull-left.spacing{:href => "/users/#{c.get_profile[:name]}"}= "@#{c.get_profile[:name]}: " 
-                  %p= c.comment
-                  %hr
+                  %img.pull-left.spacing{:src => url("images/#{comment[:icon]}"), :width => "32"}
+                  %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
+                  %p.since= "#{c.comment} (#{c.time_remaining})"
       - else
         - @hashtags.each do |h|
           %button.btn.btn-info{:onclick => "goto('#{h}'); return false;"}= "##{h}"

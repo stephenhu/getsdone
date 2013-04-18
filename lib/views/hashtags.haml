@@ -13,5 +13,17 @@
             %p.since= a.time_remaining
           %div.content
             %p.medium= a.encoded_action
-            %button.btn.btn-mini comments (12)
+            %button.btn.btn-mini{:id => "vc#{a.id}", :onclick => "viewComments(#{a.id}); return false;"}= "comments (#{a.comments.length})"
+        %div.comments.form-inline.hide{:id => "c#{a.id}"}
+          %input.input-xxlarge{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
+          %button.btn{:onclick => "addComment(#{a.id}); return false;"} comment
+          %br
+          %br
+          - a.comments.order("created_at DESC").each do |c|
+            %div.comment{:id => "dd#{c.id}"}
+              %div.comment-header.form-inline
+                %img.pull-left.spacing{:src => url("images/#{c.get_profile[:icon]}"), :width => "32"}
+                %a.pull-left.spacing{:href => "/users/#{c.get_profile[:name]}"}= "@#{c.get_profile[:name]}: "
+                %p= c.comment
+                %hr
 

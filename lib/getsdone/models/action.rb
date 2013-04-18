@@ -88,6 +88,21 @@ module Getsdone
 
     end
 
+    def get_origin_comments
+
+      if self.origin_id.nil?
+        return self.comments.order("created_at DESC")
+      else
+
+        origin = Action.find_by_id(self.origin_id)
+
+        return self.comments.order("created_at DESC") +
+          origin.comments.order("created_at DESC")
+
+      end
+
+    end
+
   end
 
 end

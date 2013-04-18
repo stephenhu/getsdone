@@ -99,12 +99,12 @@ hr {
 
 .comments {
   padding: 5px;
-  border: 1px solid #e0f3ff;
+  border: 1px solid #eeeeee;
 }
 
 .comment {
   height: auto;
-  width: auto;
+  width: 60%;
   min-height: 40px;
   min-width: 50px;
   //margin-left: 50px;
@@ -112,6 +112,7 @@ hr {
   border-radius: 5px;
   padding: 5px;
   display: block;
+  border: 1px solid #eeeeee;
 }
 
 .comment-header {
