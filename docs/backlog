@@ -1,6 +1,6 @@
 open:
 - gmail oauth2
-- registration
+- signup
 - open source readiness
 - security: api key
 - ssl?
@@ -11,8 +11,8 @@ open:
 
 icebox:
 - email newsletter
-- refactor 
-- bookmarked actions
+- refactor
+- bookmarked/starred actions
 - search
 - langauges
 - timezones
@@ -21,16 +21,12 @@ icebox:
 - audit trail
 - trial period, beta?
 - access privileges
-- groups
+- groups or lists similar to twitter
 - badges for completed actions
 - new comments notification
-- hashtag link
-- edit action item
 - user view has list of actions
-- use textarea instead of input for action
 - refactor rakefile config
 - url shortener
-- action state
 - logging
 - forgotten password
 - use media-list from bootstrap
@@ -66,4 +62,7 @@ closed:
 - completed count bug
 - register email account
 - comments
-
+- use textarea instead of input for action
+- action state
+- edit action item #all actions are immutable it's been decided
+- hashtag link
