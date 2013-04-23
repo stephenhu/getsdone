@@ -1,11 +1,10 @@
 open:
-- oauth2
+- gmail oauth2
 - registration
 - open source readiness
 - security: api key
 - ssl?
 - landing page
-- profile page
 - gravatar support
 - comments show user icon and name
 - comment count
@@ -40,6 +39,8 @@ icebox:
 - process monitor
 - view of today's accomplishments
 - server side validation to block sql injection
+- emoticons support
+- profile page
 
 closed:
 - followers, following
