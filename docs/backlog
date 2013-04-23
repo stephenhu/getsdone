@@ -1,14 +1,14 @@
 open:
-- comments
 - oauth2
 - registration
 - open source readiness
 - security: api key
 - ssl?
-- register email account
 - landing page
-- server side validation to block sql injection
 - profile page
+- gravatar support
+- comments show user icon and name
+- comment count
 
 icebox:
 - email newsletter
@@ -39,6 +39,7 @@ icebox:
 - actions view in home page needs padding after between navbarbottom
 - process monitor
 - view of today's accomplishments
+- server side validation to block sql injection
 
 closed:
 - followers, following
@@ -62,4 +63,6 @@ closed:
 - deletes should change state, not physically be deleted.
 - reassign requires additional time?
 - completed count bug
+- register email account
+- comments
 

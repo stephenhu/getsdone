@@ -41,6 +41,9 @@ hr {
 }
 /* custom classes */
 
+.hide {
+  display: none;
+}
 
 .xxlarge {
   font-size: 96px;
@@ -60,6 +63,10 @@ hr {
 
 .small {
   font-size: 11px;
+}
+
+.yellow {
+  border: #00ffff;
 }
 
 .gauge {
@@ -90,18 +97,18 @@ hr {
   padding: 1px;
 }
 
-.commenter {
+.comments {
   padding: 5px;
+  border: 1px solid #e0f3ff;
 }
 
 .comment {
   height: auto;
   width: auto;
-  min-height: 100px;
-  min-width: 200px;
+  min-height: 40px;
+  min-width: 50px;
+  //margin-left: 50px;
   margin-bottom: 1px;
-  margin-left: 125px;
-  border: 1px solid #eeeeee;
   border-radius: 5px;
   padding: 5px;
   display: block;
@@ -109,7 +116,7 @@ hr {
 
 .comment-header {
   //background: #eeeeee;
-  border-bottom: 1px solid #cccccc;
+  //border-bottom: 1px solid #cccccc;
 }
 
 .comment-body {

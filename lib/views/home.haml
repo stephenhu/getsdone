@@ -29,17 +29,18 @@
               %div.operations
                 %a.pull-right{:href => "", :onclick => "deleteAction(#{a.id}); return false;"}
                   %img{:src => url("images/glyphicons_207_remove_2.png"), :width => "16"}
-          %div.comments.form-inline{:id => "c#{a.id}"}
+          %div.comments.form-inline.hide{:id => "c#{a.id}"}
             %input.input-xxlarge{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
-            %button.btn comment
-            - a.comments.each do |c|
+            %button.btn{:onclick => "addComment(#{a.id}); return false"} comment
+            %br
+            %br
+            - a.comments.order("created_at DESC").each do |c|
               %div.comment
                 %div.comment-header.form-inline
-                  %img.pull-left.spacing{:src => url("images/glyphicons_410_facebook.png"), :width => "16"}
-                  %a{:href => "/users/bigwurm"} @bigwurm
-                  %p.since.pull-right Tue, Jan 18, 2013 13:50:12
-                %div.comment-body
-                  %p this is a test comment
+                  %img.pull-left.spacing{:src => url("images/glyphicons_410_facebook.png"), :width => "32"}
+                  %a.pull-left.spacing{:href => "/users/bigwurm"} @bigwurm: 
+                  %p= c.comment
+                  %hr
       - else
         - @hashtags.each do |h|
           %button.btn.btn-info{:onclick => "goto('#{h}'); return false;"}= "##{h}"

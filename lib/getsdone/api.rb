@@ -85,6 +85,26 @@ module Getsdone
 
     end
 
+    post "/actions/:id/comments" do
+
+      #authenticate
+      u = User.find_by_id(session[:user][:id])
+
+      a = Action.find_by_id(params[:id])
+
+      if a.nil?
+
+        return { :status => "401",
+                 :msg => "Action not found" }.to_json
+
+      else
+
+        a.comments.create( :comment => params[:comment] )
+
+      end
+
+    end
+
     put "/users/:id/followers" do
 
       #authenticate
