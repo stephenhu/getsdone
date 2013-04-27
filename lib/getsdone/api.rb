@@ -109,8 +109,6 @@ module Getsdone
 
     post "/users" do
 
-      puts params[:name]
-
       u = User.find_by_name(params[:name])
 
       if u.nil?
@@ -127,8 +125,7 @@ module Getsdone
 
       else
 
-        return { :status => "403",
-                 :msg => "username taken" }.to_json
+        halt 403, { :msg => "username taken" }.to_json
 
       end
 

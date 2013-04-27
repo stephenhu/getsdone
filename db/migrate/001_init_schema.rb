@@ -5,7 +5,7 @@ class InitSchema < ActiveRecord::Migration
     create_table :users do |t|
       t.string :uuid, :unique => true, :null => false
       t.string :name, :unique => true, :null => false, :limit => 15
-      t.string :salt
+      t.string :salt, :null => false
       t.string :password, :null => false
       t.string :token
       t.string :icon, :default => "glyphicons_003_user.png"

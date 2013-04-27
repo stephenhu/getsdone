@@ -18,6 +18,10 @@ module Getsdone
      # return self.password
     #end
 
+    def passwd
+      return Password.new(self.password)
+    end
+
     def hash_password
       self.password = BCrypt::Password.create(self.password)
     end
