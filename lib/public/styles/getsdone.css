@@ -39,6 +39,11 @@ a, a:hover, a:visited, a:link {
 hr {
   margin: 2px;
 }
+
+dd {
+  padding: 5px;
+}
+
 /* custom classes */
 
 .hide {

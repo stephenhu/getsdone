@@ -107,6 +107,33 @@ module Getsdone
 
     end
 
+    post "/users" do
+
+      puts params[:name]
+
+      u = User.find_by_name(params[:name])
+
+      if u.nil?
+
+        user = User.create(
+          :name => params[:name],
+          :uuid => params[:email],
+          :password => params[:password] )
+
+        user.save
+
+        return { :status => "200",
+                 :msg => "success" }.to_json
+
+      else
+
+        return { :status => "403",
+                 :msg => "username taken" }.to_json
+
+      end
+
+    end
+
     put "/users/:id/followers" do
 
       #authenticate

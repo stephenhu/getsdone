@@ -22,11 +22,10 @@
   .row 
     .span14
       %h2 followers
-      %table.table
+      %dl
         - @profile.followers.each do |f|
-          %tr
-            %td
+          %dt
+            %dd
               %img{:src => url("images/#{f.get_profile(f.user_id)[:icon]}"), :width => "32"}
-            %td
               %a{:href => url("users/#{f.get_profile(f.user_id)[:name]}")}= "@#{f.get_profile(f.user_id)[:name]}"
 

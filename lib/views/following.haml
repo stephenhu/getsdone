@@ -1,7 +1,7 @@
 .container
   .row
     .span14
-      %a.xlarge{:href => url("/users#{@profile.name}")}= "@#{@profile.name}"
+      %a.xlarge{:href => url("/users/#{@profile.name}")}= "@#{@profile.name}"
   .row
     .span14
       %br
@@ -22,11 +22,10 @@
   .row
     .span14
       %h2 following
-      %table.table
+      %dl
         - @profile.follows.each do |f|
-          %tr
-            %td
+          %dt
+            %dd
               %img{:src => url("images/#{f.get_profile(f.follow_id)[:icon]}"), :width => "32"}
-            %td
               %a{:href => url("/users/#{f.get_profile(f.follow_id)[:name]}")}= "@#{f.get_profile(f.follow_id)[:name]}"
 

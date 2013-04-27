@@ -1,6 +1,7 @@
 module Getsdone
 
   class User < ActiveRecord::Base
+    include BCrypt
   
     has_many :follows, :dependent => :destroy 
     has_many :actions
@@ -8,11 +9,23 @@ module Getsdone
   
     validates_uniqueness_of :uuid
     validates_uniqueness_of :name
-  
+
+    before_create :hash_password
     before_create :hash_uuid
-  
+
+    #def password
+      #@password ||= Password.new(self.password)
+     # return self.password
+    #end
+
+    def hash_password
+      self.password = BCrypt::Password.create(self.password)
+    end
+
     def hash_uuid
-      self.uuid = Digest::MD5.hexdigest(self.uuid + self.salt)
+      #self.uuid = Digest::MD5.hexdigest(self.uuid + self.salt)
+      self.uuid = BCrypt::Password.create(self.uuid)
+      self.salt = self.uuid.salt
     end
   
     def open_actions

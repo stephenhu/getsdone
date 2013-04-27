@@ -6,8 +6,8 @@ class InitSchema < ActiveRecord::Migration
       t.string :uuid, :unique => true, :null => false
       t.string :name, :unique => true, :null => false, :limit => 15
       t.string :salt
+      t.string :password, :null => false
       t.string :token
-      t.string :guid
       t.string :icon, :default => "glyphicons_003_user.png"
       t.timestamps
     end

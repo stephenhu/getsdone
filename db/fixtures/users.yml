@@ -1,6 +1,7 @@
 user1:
   uuid: awefazvdv
   name: stephenhu
+  password: takehome
   salt: ouchwha
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
@@ -8,6 +9,7 @@ user1:
 user2:
   uuid: sefeadad
   name: bigwurm
+  password: dusty
   salt: tqwetpp
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
@@ -15,6 +17,7 @@ user2:
 user3:
   uuid: asdasdes
   name: pimp
+  password: helpout
   salt: jdsfdfd
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
@@ -22,6 +25,7 @@ user3:
 user4:
   uuid: esfpasdf
   name: segue
+  password: sliceit
   salt: aasdappp
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
@@ -29,6 +33,7 @@ user4:
 user5:
   uuid: rasdfddf
   name: xqj
+  password: freaking
   salt: sdssdgdd
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
@@ -36,6 +41,7 @@ user5:
 user6:
   uuid: szxcdwep
   name: abcdefghijklmnop
+  password: mein
   salt: fagegggga
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
