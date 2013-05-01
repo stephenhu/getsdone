@@ -5,6 +5,7 @@ open:
 - landing page
 
 icebox:
+- comment paging
 - email newsletter
 - refactor
 - bookmarked/starred actions
@@ -67,4 +68,5 @@ closed:
 - comment count
 - open source readiness
 - ajax to update comment section when adding a comment.
+- update comment counter after a prepend
 

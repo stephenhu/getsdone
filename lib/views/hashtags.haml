@@ -6,24 +6,26 @@
     .span14
       %br
       - @actions.each do |a|
+        - profile  = a.get_delegate_profile
+        - comments = a.get_origin_comments
         %div.action
           %div.title
-            %img{:src => url("images/#{a.get_delegate_profile[:icon]}"), :width => "32"}
-            %a.since{:href => "/users/#{a.get_delegate_profile[:name]}"}= "@#{a.get_delegate_profile[:name]}"
+            %img{:src => url("images/#{profile[:icon]}"), :width => "32"}
+            %a.since{:href => "/users/#{profile[:name]}"}= "@#{profile[:name]}"
             %p.since= a.time_remaining
           %div.content
             %p.medium= a.encoded_action
-            %button.btn.btn-mini{:id => "vc#{a.id}", :onclick => "viewComments(#{a.id}); return false;"}= "comments (#{a.comments.length})"
-        %div.comments.form-inline.hide{:id => "c#{a.id}"}
+            %button.btn.btn-mini{:id => "vc#{a.id}", :onclick => "viewComments(#{a.id}); return false;"}= "comments (#{comments.length})"
+        %div.comment-box.form-inline.hide{:id => "c#{a.id}"}
           %input.input-xxlarge{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
           %button.btn{:onclick => "addComment(#{a.id}); return false;"} comment
           %br
           %br
-          - a.comments.order("created_at DESC").each do |c|
+          - comments.each do |c|
+            - comment = c.get_profile
             %div.comment{:id => "dd#{c.id}"}
               %div.comment-header.form-inline
-                %img.pull-left.spacing{:src => url("images/#{c.get_profile[:icon]}"), :width => "32"}
-                %a.pull-left.spacing{:href => "/users/#{c.get_profile[:name]}"}= "@#{c.get_profile[:name]}: "
-                %p= c.comment
-                %hr
+                %img.pull-left.spacing{:src => url("images/#{comment[:icon]}"), :width => "32"}
+                %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: "
+                %p.since= "#{c.comment} (#{c.time_remaining})"
 
