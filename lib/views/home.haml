@@ -33,18 +33,19 @@
                 %a.pull-right{:href => "", :onclick => "deleteAction(#{a.id}); return false;"}
                   %img{:src => url("images/glyphicons_207_remove_2.png"), :width => "16"}
             %br
-          %div.comments.form-inline.hide{:id => "c#{a.id}"}
+          %div.comment-box.form-inline.hide{:id => "c#{a.id}"}
             %input.input-xxlarge{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
             %button.btn{:onclick => "addComment(#{a.id}); return false;"} comment
             %br
             %br
-            - comments.each do |c|
-              - comment = c.get_profile
-              %div.comment{:id => "dd#{c.id}"}
-                %div.comment-header.form-inline
-                  %img.pull-left.spacing{:src => url("images/#{comment[:icon]}"), :width => "32"}
-                  %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
-                  %p.since= "#{c.comment} (#{c.time_remaining})"
+            %div.comments{:id => "clist#{a.id}"}
+              - comments.each do |c|
+                - comment = c.get_profile
+                %div.comment{:id => "dd#{c.id}"}
+                  %div.comment-header.form-inline
+                    %img.pull-left.spacing{:src => url("images/#{comment[:icon]}"), :width => "32"}
+                    %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
+                    %p.since= "#{c.comment} (#{c.time_remaining})"
       - else
         - @hashtags.each do |h|
           %button.btn.btn-info{:onclick => "goto('#{h}'); return false;"}= "##{h}"

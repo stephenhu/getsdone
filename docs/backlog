@@ -3,8 +3,6 @@ open:
 - security: api key
 - ssl?
 - landing page
-- ajax to update comment section when adding a comment.
-- following counter is broken
 
 icebox:
 - email newsletter
@@ -68,4 +66,5 @@ closed:
 - comments show user icon and name
 - comment count
 - open source readiness
+- ajax to update comment section when adding a comment.
 
