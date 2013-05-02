@@ -246,7 +246,7 @@ module Getsdone
             add_action( action, o, hashtags, id, seriesid )
           end
 
-          add_series( id, seriesid )
+          add_series( id, seriesid ) unless id.nil?
   
         end
   
@@ -260,9 +260,12 @@ module Getsdone
 
       a = Action.find_by_id(id)
 
-      a.series_id = series
+      unless a.nil?
 
-      a.save
+        a.series_id = series
+        a.save
+
+      end
 
     end
 

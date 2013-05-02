@@ -14,7 +14,10 @@
     .span14
       - if @hashtags.nil?
         - @actions.each do |a|
-          - profile  = a.get_assigner_profile
+          - if @who == "delegate"
+            - profile = a.get_delegate_profile
+          - else
+            - profile  = a.get_assigner_profile
           - comments = a.get_origin_comments
           %div.action
             %div.title

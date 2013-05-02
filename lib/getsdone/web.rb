@@ -104,6 +104,7 @@ module Getsdone
 
       @user = u
       @info = @user.info
+      @who  = "owner"
 
       if @view == "week"
         @actions = u.weeks_actions
@@ -113,6 +114,7 @@ module Getsdone
         @actions = u.open_actions
       elsif @view == "assigned"
         @actions = u.assigned_actions
+        @who     = "delegate"
       elsif @view == "hashtags"
         @hashtags = AppHelper.get_hashtags(u.hashtag_actions)
       elsif @view == "history"
