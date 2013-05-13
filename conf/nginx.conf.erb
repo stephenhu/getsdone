@@ -13,13 +13,30 @@ http {
 
     listen          80;
     server_name     getsdone.io;
-    root            <%= root_dir %>/getsdone.io;
-    error_log       <%= root_dir %>/logs/error.log;
-    access_log      <%= root_dir %>/logs/access.log;
+
+    location / {
+      proxy_pass          https://getsdone.io;
+      proxy_set_header    Host $host;
+    }
+
+  }
+
+  server {
+
+    listen                443;
+    ssl                   on;
+    ssl_certificate       <%= nginx_dir %>/conf/getsdone.crt;
+    ssl_certificate_key   <%= nginx_dir %>/conf/getsdone.key;
+    keepalive_timeout     70;
+    server_name           getsdone.io;
+    root                  <%= root_dir %>;
+    error_log             <%= root_dir %>/logs/error.log;
+    access_log            <%= root_dir %>/logs/access.log;
 
     location / {
       proxy_pass          http://getsdone.io:8000;
       proxy_set_header    Host $host;
+      proxy_set_header    X-Forwarded-Proto $scheme;
     }
 
   }

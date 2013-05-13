@@ -84,7 +84,8 @@ task :config do
   File.chmod( 0400, file2.path )
 
   puts "configure nginx"
-  root_dir = ask("root dir: ")
+  root_dir  = ask("root dir: ")
+  nginx_dir = ask("nginx root dir: ")
 
   config    = ERB.new(File.read("./conf/nginx.conf.erb"))
   contents  = config.result(binding)
