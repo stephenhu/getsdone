@@ -53,6 +53,7 @@ module Getsdone
   DEFAULT_USERNAME_URL_BASE   = "http://192.168.174.135:9292/users/".freeze
   DEFAULT_HASHTAG_URL_BASE    = "http://192.168.174.135:9292/hashtags/".freeze
 
+  ONE_WEEK        = 60 * 60 * 24 * 7
   UPCOMING        = 3
 
   STATE = {

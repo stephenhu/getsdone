@@ -9,8 +9,9 @@ module Getsdone
 #TODO: api key
     post "/actions" do
 
-      #authenticate
-      u = User.find_by_id(session[:user][:id])
+      u = authenticate
+
+      redirect "/login" if u.nil?
 
       unless AppHelper.validate(params)
         return { :status => "400",
@@ -27,7 +28,9 @@ module Getsdone
 
     put "/actions/:id" do
 
-      #authenticate
+      u = authenticate
+
+      redirect "/login" if u.nil?
 
       a = Action.find_by_id(params[:id])
 
@@ -51,7 +54,9 @@ module Getsdone
 
     delete "/actions/:id" do
 
-      #authenticate
+      u = authenticate
+
+      redirect "/login" if u.nil?
 
       a = Action.find_by_id(params[:id])
 
@@ -62,7 +67,7 @@ module Getsdone
 
       end
 
-      if a.user_id != session[:user][:id]
+      if a.user_id != u.id
 
         return { :status => "403",
                  :msg => "You don't own this action" }.to_json
@@ -87,8 +92,9 @@ module Getsdone
 
     post "/actions/:id/comments" do
 
-      #authenticate
-      u = User.find_by_id(session[:user][:id])
+      u = authenticate
+
+      redirect "/login" if u.nil?
 
       a = Action.find_by_id(params[:id])
 
@@ -133,11 +139,12 @@ module Getsdone
 
     put "/users/:id/followers" do
 
-      #authenticate
+      u = authenticate
+
+      redirect "/login" if u.nil?
 
       # make sure user exists
       # make sure not following
-      u = User.find_by_id(session[:user][:id])
 
       u.add_follower(params[:id])
 
@@ -147,9 +154,9 @@ module Getsdone
 
     delete "/users/:id/followers" do
 
-      #authenticate
+      u = authenticate
 
-      u = User.find_by_id(session[:user][:id])
+      redirect "/login" if u.nil?
 
       u.remove_follower(params[:id])
 

@@ -19,7 +19,7 @@
           %a{:href => "/about"} about
       %ul.nav.pull-right
         %li
-          - if session[:user].nil?
+          - if session[:getsdone].nil?
             %button.btn.btn-success{:onclick => "login(); return false;"} login
           - else
             %button.btn.btn-success{:onclick => "logout(); return false;"} logout

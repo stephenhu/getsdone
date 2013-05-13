@@ -7,7 +7,7 @@ module Getsdone
       @nohead = true
       @nofoot = true
 
-      u = User.find_by_id(session[:user][:id])
+      u = User.find_by_uuid(session[:getsdone])
 
       @user = u
 
@@ -21,9 +21,7 @@ module Getsdone
 
       u = User.find_by_id(params[:id])
 
-      session[:user]         = u
-      session[:user][:id]    = u.id
-      session[:user][:name]  = u.name
+      session[:getsdone] = u.uuid
 
     end
 

@@ -18,7 +18,7 @@ module Getsdone
      # return self.password
     #end
 
-    def passwd
+    def raw_password
       return Password.new(self.password)
     end
 

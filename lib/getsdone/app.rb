@@ -6,7 +6,8 @@ module Getsdone
 
     configure do
 
-      env = ENV["RACK_ENV"] || "development"
+      env     = ENV["RACK_ENV"] || "development"
+      secret  = ENV["RACK_SECRET"] || "stephen the great"
 
       config = YAML.load_file(File.join( Sinatra::Application.root,
         "../conf/database.yml" ) )[env]
@@ -14,7 +15,7 @@ module Getsdone
       set :public_folder,     File.join( Sinatra::Application.root, "/public" )
       set :views,             File.join( Sinatra::Application.root, "/views" )
       set :config,            config
-      set :session_secret,    "stephen the great"
+      set :session_secret,    secret
  
       ActiveRecord::Base.establish_connection config
  
@@ -22,31 +23,20 @@ module Getsdone
 
     def check_token
 
-      token = request.cookies["getsdone.io"]
+      token = session[:getsdone]
+      puts "token from cookie: #{token}"
 
       if token.nil?
-        session[:user] = nil
+        return nil
       else
-
-        u = User.find_by_token(Base64.decode64(token))
-        session[:user] = u.id
-
+        return User.find_by_uuid(token)
       end
 
     end
 
+
     def authenticate
-
-      if session[:user].nil?
-  
-        check_token
-
-        redirect "/login" if session[:user].nil?
-        
-      else
-        redirect "/login"
-      end
-     
+      return check_token
     end
 
   end

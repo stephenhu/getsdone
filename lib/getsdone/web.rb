@@ -57,7 +57,7 @@ module Getsdone
 
       @nohead  = true
       @title  = "getsdone.io - user"
-      @user    = User.find_by_id(session[:user][:id]) 
+      @user    = User.find_by_uuid(session[:getsdone]) 
       @profile = User.find_by_name(params[:id])
       @info    = @profile.info
 
@@ -95,13 +95,15 @@ module Getsdone
 
     get "/home" do
 
-      #authenticate
+      u = authenticate
+
+      redirect "/login" if u.nil?
+
+      puts u.inspect
 
       @title  = "getsdone.io - home"
       @view = params[:view]
  
-      u = User.find_by_id(session[:user][:id])
-
       @user = u
       @info = @user.info
       @who  = "owner"
@@ -132,11 +134,11 @@ module Getsdone
 
     get "/hashtags/:hashtag" do
 
-      #authenticate
+      u = authenticate
+
+      redirect "/login" if u.nil?
 
       @title  = "getsdone.io - hashtags"
-
-      u = User.find_by_id(session[:user][:id])
 
       @nohead   = true
       @user     = u
@@ -151,10 +153,11 @@ module Getsdone
 
     get "/history" do
 
-      #authenticate
+      u = authenticate
+
+      redirect "/login" if u.nil?
 
       @title  = "getsdone.io - history"
-      u = User.find_by_id(session[:user][:id])
 
       @user = u
       @view = "history"
@@ -167,10 +170,11 @@ module Getsdone
 
     get "/statistics" do
 
-      #authenticate
+      u = authenticate
+
+      redirect "/login" if u.nil?
 
       @title  = "getsdone.io - statistics"
-      u = User.find_by_id(session[:user][:id])
 
       @user     = u
       @view     = "statistics"

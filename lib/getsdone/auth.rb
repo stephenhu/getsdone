@@ -25,7 +25,31 @@ module Getsdone
 
     end
 
-    get "/login" do
+    post "/login" do
+
+      # add some validation
+
+      u = User.find_by_name(params[:name])
+
+      if u.nil?
+        halt 401, {:msg => "invalid login credentials"}.to_json
+      else
+
+        if u.raw_password == params[:password]
+
+          session[:getsdone] = u.uuid
+          puts u.uuid
+          return {:msg => "logged in"}.to_json
+
+        else
+          halt 401, {:msg => "invalid login credentials"}.to_json
+        end
+
+      end
+
+    end
+
+    get "/google/login" do
 
       g = GoogleHelper.instance
 
@@ -40,15 +64,12 @@ module Getsdone
 
     put "/logout" do
 
-      authenticate
-
-      u = User.find_by_id(session[:user][:id])
+      u = authenticate
 
       if u.nil?
-        halt 404
+        halt 404, "something's wrong"
       else
-        u.token = ""
-        u.save
+        session.clear
       end
 
       return { :status => "200",

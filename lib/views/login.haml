@@ -2,14 +2,14 @@
   .row-fluid
     .span14
       %h2 login to your account
-      %button.btn.btn-info login with google
+      <!--%button.btn.btn-info login with google-->
       %br
       %br
       %input.input-xlarge{:type => "text", :maxlength => "15", :id => "username", :placeholder => "username"}
       %br
       %input.input-xlarge{:type => "password", :maxlength => "20", :id => "password", :placeholder => "password"}
       %br
-      %button.btn.btn-primary.btn-large login
+      %button.btn.btn-primary.btn-large{:onclick => "login(); return false;"} login
       %a.since{:href => "/forgot"} forgot your password?
     .span14
 
