@@ -99,8 +99,21 @@ module Getsdone
   
     def assigned_actions
   
-      return Action.joins(:delegate).where( :user_id => self.id,
+      actions = Action.joins(:delegate).where( :user_id => self.id,
         :state => STATE[:open] ).where( ["delegates.user_id != ?", self.id] )
+
+      reassigned = Action.where( :user_id => self.id,
+        :state => STATE[:reassigned] )
+
+      reassigned.each do |r|
+
+        a = Action.where( :origin_id => r.id, :state => STATE[:open] )
+        actions = actions + a unless a.nil?
+
+      end
+
+      # get reassigned open actions
+      return actions
   
     end
   

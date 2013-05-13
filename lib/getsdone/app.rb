@@ -24,7 +24,6 @@ module Getsdone
     def check_token
 
       token = session[:getsdone]
-      puts "token from cookie: #{token}"
 
       if token.nil?
         return nil

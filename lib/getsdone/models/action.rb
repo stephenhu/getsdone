@@ -103,6 +103,24 @@ module Getsdone
 
     end
 
+    def get_origin_user_id
+
+      if self.origin_id.nil?
+        return self.user_id
+      else
+
+        a = Action.find_by_id(self.origin_id)
+
+        if a.nil?
+          return nil
+        else
+          return a.user_id
+        end
+          
+      end
+
+    end
+
   end
 
 end

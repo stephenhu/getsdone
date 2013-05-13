@@ -38,7 +38,6 @@ module Getsdone
         if u.raw_password == params[:password]
 
           session[:getsdone] = u.uuid
-          puts u.uuid
           return {:msg => "logged in"}.to_json
 
         else

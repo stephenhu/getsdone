@@ -99,8 +99,6 @@ module Getsdone
 
       redirect "/login" if u.nil?
 
-      puts u.inspect
-
       @title  = "getsdone.io - home"
       @view = params[:view]
  
