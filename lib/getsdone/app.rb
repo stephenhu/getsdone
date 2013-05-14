@@ -1,6 +1,7 @@
 module Getsdone 
 
   class App < Sinatra::Base
+    use Rack::SslEnforcer
 
     enable :sessions
 
@@ -16,9 +17,10 @@ module Getsdone
       set :views,             File.join( Sinatra::Application.root, "/views" )
       set :config,            config
       set :session_secret,    secret
- 
+      set :logging,           true
+
       ActiveRecord::Base.establish_connection config
- 
+
     end
 
     def check_token

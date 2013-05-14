@@ -14,10 +14,7 @@ http {
     listen          80;
     server_name     getsdone.io;
 
-    location / {
-      proxy_pass          https://getsdone.io;
-      proxy_set_header    Host $host;
-    }
+    rewrite         ^ https://$server_name$request_uri? permanent;
 
   }
 
@@ -25,8 +22,8 @@ http {
 
     listen                443;
     ssl                   on;
-    ssl_certificate       <%= nginx_dir %>/conf/getsdone.crt;
-    ssl_certificate_key   <%= nginx_dir %>/conf/getsdone.key;
+    ssl_certificate       <%= nginx_dir %>/conf/ssl.crt;
+    ssl_certificate_key   <%= nginx_dir %>/conf/ssl.key;
     keepalive_timeout     70;
     server_name           getsdone.io;
     root                  <%= root_dir %>;
@@ -34,8 +31,12 @@ http {
     access_log            <%= root_dir %>/logs/access.log;
 
     location / {
+
       proxy_pass          http://getsdone.io:8000;
       proxy_set_header    Host $host;
+      proxy_set_header    X-Forwarded-Proto https;
+      proxy_redirect      off;
+
     }
 
   }
