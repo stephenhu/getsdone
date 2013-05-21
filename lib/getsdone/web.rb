@@ -3,15 +3,19 @@ module Getsdone
   class Web < App
 
     not_found do
+
       @nohead = true
       @title  = "getsdone.io - page not found"
       haml :error
+
     end
 
     get "/" do
+
       @nohead = true
       @title  = "getsdone.io - getting things done socially"
       haml :index
+
     end
 
     get "/blog" do
@@ -184,6 +188,10 @@ module Getsdone
 
     get "/login" do
 
+      u = authenticate
+
+      redirect "/home" unless u.nil?
+
       @title  = "getsdone.io - login"
       @nohead = true
 
@@ -192,6 +200,10 @@ module Getsdone
     end
 
     get "/signup" do
+
+      u = authenticate
+
+      redirect "/home" unless u.nil?
 
       @title    = "getsdone.io - signup"
       @nohead   = true

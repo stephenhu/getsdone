@@ -28,7 +28,6 @@ module Getsdone
     post "/login" do
 
       # add some validation
-
       u = User.find_by_name(params[:name])
 
       if u.nil?
@@ -37,7 +36,8 @@ module Getsdone
 
         if u.raw_password == params[:password]
 
-          session[:getsdone] = u.uuid
+          response.set_cookie( "getsdone", { :value => u.uuid } )
+            
           return {:msg => "logged in"}.to_json
 
         else
@@ -68,11 +68,10 @@ module Getsdone
       if u.nil?
         halt 404, "something's wrong"
       else
-        session.clear
+        response.delete_cookie( "getsdone", :path => "/" )
       end
 
-      return { :status => "200",
-        :msg => "logged out" }.to_json
+      return { :status => "200", :msg => "logged out" }.to_json
 
     end
 

@@ -11,7 +11,9 @@ module Getsdone
 
       u = authenticate
 
-      redirect "/login" if u.nil?
+      if u.nil?
+        return { :status => "403", :msg => "requires login" }.to_json
+      end
 
       unless AppHelper.validate(params)
         return { :status => "400",

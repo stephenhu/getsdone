@@ -5,12 +5,12 @@ module Getsdone
 
     use Rack::SslEnforcer if ENV["RACK_ENV"] == "production"
 
-    enable :sessions, :logging
+    enable :logging
 
     configure do
 
       env     = ENV["RACK_ENV"] || "development"
-      secret  = ENV["RACK_SECRET"] || "stephen the great"
+      #secret  = ENV["RACK_SECRET"] || "stephen the great"
 
       config = YAML.load_file(File.join( Sinatra::Application.root,
         "../conf/database.yml" ) )[env]
@@ -18,7 +18,7 @@ module Getsdone
       set :public_folder,     File.join( Sinatra::Application.root, "/public" )
       set :views,             File.join( Sinatra::Application.root, "/views" )
       set :config,            config
-      set :session_secret,    secret
+      #set :session_secret,    secret
 
       Dir.mkdir("logs") unless File.exist?("logs")
 
@@ -42,7 +42,7 @@ module Getsdone
 
     def check_token
 
-      token = session[:getsdone]
+      token = request.cookies["getsdone"]
 
       if token.nil?
         return nil
@@ -51,7 +51,6 @@ module Getsdone
       end
 
     end
-
 
     def authenticate
       return check_token

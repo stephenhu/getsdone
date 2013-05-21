@@ -2,11 +2,12 @@ open:
 - signup
 - ssl?
 - landing page
-- link and hashtag conversion within comments.
 - js for adding comments as hardcoded user and icon
+- creating actions for users that don't exist should be blocked
 
 icebox:
 - security: api key
+- link and hashtag conversion within comments.
 - comment paging
 - email newsletter
 - refactor
