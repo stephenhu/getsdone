@@ -10,3 +10,6 @@ images*
 other*
 twitter*
 nginx.conf
+logs*
+.log
+

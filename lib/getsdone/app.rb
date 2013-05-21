@@ -1,9 +1,11 @@
 module Getsdone 
 
   class App < Sinatra::Base
-    use Rack::SslEnforcer
+    #use Rack::SslEnforcer, :except_environments => "development"
 
-    enable :sessions
+    use Rack::SslEnforcer if ENV["RACK_ENV"] == "production"
+
+    enable :sessions, :logging
 
     configure do
 
@@ -17,8 +19,23 @@ module Getsdone
       set :views,             File.join( Sinatra::Application.root, "/views" )
       set :config,            config
       set :session_secret,    secret
-      set :logging,           true
 
+      Dir.mkdir("logs") unless File.exist?("logs")
+
+      logger = Logger.new("logs/getsdone.log")
+
+      logger.level = Logger::INFO
+
+      if ENV["RACK_ENV"] == "production"
+
+        STDOUT.reopen( "logs/verbose.log", "w" )
+        STDOUT.sync = true
+
+        STDERR.reopen(STDOUT)
+
+      end
+
+      ActiveRecord::Base.logger = Logger.new("logs/db.log")
       ActiveRecord::Base.establish_connection config
 
     end

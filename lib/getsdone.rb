@@ -6,18 +6,16 @@ require "bcrypt"
 require "digest/md5"
 require "haml"
 require "json"
+require "logger"
 require "oauth2"
 require "rack-ssl-enforcer"
 require "rest_client"
 require "securerandom"
 require "sinatra"
-#require "sinatra/cookies"
 require "sqlite3"
 require "thin"
 require "time"
 require "twitter-text"
-
-#Dir.glob("./getsdone/models/*").each {|r| require r }
 
 require File.join( File.dirname(__FILE__), "getsdone/models", "action" )
 require File.join( File.dirname(__FILE__), "getsdone/models", "comment" )
@@ -38,7 +36,6 @@ require File.join( File.dirname(__FILE__), "getsdone", "web" )
 if ENV["RACK_ENV"] == "development"
   require File.join( File.dirname(__FILE__), "getsdone", "debug" )
 end
-
 
 module Getsdone
 
