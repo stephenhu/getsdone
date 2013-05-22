@@ -4,6 +4,8 @@ open:
 - landing page
 - js for adding comments as hardcoded user and icon
 - creating actions for users that don't exist should be blocked
+- login has problems, cookie not taking effect
+- signup doesn't automatically login
 
 icebox:
 - security: api key

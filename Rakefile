@@ -72,6 +72,11 @@ task :config do
   client_secret         = ask("client_secret: ")
 #TODO encrypt
 
+  puts "configure app"
+  app_key = ask("cipher key")
+  app_iv  = ask("cipher iv")
+#TODO check length
+
   config	= ERB.new(File.read("./conf/config.yml.erb"))
   contents      = config.result(binding)
 

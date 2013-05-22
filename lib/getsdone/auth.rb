@@ -36,8 +36,19 @@ module Getsdone
 
         if u.raw_password == params[:password]
 
-          response.set_cookie( "getsdone", { :value => u.uuid } )
-            
+          hash = { :uuid => u.uuid,
+            :api_key => settings.config["api"]["key"] }
+
+          cipher = OpenSSL::Cipher::AES.new( 128, :CBC )
+
+          settings.cipher.encrypt
+
+          encrypted = settings.cipher.update(hash.to_s) +
+            settings.cipher.final
+
+          response.set_cookie( "getsdone", { :value => encrypted,
+            :path => "/" } )
+
           return {:msg => "logged in"}.to_json
 
         else
