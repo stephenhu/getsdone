@@ -1,10 +1,7 @@
 open:
-- signup
-- ssl?
 - landing page
 - js for adding comments as hardcoded user and icon
 - creating actions for users that don't exist should be blocked
-- login has problems, cookie not taking effect
 - signup doesn't automatically login
 
 icebox:
@@ -76,4 +73,7 @@ closed:
 - update comment counter after a prepend
 - assigned tab should show owner not delegator
 - delete action button missing
+- signup
+- ssl?
+- login has problems, cookie not taking effect
 
