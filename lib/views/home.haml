@@ -51,7 +51,7 @@
                     %p.since= "#{c.comment} (#{c.time_remaining})"
       - else
         - @hashtags.each do |h|
-          %button.btn.btn-info{:onclick => "goto('#{h}'); return false;"}= "##{h}"
+          %button.btn.btn-info{:onclick => "goto('/hashtags/#{h}'); return false;"}= "##{h}"
 .container
   .row
     .span8

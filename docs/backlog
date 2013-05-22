@@ -1,8 +1,10 @@
 open:
-- landing page
+- landing page (total number of actions)
 - js for adding comments as hardcoded user and icon
 - creating actions for users that don't exist should be blocked
+- reassigning actions for users that don't exist should be blocked
 - signup doesn't automatically login
+- page crashes if not signed in and accessing users/x
 
 icebox:
 - security: api key
@@ -76,4 +78,6 @@ closed:
 - signup
 - ssl?
 - login has problems, cookie not taking effect
+- login button at the bottom should redirect to login page
+- signup link
 
