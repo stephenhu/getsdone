@@ -59,9 +59,16 @@ module Getsdone
 
     get "/users/:id" do
 
+      u = authenticate
+
+      if u.nil?
+        @user = nil
+      else
+        @user = User.find_by_uuid(u.uuid)
+      end
+
       @nohead  = true
       @title  = "getsdone.io - user"
-      @user    = User.find_by_uuid(session[:getsdone]) 
       @profile = User.find_by_name(params[:id])
       @info    = @profile.info
 
