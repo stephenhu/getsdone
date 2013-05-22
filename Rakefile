@@ -52,6 +52,7 @@ task :config do
   require "erb"
 
   file = File.dirname(__FILE__) + "/db/getsdone.db"
+
   puts "configure postgresql"
   username = ask("username: ")
   password = ask("password: ") {|q| q.echo = "*"}
@@ -73,9 +74,12 @@ task :config do
 #TODO encrypt
 
   puts "configure app"
-  app_key = ask("cipher key")
-  app_iv  = ask("cipher iv")
+  app_key = ask("cipher key: ")
+  app_iv  = ask("cipher iv: ")
 #TODO check length
+
+  puts "configure api"
+  api_key = ask("api key: ")
 
   config	= ERB.new(File.read("./conf/config.yml.erb"))
   contents      = config.result(binding)
