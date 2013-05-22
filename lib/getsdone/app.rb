@@ -53,7 +53,7 @@ module Getsdone
 
     end
 
-    def check_token
+    def authenticate
 
       token = request.cookies["getsdone"]
 
@@ -77,8 +77,12 @@ module Getsdone
 
     end
 
-    def authenticate
-      return check_token
+    def create_token(uuid)
+
+      hash = { :uuid => uuid, :api_key => settings.config["api"]["key"] }
+
+      return settings.cipher.update(hash.to_s) + settings.cipher.final
+
     end
 
   end

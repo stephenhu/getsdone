@@ -68,13 +68,14 @@ module Getsdone
       end
 
       @nohead  = true
-      @title  = "getsdone.io - user"
+      @title   = "getsdone.io - user"
       @profile = User.find_by_name(params[:id])
-      @info    = @profile.info
 
       if @profile.nil?
         halt 404, "User not found"
       end
+
+      @info    = @profile.info
 
       haml :user
 

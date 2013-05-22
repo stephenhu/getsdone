@@ -36,15 +36,7 @@ module Getsdone
 
         if u.raw_password == params[:password]
 
-          hash = { :uuid => u.uuid,
-            :api_key => settings.config["api"]["key"] }
-
-          cipher = OpenSSL::Cipher::AES.new( 128, :CBC )
-
-          settings.cipher.encrypt
-
-          encrypted = settings.cipher.update(hash.to_s) +
-            settings.cipher.final
+          encrypted = create_token(u.uuid)
 
           response.set_cookie( "getsdone", { :value => encrypted,
             :path => "/" } )
