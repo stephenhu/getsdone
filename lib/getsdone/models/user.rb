@@ -102,8 +102,9 @@ module Getsdone
       actions = Action.joins(:delegate).where( :user_id => self.id,
         :state => STATE[:open] ).where( ["delegates.user_id != ?", self.id] )
 
-      reassigned = Action.where( :user_id => self.id,
-        :state => STATE[:reassigned] )
+      reassigned = Action.joins(:delegate).where( :user_id => self.id,
+        :state => STATE[:reassigned] ).where( ["delegates.user_id != ?",
+        self.id] )
 
       reassigned.each do |r|
 
