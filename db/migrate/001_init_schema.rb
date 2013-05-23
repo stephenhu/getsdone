@@ -3,7 +3,7 @@ class InitSchema < ActiveRecord::Migration
   def self.up
 
     create_table :users do |t|
-      t.string :uuid, :unique => true, :null => false
+      t.string :uuid, :unique => true, :null => false, :limit => 64
       t.string :name, :unique => true, :null => false, :limit => 15
       t.string :salt, :null => false
       t.string :password, :null => false
