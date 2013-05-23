@@ -67,9 +67,11 @@ module Getsdone
         decipher.key  = settings.ckey
         decipher.iv   = settings.civ
 
-        plain = decipher.update(token) + decipher.final
+        plain   = decipher.update(token) + decipher.final
 
-        hash = eval(plain)
+        decoded = Base64.decode64(plain)
+
+        hash = eval(decoded)
 
         return User.find_by_uuid(hash[:uuid])
 
@@ -79,9 +81,13 @@ module Getsdone
 
     def create_token(uuid)
 
-      hash = { :uuid => uuid, :api_key => settings.config["api"]["key"] }
+      hash    = { :uuid => uuid, :api_key => settings.config["api"]["key"] }
 
-      return settings.cipher.update(hash.to_s) + settings.cipher.final
+      encoded = Base64.encode64(hash.to_s)
+ 
+      token   = settings.cipher.update(encoded) + settings.cipher.final
+
+      response.set_cookie( "getsdone", { :value => token, :path => "/" } )
 
     end
 

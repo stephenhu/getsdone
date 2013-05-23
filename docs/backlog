@@ -5,6 +5,7 @@ open:
 - reassigning actions for users that don't exist should be blocked
 - signup doesn't automatically login
 - page crashes if not signed in and accessing users/x
+- email address length too short
 
 icebox:
 - security: api key

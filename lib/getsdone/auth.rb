@@ -36,10 +36,10 @@ module Getsdone
 
         if u.raw_password == params[:password]
 
-          encrypted = create_token(u.uuid)
+          create_token(u.uuid)
 
-          response.set_cookie( "getsdone", { :value => encrypted,
-            :path => "/" } )
+          #response.set_cookie( "getsdone", { :value => encrypted,
+          #  :path => "/" } )
 
           return {:msg => "logged in"}.to_json
 
