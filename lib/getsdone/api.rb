@@ -6,7 +6,6 @@ module Getsdone
       return VERSION
     end
 
-#TODO: api key
     post "/actions" do
 
       u = authenticate
@@ -20,11 +19,18 @@ module Getsdone
                  :msg => "Bad parameters" }.to_json
       end
 
-      unless u.add_actions(params)
-        return { :status => "500", :msg => "Unable to add action" }.to_json
+      res = u.add_actions(params)
+        #return { :status => "500", :msg => "Unable to add action" }.to_json
+      puts "res from api #{res}"
+
+      if res
+        return { :msg => "action added" }.to_json
+        #halt 500, {:msg => "unable to add action"}.to_json
+      else
+        halt 500, {:msg => "unable to add action"}.to_json
       end
 
-      return { :status => "200", :msg => "" }.to_json
+      #return {:msg => "action added"}.to_json
 
     end
 

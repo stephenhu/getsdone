@@ -1,10 +1,9 @@
 open:
 - landing page (total number of actions)
 - js for adding comments as hardcoded user and icon
-- creating actions for users that don't exist should be blocked
-- reassigning actions for users that don't exist should be blocked
 - signup doesn't automatically login
 - page crashes if not signed in and accessing users/x
+- assigned actions list shows duplicates
 
 icebox:
 - security: api key
@@ -81,4 +80,6 @@ closed:
 - login button at the bottom should redirect to login page
 - signup link
 - email address length too short
+- reassigning actions for users that don't exist should be blocked
+- creating actions for users that don't exist should be blocked
 
