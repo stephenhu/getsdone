@@ -20,7 +20,8 @@
       %ul.nav.pull-right
         %li
           - if @user.nil?
-            %button.btn.btn-success{:onclick => "goto('/login'); return false;"} login
+            - if @loginpage.nil?
+              %button.btn.btn-success{:onclick => "goto('/login'); return false;"} login
             %button.btn.btn-primary{:onclick => "goto('/signup'); return false;"} signup
           - else
             %button.btn.btn-success{:onclick => "logout(); return false;"} logout

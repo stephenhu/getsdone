@@ -2,6 +2,18 @@ module Getsdone
 
   class Web < App
 
+    before do
+
+      u = authenticate
+     
+      if u.nil?
+        @user = nil
+      else
+        @user = User.find_by_uuid(u.uuid)
+      end
+
+    end
+
     not_found do
 
       @nohead = true
@@ -59,14 +71,6 @@ module Getsdone
 
     get "/users/:id" do
 
-      u = authenticate
-
-      if u.nil?
-        @user = nil
-      else
-        @user = User.find_by_uuid(u.uuid)
-      end
-
       @nohead  = true
       @title   = "getsdone.io - user"
       @profile = User.find_by_name(params[:id])
@@ -107,35 +111,32 @@ module Getsdone
 
     get "/home" do
 
-      u = authenticate
-
-      redirect "/login" if u.nil?
+      redirect "/login" if @user.nil?
 
       @title  = "getsdone.io - home"
       @view = params[:view]
  
-      @user = u
       @info = @user.info
       @who  = "owner"
 
       if @view == "week"
-        @actions = u.weeks_actions
+        @actions = @user.weeks_actions
       elsif @view == "upcoming"
-        @actions = u.overdue_actions + u.upcoming_actions
+        @actions = @user.overdue_actions + @user.upcoming_actions
       elsif @view == "open"
-        @actions = u.open_actions
+        @actions = @user.open_actions
       elsif @view == "assigned"
-        @actions = u.assigned_actions
+        @actions = @user.assigned_actions
         @who     = "delegate"
       elsif @view == "hashtags"
-        @hashtags = AppHelper.get_hashtags(u.hashtag_actions)
+        @hashtags = AppHelper.get_hashtags(@user.hashtag_actions)
       elsif @view == "history"
         redirect "/history"
       elsif @view == "statistics"
         redirect "/statistics"
       else
         @view = "open"
-        @actions = u.open_actions
+        @actions = @user.open_actions
       end
 
       haml :home
@@ -144,14 +145,11 @@ module Getsdone
 
     get "/hashtags/:hashtag" do
 
-      u = authenticate
-
-      redirect "/login" if u.nil?
+      redirect "/login" if @user.nil?
 
       @title  = "getsdone.io - hashtags"
 
       @nohead   = true
-      @user     = u
       @info     = @user.info
 
       @hashtag  = params[:hashtag]
@@ -163,32 +161,27 @@ module Getsdone
 
     get "/history" do
 
-      u = authenticate
-
-      redirect "/login" if u.nil?
+      redirect "/login" if @user.nil?
 
       @title  = "getsdone.io - history"
 
-      @user = u
       @view = "history"
-      @info = u.info
+      @info = @user.info
 
-      @actions = u.completed_actions
+      @actions = @user.completed_actions
 
       haml :history
+
     end
 
     get "/statistics" do
 
-      u = authenticate
-
-      redirect "/login" if u.nil?
+      redirect "/login" if @user.nil?
 
       @title  = "getsdone.io - statistics"
 
-      @user     = u
       @view     = "statistics"
-      @info     = u.info
+      @info     = @user.info
 
       haml :statistics
 
@@ -196,12 +189,11 @@ module Getsdone
 
     get "/login" do
 
-      u = authenticate
-
-      redirect "/home" unless u.nil?
+      redirect "/home" unless @user.nil?
 
       @title  = "getsdone.io - login"
       @nohead = true
+      @loginpage = "login"
 
       haml :login
 
@@ -209,9 +201,7 @@ module Getsdone
 
     get "/signup" do
 
-      u = authenticate
-
-      redirect "/home" unless u.nil?
+      redirect "/home" unless @user.nil?
 
       @title    = "getsdone.io - signup"
       @nohead   = true
@@ -221,6 +211,8 @@ module Getsdone
     end
 
     get "/forgot" do
+
+      redirect "/home" unless @user.nil?
 
       @title    = "getsdone.io - forgot"
       @nohead   = true
