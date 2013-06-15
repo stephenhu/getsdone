@@ -217,9 +217,7 @@ module Getsdone
     end
  
     def add_action( action, owner, hashtags, originid=nil, seriesid=nil )
-      puts owner  
       o = User.find_by_name(owner) unless owner.nil?
-      puts o.inspect
       return false if o.nil? and not owner.nil?
 
       if originid.nil?
@@ -253,7 +251,6 @@ module Getsdone
         id = self.id
       else
         id = o.id
-        puts id
       end
   
       a.create_delegate( :user_id => id )
@@ -277,13 +274,11 @@ module Getsdone
   
         if owners.nil?
           res = add_action( action, nil, hashtags )
-          puts res
           return false if res == false
         else
   
           owners.each do |o|
             res = add_action( action, o, hashtags, id, seriesid )
-            puts res
             return false if res == false
           end
 
