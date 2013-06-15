@@ -38,9 +38,6 @@ module Getsdone
 
           create_token(u.uuid)
 
-          #response.set_cookie( "getsdone", { :value => encrypted,
-          #  :path => "/" } )
-
           return {:msg => "logged in"}.to_json
 
         else
@@ -66,13 +63,13 @@ module Getsdone
 
     put "/logout" do
 
-      u = authenticate
+      #u = authenticate
 
-      if u.nil?
-        halt 404, "something's wrong"
-      else
-        response.delete_cookie( "getsdone", :path => "/" )
-      end
+      #if u.nil?
+      #  halt 404, "something's wrong"
+      #else
+      response.delete_cookie( "getsdone", :path => "/" )
+      #end
 
       return { :status => "200", :msg => "logged out" }.to_json
 

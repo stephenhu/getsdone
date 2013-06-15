@@ -9,7 +9,7 @@ module Getsdone
       if u.nil?
         @user = nil
       else
-        @user = User.find_by_uuid(u.uuid)
+        @user = u
       end
 
     end

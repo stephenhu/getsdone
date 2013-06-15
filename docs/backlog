@@ -1,10 +1,11 @@
 open:
 - landing page (total number of actions)
 - js for adding comments as hardcoded user and icon
-- signup doesn't automatically login
-- page crashes if not signed in and accessing users/x
 
 icebox:
+- signup doesn't automatically login
+- enforce password size
+- completed link of the users profile page doesn't work
 - security: api key
 - link and hashtag conversion within comments.
 - comment paging
@@ -84,4 +85,5 @@ closed:
 - assigned actions list shows duplicates
 - login page shows login button below
 - pages that don't require login show login and signup
+- page crashes if not signed in and accessing users/x
 

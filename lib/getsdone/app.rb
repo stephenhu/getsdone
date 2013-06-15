@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module Getsdone 
 
   class App < Sinatra::Base
@@ -29,9 +31,14 @@ module Getsdone
       cipher.key  = config["app"]["key"]
       cipher.iv   = config["app"]["iv"]
 
+      decipher = OpenSSL::Cipher::AES.new( 128, :CBC )
+      decipher.decrypt
+
+      decipher.key = config["app"]["key"]
+      decipher.iv  = config["app"]["iv"]
+      
       set :cipher,            cipher
-      set :ckey,              config["app"]["key"]
-      set :civ,               config["app"]["iv"]
+      set :decipher,          decipher
  
       Dir.mkdir("logs") unless File.exist?("logs")
 
@@ -61,19 +68,12 @@ module Getsdone
         return nil
       else
 
-        decipher = OpenSSL::Cipher::AES.new( 128, :CBC )
-        decipher.decrypt
+        settings.decipher.reset
 
-        decipher.key  = settings.ckey
-        decipher.iv   = settings.civ
+        decoded = Base64.decode64(token)
+        plain   = settings.decipher.update(decoded) + settings.decipher.final
 
-        plain   = decipher.update(token) + decipher.final
-
-        decoded = Base64.decode64(plain)
-
-        hash = eval(decoded)
-
-        return User.find_by_uuid(hash[:uuid])
+        return User.find_by_uuid(plain)
 
       end
 
@@ -81,13 +81,12 @@ module Getsdone
 
     def create_token(uuid)
 
-      hash    = { :uuid => uuid, :api_key => settings.config["api"]["key"] }
+      settings.cipher.reset
 
-      encoded = Base64.encode64(hash.to_s)
- 
-      token   = settings.cipher.update(encoded) + settings.cipher.final
+      token   = settings.cipher.update(uuid) + settings.cipher.final
+      encoded = Base64.encode64(token)
 
-      response.set_cookie( "getsdone", { :value => token, :path => "/" } )
+      response.set_cookie( "getsdone", { :value => encoded, :path => "/" } )
 
     end
 

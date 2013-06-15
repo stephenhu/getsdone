@@ -21,8 +21,12 @@ module Getsdone
 
       u = User.find_by_id(params[:id])
 
-      session[:getsdone] = u.uuid
+      create_token(u.uuid)
 
+    end
+
+    delete "/fakelogout" do
+      response.delete_cookie( "getsdone", :path => "/" )
     end
 
   end

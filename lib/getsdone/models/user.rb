@@ -23,13 +23,16 @@ module Getsdone
     end
 
     def hash_password
-      self.password = BCrypt::Password.create(self.password)
+      self.password = Password.create(self.password)
+    end
+
+    def raw_uuid
+      return Password.new(self.uuid)
     end
 
     def hash_uuid
       #self.uuid = Digest::MD5.hexdigest(self.uuid + self.salt)
-      self.uuid = BCrypt::Password.create(self.uuid)
-      self.salt = self.uuid.salt
+      self.uuid = Password.create(self.uuid)
     end
   
     def open_actions
