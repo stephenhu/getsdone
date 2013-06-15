@@ -69,6 +69,14 @@ module Getsdone
 
     end
 
+    get "/help" do
+
+      @nohead = true
+      @title = "getsdone.io - help"
+      haml :help
+
+    end
+
     get "/users/:id" do
 
       @nohead  = true

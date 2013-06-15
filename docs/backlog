@@ -1,8 +1,8 @@
 open:
-- landing page (total number of actions)
-- js for adding comments as hardcoded user and icon
 
 icebox:
+- landing page (total number of actions)
+- comment timestamps are not updated
 - signup doesn't automatically login
 - enforce password size
 - completed link of the users profile page doesn't work
@@ -86,4 +86,5 @@ closed:
 - login page shows login button below
 - pages that don't require login show login and signup
 - page crashes if not signed in and accessing users/x
+- js for adding comments as hardcoded user and icon
 
