@@ -20,8 +20,6 @@ module Getsdone
       end
 
       res = u.add_actions(params)
-        #return { :status => "500", :msg => "Unable to add action" }.to_json
-      puts "res from api #{res}"
 
       if res
         return { :msg => "action added" }.to_json
@@ -30,7 +28,6 @@ module Getsdone
         halt 500, {:msg => "unable to add action"}.to_json
       end
 
-      #return {:msg => "action added"}.to_json
 
     end
 

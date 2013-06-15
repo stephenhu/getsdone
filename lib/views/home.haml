@@ -62,4 +62,5 @@
         %textarea.input-xlarge{:id => "reassignment", :maxlength => "140", :rows => "4", :onkeyup => "count( this, 'rcounter' ); return false;"}
         %br
         %button.btn.btn-danger{:onclick => "addAction(true); return false;"} reassign
+%input{:id => "username", :type => "hidden", :value => "#{@user.name}"}
 
