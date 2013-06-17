@@ -1,6 +1,9 @@
 open:
+- comments don't work in the history page.
 
 icebox:
+- ddos protection
+- database backup scripts
 - landing page (total number of actions)
 - comment timestamps are not updated
 - signup doesn't automatically login

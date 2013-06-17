@@ -5,14 +5,24 @@
   .row
     .span12
       %br
-      %img{:src => "images/glyphicons_003_user.png"}
+      %img{:src => url("images/glyphicons_003_user.png")}
+      %p.since Sun, Jun 16, 2013 12:26
+      %p.medium this is a pretty siginificant milestone for getsdone.io and for me personally, i had this idea in my head for a really long time, probably since about six years ago, and i personally have this habit of not being able to finish things.  although this app is long from being complete, it is complete enough such that i can launch upon the world and actually get real users other than myself to try it out.  this project was first and foremost conceived for myself, i found usefulness in just having something simple to track all my work, over the years things got complicated and i had to learn to keep track of everything outside of rote memory, and then there were new patterns emerging of doing things that tied things together.
+      %p.medium the initial idea was much more course than this, back then i had not even heard of jquery, bootstrap or even thought of ever using ruby (or rails).  but over the years, the technology's emerged enough such that someone like me could create something like this.
+      %p.medium i want to thank my family, first and foremost my wife for enduring with all the late night development efforts, she joined me in life after the idea, so perhaps i can attribute actually finishing the first milestone to her in some loose regards.
+      %p.medium like i stated before, there are so many things that i need to add to this app to make it even more useful, but over the past few months, i've really started to believe in this minimal viable product (mvp) approach.  you can see from my github <a href="http://github.com/stephenhu/getsdone/blob/master/docs/backlog">backlog</a> how many things i've had to push off until later releases.  and i haven't been completely disciplined, there are tons more things in my head that should be added to the backlog.
+      %p.medium anyway, would love to hear your feedback so do write <a href="mailto:stephen@getsdone.io">me</a> and enjoy!
+  .row
+    .span12
+      %br
+      %img{:src => url("images/glyphicons_003_user.png")}
       %p.since Fri Apr 19, 2013 00:29
       %p.medium think of getsdone.io as a heavily opinionated task management service, for example, all tasks have a deadline of 24 hours and this is not user configurable.  the reasoning is really two-fold, to penalize the super large actions that aren't being broken down into small enough parts, and to make adding actions as frictionless and simple as possible, this is a critical design decision, sure datepickers will be a part of html5 and supported by many browsers, but adding actions should be as simple as writing a tweet, if there are many more things i need to click (or tap), i'm going to add less.  the former reasoning is just as simple, break down big problems into smaller, more manageable parts, remember divide and conquer?  ever get that action to create an iphone app?  well, does it need login, what about a splash screen, does it need to cache things locally, what about all the workflows, and which apis to connect to?  the other extremes are actions that are broken down into extremely small actions, i.e. an action which takes less time to complete than to actually add, this actually isn't a problem and the system will not penalize these cases.  more often than not, in these scenarios, the user will probably just finish the task and not even bother to input which is promoting excellent behavior.
       %p.medium lastly, i decided that i didn't want to have a long list of dependencies for each action, remember those gantt charts in microsoft project (probably not) with the super long list of dependencies that crippled the project deadline since adding those would triple the time required to complete the action?  gone.  not interested in solving those problems.  getsdone.io is all about speed, speed of execution and getting shit done.
   .row
     .span12
       %br
-      %img{:src => "images/glyphicons_003_user.png"}
+      %img{:src => url("images/glyphicons_003_user.png")}
       %p.since Tue Apr 9, 2013 00:47
       %p.medium welcome to getsdone.io!  this project was conceived as a way to make work protocol more efficient (and fun).  there's a natural tendency for work to be a social, collaborative effort so the idea was to integrate social elements with task management.
  
