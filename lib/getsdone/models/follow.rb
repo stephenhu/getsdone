@@ -8,7 +8,7 @@ module Getsdone
   
       u = User.find_by_id(id)
   
-      return { :name => u.name, :icon => u.icon }
+      return { :name => u.name, :icon => u.icon_url }
   
     end
   

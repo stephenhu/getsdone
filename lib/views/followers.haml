@@ -5,7 +5,7 @@
   .row-fluid
     .span14
       %br
-      %img{:src => url("images/#{@profile.icon}"), :width => "32"}
+      %img{:src => url(@profile.icon_url), :width => "64"}
   %br
   .row-fluid
     .span14
@@ -26,6 +26,6 @@
         - @profile.followers.each do |f|
           %dt
             %dd
-              %img{:src => url("images/#{f.get_profile(f.user_id)[:icon]}"), :width => "32"}
+              %img{:src => url(f.get_profile(f.user_id)[:icon]), :width => "32"}
               %a{:href => url("users/#{f.get_profile(f.user_id)[:name]}")}= "@#{f.get_profile(f.user_id)[:name]}"
 

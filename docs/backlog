@@ -2,6 +2,10 @@ open:
 - comments don't work in the history page.
 
 icebox:
+- public rest api
+- iphone app
+- android app
+- more usable mobile web interface
 - ddos protection
 - database backup scripts
 - landing page (total number of actions)
@@ -39,11 +43,18 @@ icebox:
 - server side validation to block sql injection
 - emoticons support
 - profile page
-- gravatar support
 - gmail oauth2
+- postgresql for production instead of sqlite3
+- user search
+- icon support
+- chef or puppet deployer
+- n tier layout
+- optimizations
+
 
 closed:
 - followers, following
+- lowercase for email and usernames
 - hashtag page
 - table view for history
 - ability to delete actions (user or delegate?)
@@ -90,4 +101,5 @@ closed:
 - pages that don't require login show login and signup
 - page crashes if not signed in and accessing users/x
 - js for adding comments as hardcoded user and icon
+- gravatar support
 

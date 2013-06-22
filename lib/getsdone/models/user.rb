@@ -12,11 +12,7 @@ module Getsdone
 
     before_create :hash_password
     before_create :hash_uuid
-
-    #def password
-      #@password ||= Password.new(self.password)
-     # return self.password
-    #end
+    before_create :hash_gravatar
 
     def raw_password
       return Password.new(self.password)
@@ -34,7 +30,19 @@ module Getsdone
       #self.uuid = Digest::MD5.hexdigest(self.uuid + self.salt)
       self.uuid = Password.create(self.uuid)
     end
-  
+
+    def hash_gravatar
+      self.gravatar = Digest::MD5.hexdigest(raw_uuid)
+    end
+
+    def icon_url
+
+      hash_gravatar if self.gravatar.empty?
+
+      return "https://secure.gravatar.com/avatar/#{self.gravatar}"
+
+    end
+
     def open_actions
   
       #return Action.joins(:delegates).where(
@@ -213,7 +221,8 @@ module Getsdone
     end
   
     def profile
-      return { :name => self.name, :icon => self.icon }
+      return { :name => self.name,
+        :icon => "http://www.gravatar.com/avatar/#{self.gravatar}" }
     end
  
     def add_action( action, owner, hashtags, originid=nil, seriesid=nil )

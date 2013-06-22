@@ -125,8 +125,8 @@ module Getsdone
       if u.nil?
 
         user = User.create(
-          :name => params[:name],
-          :uuid => params[:email],
+          :name => params[:name].downcase,
+          :uuid => params[:email].downcase,
           :password => params[:password] )
 
         user.save
