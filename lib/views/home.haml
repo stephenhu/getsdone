@@ -9,8 +9,8 @@
     });
     openComments();
   });
-.container
-  .row
+.container-fluid
+  .row-fluid
     .span14
       - if @hashtags.nil?
         - @actions.each do |a|
@@ -52,8 +52,8 @@
       - else
         - @hashtags.each do |h|
           %button.btn.btn-info{:onclick => "goto('/hashtags/#{h}'); return false;"}= "##{h}"
-.container
-  .row
+.container-fluid
+  .row-fluid
     .span8
       %div{:id => "reassign-dialog"}
         %input{:id => "actionid", :type => "hidden"}

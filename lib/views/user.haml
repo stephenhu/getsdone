@@ -1,13 +1,13 @@
-.container
-  .row
+.container-fluid
+  .row-fluid
     .span14
       %a.xlarge{:href => ""}= "@#{@profile.name}"
-  .row
+  .row-fluid
     .span14
       %br
       %img{:src => url("/images/#{@profile.icon}"), :width => "32"}
   %br
-  .row
+  .row-fluid
     .span14
       %a.gauge{:href => url("users/#{@profile.name}/followers")}
         %div.value= @info[:followers]
@@ -19,7 +19,7 @@
         %div.value= @info[:completed]
         %div.key completed
   %br
-  .row 
+  .row-fluid
     .span14
       - if @user.nil? or @profile.id == @user.id
         %button.btn.btn-large.disabled{:disabled => "disabled"} follow

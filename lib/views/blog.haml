@@ -1,8 +1,8 @@
-.container
-  .row
+.container-fluid
+  .row-fluid
     .span14
       %a.large{:href => ""} blog
-  .row
+  .row-fluid
     .span12
       %br
       %img{:src => url("images/glyphicons_003_user.png")}
@@ -12,14 +12,14 @@
       %p.medium i want to thank my family, first and foremost my wife for enduring with all the late night development efforts, she joined me in life after the idea, so perhaps i can attribute actually finishing the first milestone to her in some loose regards.
       %p.medium like i stated before, there are so many things that i need to add to this app to make it even more useful, but over the past few months, i've really started to believe in this minimal viable product (mvp) approach.  you can see from my github <a href="http://github.com/stephenhu/getsdone/blob/master/docs/backlog">backlog</a> how many things i've had to push off until later releases.  and i haven't been completely disciplined, there are tons more things in my head that should be added to the backlog.
       %p.medium anyway, would love to hear your feedback so do write <a href="mailto:stephen@getsdone.io">me</a> and enjoy!
-  .row
+  .row-fluid
     .span12
       %br
       %img{:src => url("images/glyphicons_003_user.png")}
       %p.since Fri Apr 19, 2013 00:29
       %p.medium think of getsdone.io as a heavily opinionated task management service, for example, all tasks have a deadline of 24 hours and this is not user configurable.  the reasoning is really two-fold, to penalize the super large actions that aren't being broken down into small enough parts, and to make adding actions as frictionless and simple as possible, this is a critical design decision, sure datepickers will be a part of html5 and supported by many browsers, but adding actions should be as simple as writing a tweet, if there are many more things i need to click (or tap), i'm going to add less.  the former reasoning is just as simple, break down big problems into smaller, more manageable parts, remember divide and conquer?  ever get that action to create an iphone app?  well, does it need login, what about a splash screen, does it need to cache things locally, what about all the workflows, and which apis to connect to?  the other extremes are actions that are broken down into extremely small actions, i.e. an action which takes less time to complete than to actually add, this actually isn't a problem and the system will not penalize these cases.  more often than not, in these scenarios, the user will probably just finish the task and not even bother to input which is promoting excellent behavior.
       %p.medium lastly, i decided that i didn't want to have a long list of dependencies for each action, remember those gantt charts in microsoft project (probably not) with the super long list of dependencies that crippled the project deadline since adding those would triple the time required to complete the action?  gone.  not interested in solving those problems.  getsdone.io is all about speed, speed of execution and getting shit done.
-  .row
+  .row-fluid
     .span12
       %br
       %img{:src => url("images/glyphicons_003_user.png")}
