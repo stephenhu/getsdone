@@ -37,7 +37,7 @@ module Getsdone
 
     def icon_url
 
-      hash_gravatar if self.gravatar.empty?
+      hash_gravatar if self.gravatar.nil? or self.gravatar.empty?
 
       return "https://secure.gravatar.com/avatar/#{self.gravatar}"
 
