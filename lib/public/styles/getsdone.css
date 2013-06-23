@@ -46,6 +46,10 @@ dd {
 
 /* custom classes */
 
+.dark {
+  font-weight: 600;
+}
+
 .hide {
   display: none;
 }
