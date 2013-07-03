@@ -10,7 +10,7 @@
         - comments = a.get_origin_comments
         %div.action
           %div.title
-            %img{:src => url("images/#{profile[:icon]}"), :width => "32"}
+            %img{:src => url(profile[:icon]), :width => "32"}
             %a.since{:href => "/users/#{profile[:name]}"}= "@#{profile[:name]}"
             %p.since= a.time_remaining
           %div.content
@@ -21,11 +21,12 @@
           %button.btn{:onclick => "addComment(#{a.id}); return false;"} comment
           %br
           %br
-          - comments.each do |c|
-            - comment = c.get_profile
-            %div.comment{:id => "dd#{c.id}"}
-              %div.comment-header.form-inline
-                %img.pull-left.spacing{:src => url("images/#{comment[:icon]}"), :width => "32"}
-                %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: "
-                %p.since= "#{c.comment} (#{c.time_remaining})"
-
+          %div.comments{:id => "clist#{a.id}"}
+            - comments.each do |c|
+              - comment = c.get_profile
+              %div.comment{:id => "dd#{c.id}"}
+                %div.comment-header.form-inline
+                  %img.pull-left.spacing{:src => url(comment[:icon]), :width => "32"}
+                  %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: "
+                  %p.since= "#{c.comment} (#{c.time_remaining})"
+%input{:id => "username", :type => "hidden", :value => "#{@user.name}"}

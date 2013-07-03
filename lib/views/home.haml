@@ -21,7 +21,7 @@
           - comments = a.get_origin_comments
           %div.action
             %div.title
-              %img{:src => url("images/#{@user.icon}"), :width => "32"}
+              %img{:src => url(@user.icon_url), :width => "32"}
               %a.since{:href =>""}= "@#{profile[:name]}"
               %p.since= a.time_remaining
             %div.content
@@ -46,7 +46,7 @@
                 - comment = c.get_profile
                 %div.comment{:id => "dd#{c.id}"}
                   %div.comment-header.form-inline
-                    %img.pull-left.spacing{:src => url("images/#{comment[:icon]}"), :width => "32"}
+                    %img.pull-left.spacing{:src => url(comment[:icon]), :width => "32"}
                     %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
                     %p.since= "#{c.comment} (#{c.time_remaining})"
       - else
@@ -62,5 +62,4 @@
         %textarea.input-xlarge{:id => "reassignment", :maxlength => "140", :rows => "4", :onkeyup => "count( this, 'rcounter' ); return false;"}
         %br
         %button.btn.btn-danger{:onclick => "addAction(true); return false;"} reassign
-%input{:id => "username", :type => "hidden", :value => "#{@user.name}"}
 
