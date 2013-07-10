@@ -5,6 +5,7 @@ require "digest/md5"
 require "logger"
 #require "pg"
 require "securerandom"
+require "sinatra/activerecord/rake"
 require "time"
 require "yaml"
 

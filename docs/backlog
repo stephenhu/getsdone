@@ -1,5 +1,4 @@
 open:
-- comments don't work in the history page.
 - google analytics
 - logging
 - postgresql for production instead of sqlite3
@@ -7,6 +6,7 @@ open:
 
 icebox:
 - public rest api
+- comments don't work in the history page.
 - iphone app
 - android app
 - more usable mobile web interface
@@ -48,7 +48,7 @@ icebox:
 - gmail oauth2
 - user search
 - icon support
-- chef or puppet deployer
+- chef, puppet, or capistrano deployer
 - n tier layout
 - optimizations
 
