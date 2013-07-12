@@ -3,6 +3,7 @@ open:
 - logging
 - postgresql for production instead of sqlite3
 - link and hashtag conversion within comments.
+- for overdue actions, show duration overdue
 
 icebox:
 - public rest api
