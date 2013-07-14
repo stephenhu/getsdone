@@ -56,11 +56,7 @@ module Getsdone
   ONE_WEEK        = 60 * 60 * 24 * 7
   UPCOMING        = 3
 
-  STATE = {
-    :open => 0,
-    :closed => 1,
-    :deleted => 2,
-    :reassigned => 3 }
+  STATE = { :open => 0, :closed => 1, :deleted => 2, :reassigned => 3 }
 
 end
 

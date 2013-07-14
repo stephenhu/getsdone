@@ -15,10 +15,10 @@ module Getsdone
       #secret  = ENV["RACK_SECRET"] || "stephen the great"
 
       database  = YAML.load_file(File.join( Sinatra::Application.root,
-        "../conf/database.yml" ) )[env]
+        "../config/database.yml" ) )[env]
 
       config    = YAML.load_file(File.join( Sinatra::Application.root,
-        "../conf/config.yml" ) )
+        "../config/config.yml" ) )
 
       set :public_folder,     File.join( Sinatra::Application.root, "/public" )
       set :views,             File.join( Sinatra::Application.root, "/views" )
