@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem "activerecord"
 gem "bcrypt-ruby"
 gem "capistrano"
+gem "capistrano-rbenv"
 gem "github_api"
 gem "god"
 gem "haml"

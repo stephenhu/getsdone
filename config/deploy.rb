@@ -1,9 +1,10 @@
+require "capistrano-rbenv"
 require "github_api"
 
 set :application, "getsdone"
 set :scm, :git
-set :repository,  "git@github.com:stephenhu/getsdone"
-set :deploy_to, "/web/#{application}"
+set :repository,  "https://github.com/stephenhu/getsdone"
+set :deploy_to, "/home/devops/#{application}"
 set :use_sudo, false
 set :ssh_options, {:forward_agent => true}
 default_run_options[:pty] = true
@@ -16,9 +17,10 @@ set :user, "devops"
 set :group, user
 set :runner, user
 
+set :rbenv_ruby_version, "1.9.2-p290"
 
 #hostname  = Capistrano::CLI.ui.ask("server hostname: ")
-hostname = "10.0.1.14"
+hostname = "192.168.174.139"
 
 set :host, "#{user}@#{hostname}"
 # should allow for config file as well and prompt if not -T
@@ -27,21 +29,30 @@ role :app, host
 role :db,  host
 
 HOME = "/home/devops"
+ENV = "PATH=/home/devops/.rbenv/bin:/home/devops/.rbenv/shims:$PATH"
 
 set :rails_env, :production
 set :ruby_version, "1.9.2-p290"
 set :postgres_port, "5432"
 
+#namespace :deploy do
+
+#  desc "setup server and deploy"
+#  task :default do
+    #ubuntu.setup
+    #github.setup
+    #rbenv.setup
+    #postgresql.setup
+ # end
+
+#end
+
 namespace :postgresql do
 
-  desc "setup user"
+  desc "setup user and create database"
   task :setup do
     run "#{sudo} -u postgres createuser --superuser $USER"
-  end
-
-  desc "create database"
-  task :create, roles: :db do
-    #run "createdb getsdone"
+    run "createdb getsdone"
     run "psql -U devops getsdone -c 'grant all privileges on database \'getsdone\' to \'devops\''"
   end
 
@@ -86,9 +97,9 @@ namespace :github do
 
 end
 
-namespace :rbenv do
+namespace :ruby do
 
-  desc "install rbenv"
+  desc "install rbenv, ruby, and bundler"
   task :setup do
     check = capture "if [ -d #{HOME}/.rbenv ]; then echo 'true'; fi"
     if check.empty?
@@ -109,13 +120,10 @@ namespace :rbenv do
       run "git clone https://github.com/sstephenson/ruby-build ~/.rbenv/plugins/ruby-build"
       run "rbenv rehash"
     end
-    #run "export PATH=\"#{HOME}/.rbenv/bin:$PATH\""
-    #run "eval \"$(rbenv init -)\""
-    #run "export PATH=\"#{HOME}/.rbenv/bin:${PATH}\"; 'eval \"$(rbenv init -)\"'; rbenv"
-    #run "export PATH=\"#{HOME}/.rbenv/bin:${PATH}\"; rbenv install #{ruby_version}"
-    #check5 = capture "if [ -d #{HOME}/.rbenv/"
     run "rbenv install #{ruby_version}"
     run "rbenv global #{ruby_version}"
+    run "rbenv rehash"
+    run "#{ENV} gem install bundler"
     run "rbenv rehash"
 
   end
