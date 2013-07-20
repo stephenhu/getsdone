@@ -3,7 +3,7 @@ require "active_record"
 require "active_record/fixtures"
 require "digest/md5"
 require "logger"
-#require "pg"
+require "pg"
 require "securerandom"
 require "sinatra/activerecord/rake"
 require "time"
@@ -18,7 +18,7 @@ namespace :db do
   desc "prepare environment"
   task :environment do
 
-    @config = YAML.load_file("conf/database.yml")["#{env}"]
+    @config = YAML.load_file("config/database.yml")["#{env}"]
     ActiveRecord::Base.establish_connection @config
 
   end
@@ -58,14 +58,14 @@ task :config do
   username = ask("username: ")
   password = ask("password: ") {|q| q.echo = "*"}
 
-  config = ERB.new(File.read("./conf/database.yml.erb"))
+  config = ERB.new(File.read("./config/database.yml.erb"))
   contents = config.result(binding)
 
-  file = File.open( "./conf/database.yml", "w" )
+  file = File.open( "./config/database.yml", "w" )
   file.write(contents)
   file.close
 
-  puts "conf/database.yml created"
+  puts "config/database.yml created"
 
   File.chmod( 0400, file.path )
 
@@ -82,14 +82,14 @@ task :config do
   puts "configure api"
   api_key = ask("api key: ")
 
-  config	= ERB.new(File.read("./conf/config.yml.erb"))
+  config	= ERB.new(File.read("./config/config.yml.erb"))
   contents      = config.result(binding)
 
   file2 = File.open( "./conf/config.yml", "w" )
   file2.write(contents)
   file2.close
 
-  puts "conf/config.yml created"
+  puts "config/config.yml created"
 
   File.chmod( 0400, file2.path )
 
@@ -97,14 +97,14 @@ task :config do
   root_dir  = ask("root dir: ")
   nginx_dir = ask("nginx root dir: ")
 
-  config    = ERB.new(File.read("./conf/nginx.conf.erb"))
+  config    = ERB.new(File.read("./config/nginx.conf.erb"))
   contents  = config.result(binding)
 
-  file3 = File.open( "./conf/nginx.conf", "w" )
+  file3 = File.open( "./config/nginx.conf", "w" )
   file3.write(contents)
   file3.close
 
-  puts "conf/nginx.conf created"
+  puts "config/nginx.conf created"
 
   File.chmod( 0400, file3.path )
    

@@ -1,4 +1,4 @@
-require "capistrano-rbenv"
+#require "capistrano-rbenv"
 require "github_api"
 
 set :application, "getsdone"
@@ -10,14 +10,14 @@ set :ssh_options, {:forward_agent => true}
 default_run_options[:pty] = true
 
 set :default_environment, {
-  "PATH" => "$HOME/.rbenv/bin:$PATH"
+  "PATH" => "$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 }
 
 set :user, "devops"
 set :group, user
 set :runner, user
 
-set :rbenv_ruby_version, "1.9.2-p290"
+#set :rbenv_ruby_version, "1.9.2-p290"
 
 #hostname  = Capistrano::CLI.ui.ask("server hostname: ")
 hostname = "192.168.174.139"
@@ -29,7 +29,7 @@ role :app, host
 role :db,  host
 
 HOME = "/home/devops"
-ENV = "PATH=/home/devops/.rbenv/bin:/home/devops/.rbenv/shims:$PATH"
+#ENV = "PATH=/home/devops/.rbenv/bin:/home/devops/.rbenv/shims:$PATH"
 
 set :rails_env, :production
 set :ruby_version, "1.9.2-p290"
@@ -123,7 +123,7 @@ namespace :ruby do
     run "rbenv install #{ruby_version}"
     run "rbenv global #{ruby_version}"
     run "rbenv rehash"
-    run "#{ENV} gem install bundler"
+    run "gem install bundler"
     run "rbenv rehash"
 
   end
