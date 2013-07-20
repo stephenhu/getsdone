@@ -85,7 +85,7 @@ task :config do
   config	= ERB.new(File.read("./config/config.yml.erb"))
   contents      = config.result(binding)
 
-  file2 = File.open( "./conf/config.yml", "w" )
+  file2 = File.open( "./config/config.yml", "w" )
   file2.write(contents)
   file2.close
 
