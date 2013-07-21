@@ -52,11 +52,11 @@ task :config do
   require "highline/import"
   require "erb"
 
-  file = File.dirname(__FILE__) + "/db/getsdone.db"
+  #file = File.dirname(__FILE__) + "/db/getsdone.db"
 
   puts "configure postgresql"
   username = ask("username: ")
-  password = ask("password: ") {|q| q.echo = "*"}
+  #password = ask("password: ") {|q| q.echo = "*"}
 
   config = ERB.new(File.read("./config/database.yml.erb"))
   contents = config.result(binding)
@@ -69,9 +69,9 @@ task :config do
 
   File.chmod( 0400, file.path )
 
-  puts "configure google oauth"
-  client_id		= ask("client_id: ")
-  client_secret         = ask("client_secret: ")
+  #puts "configure google oauth"
+  #client_id		= ask("client_id: ")
+  #client_secret         = ask("client_secret: ")
 #TODO encrypt
 
   puts "configure app"

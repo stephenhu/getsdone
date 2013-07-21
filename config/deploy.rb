@@ -47,7 +47,7 @@ set :postgres_port, "5432"
 
 #end
 
-namespace :postgresql do
+namespace :postgres do
 
   desc "setup user and create database"
   task :setup do

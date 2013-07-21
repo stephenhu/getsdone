@@ -4,10 +4,15 @@ development:
   pool: 5
   timeout: 5000
 
+staging:
+  adapter: postgresql
+  encoding: utf8
+  database: getsdone
+  username: <%= username %>
+
 production:
   adapter: postgresql
   encoding: utf8
   database: getsdone
   username: <%= username %>
-  password: <%= password %>
 

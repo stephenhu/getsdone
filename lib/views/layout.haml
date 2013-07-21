@@ -29,10 +29,10 @@
 
   %body
     - if @user.nil?
-      %input{:id => "username", :type => "hidden", :value => ""}
+      %input{:id => "uname", :type => "hidden", :value => ""}
       %input{:id => "gravatar", :type => "hidden", :value => ""}
     - else
-      %input{:id => "username", :type => "hidden", :value => "#{@user.name}"}
+      %input{:id => "uname", :type => "hidden", :value => "#{@user.name}"}
       %input{:id => "gravatar", :type => "hidden", :value => "#{@user.icon_url}"}
     - unless @user.nil? or @nohead
       = haml :navbartop
