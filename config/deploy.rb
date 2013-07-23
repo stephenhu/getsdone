@@ -46,20 +46,17 @@ namespace :github do
 
   desc "configure github environment"
   task :setup do
-    email = Capistrano::CLI.ui.ask("input email address: ")
-    #run "git config --global core.editor 'vi'"
-    #run "git config --global user.email '#{email}'"
+    email     = Capistrano::CLI.ui.ask("input email address: ")
     file      = Capistrano::CLI.ui.ask("input public key path: ")
+    username  = Capistrano::CLI.ui.ask("input github username: ")
+    password  = Capistrano::CLI.password_prompt("input github password: ")
+    run "git config --global core.editor 'vi'"
+    run "git config --global user.email '#{email}'"
     run "ssh-keygen -t rsa -C '#{email}' -N '' -f '#{file}'"
-    #file = "/home/devops/.ssh/basic"
     public_file = "#{file}.pub"
     key = capture "cat #{public_file}"
-    #username  = Capistrano::CLI.ui.ask("input github username: ")
-    #run "curl -i -u #{username}:fuckyou1 -X POST -d '#{json}' https://api.github.com/user/keys"
-    github = Github.new( login: "stephenhu", password: "fuckyou1" )
-
+    github = Github.new( login: username, password: password )
     github.users.keys.create( title: "capistrano generated", key: key )
-  
   end
 
 end
