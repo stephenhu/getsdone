@@ -16,7 +16,12 @@ set :user, "devops"
 set :group, user
 set :runner, user
 
-set :host, "#{user}@192.168.176.141"
+
+#hostname  = Capistrano::CLI.ui.ask("server hostname: ")
+hostname = "10.0.1.14"
+
+set :host, "#{user}@#{hostname}"
+# should allow for config file as well and prompt if not -T
 role :web, host
 role :app, host
 role :db,  host
@@ -25,17 +30,26 @@ HOME = "/home/devops"
 
 set :rails_env, :production
 set :ruby_version, "1.9.2-p290"
+set :postgres_port, "5432"
 
 namespace :postgresql do
+
+  desc "setup user"
+  task :setup do
+    run "#{sudo} -u postgres createuser --superuser $USER"
+  end
+
   desc "create database"
   task :create, roles: :db do
-    run "psql -U postgres -W -c 'create database getsdone'"
+    #run "createdb getsdone"
+    run "psql -U devops getsdone -c 'grant all privileges on database \'getsdone\' to \'devops\''"
   end
+
 end
 
 namespace :ubuntu do
 
-  desc "install common packages"
+  desc "install common ubuntu packages"
   task :setup do
 
     pkgs = %w(git gcc make zlib1g-dev libxml2-dev libxml2 libxslt1.1 libxslt1-dev openssl libssl-dev g++ unzip sqlite3 libsqlite3-dev libpq-dev ntp libpcre3 libpcre3-dev)
@@ -82,7 +96,8 @@ namespace :rbenv do
     end
     check2 = capture "if [ -f #{HOME}/.profile ]; then echo 'true'; fi"
     if check2.empty?
-      run "echo 'export LC_CTYPE=\"en_US.UTF-8\"' >> #{HOME}/.profile"
+      #run "echo 'export LC_CTYPE=\"en_US.UTF-8\"' >> #{HOME}/.profile"
+      # not needed if you setup ubuntu correctly
     end
     check3 = capture "if grep rbenv #{HOME}/.profile; then echo \"true\"; fi"
     if check3.empty?
