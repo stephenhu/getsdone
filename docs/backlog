@@ -1,5 +1,4 @@
 open:
-- new landing page
 - postgresql for production instead of sqlite3
 - sqlite3 to postgresql data migration
 - database backup scripts
@@ -54,6 +53,7 @@ icebox:
 
 
 closed:
+- new landing page
 - chef, puppet, or capistrano deployer
 - add a take your best idea blog
 - add a blog about the first x days
