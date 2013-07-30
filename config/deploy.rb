@@ -8,11 +8,15 @@ set :use_sudo, false
 set :ssh_options, {:forward_agent => true}
 default_run_options[:pty] = true
 
+set :default_environment, {
+  "PATH" => "$HOME/.rbenv/bin:$PATH"
+}
+
 set :user, "devops"
 set :group, user
 set :runner, user
 
-set :host, "#{user}@192.168.176.135"
+set :host, "#{user}@192.168.176.141"
 role :web, host
 role :app, host
 role :db,  host
@@ -20,6 +24,7 @@ role :db,  host
 HOME = "/home/devops"
 
 set :rails_env, :production
+set :ruby_version, "1.9.2-p290"
 
 namespace :postgresql do
   desc "create database"
@@ -73,20 +78,32 @@ namespace :rbenv do
   task :setup do
     check = capture "if [ -d #{HOME}/.rbenv ]; then echo 'true'; fi"
     if check.empty?
-      run "git clone git@github.com:sstephenson/rbenv ~/.rbenv"
+      run "git clone https://github.com/sstephenson/rbenv.git ~/.rbenv"
     end
-    check2 = capture "grep rbenv #{HOME}/.bash_profile"
-    puts "check2: #{check2}"
-    if not check2.include?("rbenv")
-      run "echo 'export PATH=\"#{HOME}/.rbenv/bin:$PATH\"' >> #{HOME}/.bash_profile"
-      run "echo 'eval \"$(rbenv init -)\"' >> #{HOME}/.bash_profile"
+    check2 = capture "if [ -f #{HOME}/.profile ]; then echo 'true'; fi"
+    if check2.empty?
+      run "echo 'export LC_CTYPE=\"en_US.UTF-8\"' >> #{HOME}/.profile"
     end
-    check3 = capture "if [ -d #{HOME}/.rbenv/plugins/ruby-build ]; then echo 'true'; fi"
+    check3 = capture "if grep rbenv #{HOME}/.profile; then echo \"true\"; fi"
     if check3.empty?
-      run "git clone git@github.com:sstephenson/ruby-build ~/.rbenv/plugins/ruby-build"
-      run "exec $SHELL -l"
+      run "echo 'export PATH=\"#{HOME}/.rbenv/bin:$PATH\"' >> #{HOME}/.profile"
+      run "echo 'eval \"$(rbenv init -)\"' >> #{HOME}/.profile"
+    end
+    check4 = capture "if [ -d #{HOME}/.rbenv/plugins/ruby-build ]; then echo 'true'; fi"
+    if check4.empty?
+      run "git clone https://github.com/sstephenson/ruby-build ~/.rbenv/plugins/ruby-build"
       run "rbenv rehash"
     end
+    #run "export PATH=\"#{HOME}/.rbenv/bin:$PATH\""
+    #run "eval \"$(rbenv init -)\""
+    #run "export PATH=\"#{HOME}/.rbenv/bin:${PATH}\"; 'eval \"$(rbenv init -)\"'; rbenv"
+    #run "export PATH=\"#{HOME}/.rbenv/bin:${PATH}\"; rbenv install #{ruby_version}"
+    #check5 = capture "if [ -d #{HOME}/.rbenv/"
+    run "rbenv install #{ruby_version}"
+    run "rbenv global #{ruby_version}"
+    run "rbenv rehash"
+
   end
+
 end
 
