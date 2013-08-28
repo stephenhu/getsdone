@@ -25,6 +25,22 @@ http {
     ssl_certificate       <%= nginx_dir %>/conf/ssl.crt;
     ssl_certificate_key   <%= nginx_dir %>/conf/ssl.key;
     keepalive_timeout     70;
+    server_name           www.getsdone.io;
+    root                  <%= root_dir %>;
+    error_log             <%= root_dir %>/logs/error.log;
+    access_log            <%= root_dir %>/logs/access.log;
+
+    rewrite         ^(.*) https://getsdone.io$1 permanent;
+
+  }
+
+  server {
+
+    listen                443;
+    ssl                   on;
+    ssl_certificate       <%= nginx_dir %>/conf/ssl.crt;
+    ssl_certificate_key   <%= nginx_dir %>/conf/ssl.key;
+    keepalive_timeout     70;
     server_name           getsdone.io;
     root                  <%= root_dir %>;
     error_log             <%= root_dir %>/logs/error.log;
