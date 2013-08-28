@@ -48,7 +48,7 @@
                   %div.comment-header.form-inline
                     %img.pull-left.spacing{:src => url(comment[:icon]), :width => "32"}
                     %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
-                    %p.since= "#{c.comment} (#{c.time_remaining})"
+                    %p.since= "#{c.encoded_comment} (#{c.time_remaining})"
       - else
         - @hashtags.each do |h|
           %button.btn.btn-info{:onclick => "goto('/hashtags/#{h}'); return false;"}= "##{h}"

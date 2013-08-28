@@ -163,6 +163,10 @@ module Getsdone
       @hashtag  = params[:hashtag]
       @actions  = AppHelper.get_hashtag_actions(params[:hashtag])
 
+      if @actions == false
+        halt 404, "Hashtag not found"
+      end
+
       haml :hashtags
 
     end

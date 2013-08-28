@@ -1,11 +1,20 @@
 open:
+
+pending:
 - google analytics
-- logging
 - postgresql for production instead of sqlite3
-- link and hashtag conversion within comments.
 - for overdue actions, show duration overdue
+- link and hashtag conversion within comments.
+- comment can input non-existant user or hashtag
+- need to gracefully fail on non-existant hashtag
+- hardcoded default username and hashtag
+- add a capistrano blog
+- add a blog about the first x days
+- add a take your best idea blog
 
 icebox:
+- logging
+- when you open comments, there's a thin border
 - public rest api
 - comments don't work in the history page.
 - iphone app

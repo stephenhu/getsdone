@@ -36,10 +36,12 @@ module Getsdone
 
       delta = estimate - now
 
+      wtime = time_ago_in_web(delta.abs)
+
       if delta > 0
-        return time_ago_in_web(delta)
+        return wtime
       else
-        return "overdue"
+        return "#{wtime} overdue"
       end
 
     end
@@ -85,6 +87,10 @@ module Getsdone
     def self.get_hashtag_actions(hashtag)
 
       tag_id = Tag.joins(:hashtags).where( :tag => hashtag ).first()
+
+      if tag_id.nil?
+        return false
+      end
 
       t = Action.joins(:hashtags).where( "hashtags.tag_id" => tag_id.id,
         :state => STATE[:open] )

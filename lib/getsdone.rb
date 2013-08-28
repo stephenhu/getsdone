@@ -50,8 +50,8 @@ module Getsdone
   REDIRECT_URI    = "http://localhost:9292/auth/oauth2callback".freeze
   GOOGLE_EMAIL    = "https://www.googleapis.com/oauth2/v1/userinfo?alt=json".freeze
 
-  DEFAULT_USERNAME_URL_BASE   = "http://192.168.174.135:9292/users/".freeze
-  DEFAULT_HASHTAG_URL_BASE    = "http://192.168.174.135:9292/hashtags/".freeze
+  DEFAULT_USERNAME_URL_BASE   = "https://www.getsdone.io/users/".freeze
+  DEFAULT_HASHTAG_URL_BASE    = "https://www.getsdone.io/hashtags/".freeze
 
   ONE_WEEK        = 60 * 60 * 24 * 7
   UPCOMING        = 3

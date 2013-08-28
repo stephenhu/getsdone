@@ -6,7 +6,76 @@
     .span14
       %br
       %img{:src => url("https://secure.gravatar.com/avatar/336db47a42700b813b8b159273f0a567"), :width => "32"}
+      %p.since Tue, Aug 28, 2013 21:57
+      %p.large the first 72 days
+      %p.medium i posted 2 separate links to hacker news thinking that my project would be picked up like wildfire and that i'd be getting ungodly amounts of registrations (1000+) and tons of bugs reported,  certainly this is great software!  however, reality sunk in after the first night, my news story on hacker news didn't even get a single comment much less points to make it to the top of the stack.  i missed my target of 1000 users by 996, only 3 actions were added, and basically each user had roughly 2 page visits on average and never returned.  this was discouraging, my idea is great, i would actually use this solution, and this is exactly what the users of hacker news like to see, action, not words.  wrong.  it's not as easy as posting an article to hacker news, and a great product on its own is no good if you can't get people to use it.
+      %p.medium so the focus now becomes to make this site a bit easier to understand, looking back at the main site, it seems a bit confusing as to what exactly this thing does.  registration requires you then to login thus adding an additional step.  i also noticed several bugs that really make this thing unusable.  but that's ok.  i think i achieved great success in my own right by even getting this thing to a state where i thought it was good enough to show, and secondly, this type of failure is actually a stimulant, i earned my hard knocks, there was a period of letdown where i just didn't want to do anything with the site, but now that's over, it's time to focus more on marketing and getting actual customers to use this i.e. friends and family.  and before i even add new features, i am in the process of fixing bugs to make the experience more solid.
+  .row-fluid
+    .span14
+      %br
+      %img{:src => url("https://secure.gravatar.com/avatar/336db47a42700b813b8b159273f0a567"), :width => "32"}
+      %p.since Sun, Aug 11, 2013 8:17
+      %p.large why it must be your most interesting idea
+      %p.medium there's a quote from ruby on rails founder, david heinemeier hansson:
+      %p.medium <b>if you're not working on your best idea right now, you're doing it wrong.</b>
+      %p.medium i'd like to further clarify, i think when he says <b>best idea</b> he really means your <b>most interesting idea</b>.  best is ambiguous because most of the time you don't know what's best until you've launched or finished the solution.  the thing is, at least for me, ideas are plentiful, i have them all the time, some are novel, some are useful, most of the time it's a potential solution to a problem or a gap i've identified based on existing solutions, and it will probably provide some nominal value to someone somewhere, but that doesn't mean i'm interested in solving this problem nor devoting my life to it.  and that's the challenge, at least from a business perspective, because i'll never have enough passion to drive it to the proverbial end.  that's why it's critical to find something that you find really, really interesting and putting in everything.  i hate to sound cliche, but life really is short, there aren't enough seconds left to do it all.  and i've had many things that i've worked on in the past that i really didn't have that much passion for, so it was hard to get it to the state that it needed to be.  of course passion isn't exactly measurable and might change over time, but in the long run, find something that keeps you highly interested and moving forward, changing directions is fine, but just make sure that you're always moving forward.  of course there are other aspects that make or break ideas, but i'm just speaking from a sustainability perspective.  and i'm 100% certain there are some types that actually succeed without this being their most interesting idea, but perhaps passions are stirred not by the ideas themselves, but the actual implementation of it or the building of a company or project.
+      %p.medium for me personally, i've identified a real inefficiency in terms of communication, especially when it comes to taking action, most of the time they're just words that become forgotten, a lack of commitment, or unclear ownership.  i have a passion for making mundane processes work more efficiently, i feel strongly in smoothing out the friction in life, removing the frustrations because there are many of these, some that cannot be resolved, but that's what i hope to contribute to society.  it's much akin to the designer, molding products into simple and effective interactions that reduce your frustrations.
+  .row-fluid
+    .span14
+      %br
+      %img{:src => url("https://secure.gravatar.com/avatar/336db47a42700b813b8b159273f0a567"), :width => "32"}
+      %p.since Wed, Jul 24, 2013 16:33
+      %p.large deployment
+      %p.medium for the next release, i decided to take a step back and, instead of piling on more features, tackle some of the technical debt.  the biggest issue was that my deploys were all done manually.  this isn't a large issue at the moment since my deploys are very infrequent and there's really only 1 server, but i will be updating more frequently and more servers will be added for certain.  unfortunately i have this really bad habit of wanting to write something on my own, but i quickly came to my senses and decided to at least try to leverage what's already out there as there are many popular solutions like chef, puppet, cf-engine, capistrano, salt, etc.
+      %p.medium but first, the requirements, which are quite simple:
+      %ul
+        %li free
+        %li shouldn't require install of an additional server
+        %li don't want a solution in the cloud
+        %li support linux, ubuntu linux
+        %li repeatable, used not only for production, but staging and development
+        %li wide community support
+        %li simple
+      %table.table
+        %th solution
+        %th price
+        %th requires server
+        %th linux support
+        %th repeatable
+        %th community support
+        %th simplicity
+        %tr
+          %td chef
+          %td free/paid
+          %td yes
+          %td yes
+          %td yes
+          %td great
+          %td advanced
+        %tr
+          %td puppet
+          %td free/paid
+          %td yes
+          %td yes
+          %td yes
+          %td great
+          %td advanced
+        %tr
+          %td capistrano
+          %td free
+          %td no
+          %td yes
+          %td yes
+          %td good
+          %td simple
+      %p.medium investigated chef first, it comes in several flavors, the first is an open source, free (as in beer) solution, however, that requires you to install a server component, the next is a hosted solution, and the last is the enterprise edition which requires money.  puppet was my next investigation, again, required a server install so i eventually decided to check out capistrano.  capistrano uses ruby for its deployment file (similar to chef and puppet) and only requires a ruby gem install.  ideally i'm developing on an ubuntu vm so that could be used as a base for my deploys and the deploy file is checked in with my other source files.  overall by using a tool like capistrano to perform deploys, i'm making things consistent and automated, manual processes are too error prone and automation saves a lot of time, i just kick things off and walk away.  i also really like how customizable things are with capistrano since it's really just a ruby deployment file, though chef and puppet are similar in this regard.
+      %p.medium i'll write more about my experiences with chef in another follow up blog, but here's just a little of my investigations on deployment.
+  .row-fluid
+    .span14
+      %br
+      %img{:src => url("https://secure.gravatar.com/avatar/336db47a42700b813b8b159273f0a567"), :width => "32"}
       %p.since Sun, Jun 23, 2013 11:00
+      %p.large the stack
       %p.medium here's the technology stack used to run getsdone.io:
       %table.table.table-striped.table-condensed
         %tr
@@ -61,6 +130,7 @@
       %br
       %img{:src => url("https://secure.gravatar.com/avatar/336db47a42700b813b8b159273f0a567"), :width => "32"}
       %p.since Sun, Jun 16, 2013 12:26
+      %p.large first milestone!
       %p.medium this is a pretty siginificant milestone for getsdone.io and for me personally, i had this idea in my head for a really long time, probably since about six years ago, and i personally have this habit of not being able to finish things.  although this app is long from being complete, it is complete enough such that i can launch upon the world and actually get real users other than myself to try it out.  this project was first and foremost conceived for myself, i found usefulness in just having something simple to track all my work, over the years things got complicated and i had to learn to keep track of everything outside of rote memory, and then there were new patterns emerging of doing things that tied things together.
       %p.medium the initial idea was much more course than this, back then i had not even heard of jquery, bootstrap or even thought of ever using ruby (or rails).  but over the years, the technology's emerged enough such that someone like me could create something like this.
       %p.medium i want to thank my family, first and foremost my wife for enduring with all the late night development efforts, she joined me in life after the idea, so perhaps i can attribute actually finishing the first milestone to her in some loose regards.
@@ -71,6 +141,7 @@
       %br
       %img{:src => url("https://secure.gravatar.com/avatar/336db47a42700b813b8b159273f0a567"), :width => "32"}
       %p.since Fri Apr 19, 2013 00:29
+      %p.large opinionated task management
       %p.medium think of getsdone.io as a heavily opinionated task management service, for example, all tasks have a deadline of 24 hours and this is not user configurable.  the reasoning is really two-fold, to penalize the super large actions that aren't being broken down into small enough parts, and to make adding actions as frictionless and simple as possible, this is a critical design decision, sure datepickers will be a part of html5 and supported by many browsers, but adding actions should be as simple as writing a tweet, if there are many more things i need to click (or tap), i'm going to add less.  the former reasoning is just as simple, break down big problems into smaller, more manageable parts, remember divide and conquer?  ever get that action to create an iphone app?  well, does it need login, what about a splash screen, does it need to cache things locally, what about all the workflows, and which apis to connect to?  the other extremes are actions that are broken down into extremely small actions, i.e. an action which takes less time to complete than to actually add, this actually isn't a problem and the system will not penalize these cases.  more often than not, in these scenarios, the user will probably just finish the task and not even bother to input which is promoting excellent behavior.
       %p.medium lastly, i decided that i didn't want to have a long list of dependencies for each action, remember those gantt charts in microsoft project (probably not) with the super long list of dependencies that crippled the project deadline since adding those would triple the time required to complete the action?  gone.  not interested in solving those problems.  getsdone.io is all about speed, speed of execution and getting shit done.
   .row-fluid
@@ -78,5 +149,6 @@
       %br
       %img{:src => url("https://secure.gravatar.com/avatar/336db47a42700b813b8b159273f0a567"), :width => "32"}
       %p.since Tue Apr 9, 2013 00:47
+      %p.large welcome
       %p.medium welcome to getsdone.io!  this project was conceived as a way to make work protocol more efficient (and fun).  there's a natural tendency for work to be a social, collaborative effort so the idea was to integrate social elements with task management.
  
