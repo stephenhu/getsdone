@@ -222,7 +222,7 @@ module Getsdone
   
     def profile
       return { :name => self.name,
-        :icon => "http://www.gravatar.com/avatar/#{self.gravatar}" }
+        :icon => "https://secure.gravatar.com/avatar/#{self.gravatar}" }
     end
  
     def add_action( action, owner, hashtags, originid=nil, seriesid=nil )
