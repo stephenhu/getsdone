@@ -7,14 +7,15 @@
     .span6
       %h2 welcome to getsdone.io
       %p.lead getting things done socially
-    .span4
-      %input.input-xlarge{:type => "text", :id => "username", :maxlength => "15", :placeholder => "username"}
-      %br
-      %input.input-xlarge{:type => "email", :id => "email", :maxlength => "64", :placeholder => "email"}
-      %br
-      %input.input-xlarge{:type => "password", :id => "password", :maxlength => "20", :placeholder => "password"}
-      %br
-      %button.btn.btn-primary.btn-large{:onclick => "signup(); return false;"} sign up
+    - if @user.nil?
+      .span4
+        %input.input-xlarge{:type => "text", :id => "username", :maxlength => "15", :placeholder => "username"}
+        %br
+        %input.input-xlarge{:type => "email", :id => "email", :maxlength => "64", :placeholder => "email"}
+        %br
+        %input.input-xlarge{:type => "password", :id => "password", :maxlength => "20", :placeholder => "password"}
+        %br
+        %button.btn.btn-primary.btn-large{:onclick => "signup(); return false;"} sign up
   .row-fluid
     %br
     %br
