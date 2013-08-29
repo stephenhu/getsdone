@@ -107,8 +107,8 @@ dd {
 }
 
 .comment-box {
-  padding: 5px;
-  border: 1px solid #eeeeee;
+  float: left;
+  padding: 3px;
 }
 
 .comment {
