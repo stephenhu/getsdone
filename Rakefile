@@ -52,7 +52,7 @@ task :config do
   require "highline/import"
   require "erb"
 
-  #file = File.dirname(__FILE__) + "/db/getsdone.db"
+  file = File.dirname(__FILE__) + "/db/getsdone.db"
 
   puts "configure postgresql"
   username = ask("username: ")
