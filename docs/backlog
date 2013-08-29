@@ -1,18 +1,14 @@
 open:
-
-pending:
-- google analytics
+- new landing page
 - postgresql for production instead of sqlite3
-- for overdue actions, show duration overdue
-- link and hashtag conversion within comments.
-- comment can input non-existant user or hashtag
-- need to gracefully fail on non-existant hashtag
-- hardcoded default username and hashtag
-- add a capistrano blog
-- add a blog about the first x days
-- add a take your best idea blog
+- sqlite3 to postgresql data migration
+- database backup scripts
+- enforce password size
+- ddos protection
+- icon support
 
 icebox:
+- url shortener
 - logging
 - when you open comments, there's a thin border
 - public rest api
@@ -20,12 +16,9 @@ icebox:
 - iphone app
 - android app
 - more usable mobile web interface
-- ddos protection
-- database backup scripts
 - landing page (total number of actions)
 - comment timestamps are not updated
 - signup doesn't automatically login
-- enforce password size
 - completed link of the users profile page doesn't work
 - security: api key
 - comment paging
@@ -45,7 +38,6 @@ icebox:
 - new comments notification
 - user view has list of actions
 - refactor rakefile config
-- url shortener
 - forgotten password
 - use media-list from bootstrap
 - rake config, ask to delete existing files with read only permission
@@ -57,13 +49,21 @@ icebox:
 - profile page
 - gmail oauth2
 - user search
-- icon support
-- chef, puppet, or capistrano deployer
 - n tier layout
 - optimizations
 
 
 closed:
+- chef, puppet, or capistrano deployer
+- add a take your best idea blog
+- add a blog about the first x days
+- add a capistrano blog
+- hardcoded default username and hashtag
+- need to gracefully fail on non-existant hashtag
+- comment can input non-existant user or hashtag
+- link and hashtag conversion within comments.
+- for overdue actions, show duration overdue
+- google analytics
 - followers, following
 - lowercase for email and usernames
 - hashtag page
