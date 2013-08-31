@@ -11,8 +11,10 @@ module Getsdone
     validates_uniqueness_of :name
 
     before_create :hash_password
-    before_create :hash_uuid
+# order or the hash_gravatar call is important
+# must happen before hash_uuid since self.uuid is overwritten
     before_create :hash_gravatar
+    before_create :hash_uuid
 
     def raw_password
       return Password.new(self.password)
@@ -27,12 +29,12 @@ module Getsdone
     end
 
     def hash_uuid
-      #self.uuid = Digest::MD5.hexdigest(self.uuid + self.salt)
       self.uuid = Password.create(self.uuid)
     end
 
     def hash_gravatar
-      self.gravatar = Digest::MD5.hexdigest(raw_uuid)
+      self.gravatar = Digest::MD5.hexdigest(self.uuid)
+      puts self.gravatar
     end
 
     def icon_url

@@ -54,6 +54,7 @@ icebox:
 
 
 closed:
+- icon hash incorrect for home page
 - signup form needs to be hidden on opening page when logged in
 - icon support
 - chef, puppet, or capistrano deployer
