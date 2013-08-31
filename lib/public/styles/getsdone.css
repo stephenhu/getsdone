@@ -112,7 +112,7 @@ dd {
 }
 
 .comment {
-  height: auto;
+  //height: auto;
   width: 60%;
   min-height: 40px;
   min-width: 50px;
