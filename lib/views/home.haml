@@ -46,7 +46,7 @@
                   - comment = c.get_profile
                   %div.comment{:id => "dd#{c.id}"}
                     %div.comment-header.form-inline
-                      %img.pull-left.spacing{:src => url(comment[:icon]), :width => "32"}
+                      %img.pull-left.spacing{:src => url(comment[:icon]), :width => "16"}
                       %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
                       %p.since= "#{c.encoded_comment} (#{c.time_remaining})"
       - else
