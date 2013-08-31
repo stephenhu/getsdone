@@ -56,7 +56,6 @@ icebox:
 closed:
 - signup form needs to be hidden on opening page when logged in
 - icon support
-- new landing page
 - chef, puppet, or capistrano deployer
 - add a take your best idea blog
 - add a blog about the first x days
