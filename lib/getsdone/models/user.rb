@@ -34,7 +34,6 @@ module Getsdone
 
     def hash_gravatar
       self.gravatar = Digest::MD5.hexdigest(self.uuid)
-      puts self.gravatar
     end
 
     def icon_url

@@ -2,11 +2,15 @@ open:
 - postgresql for production instead of sqlite3
 - sqlite3 to postgresql data migration
 - database backup scripts
-- enforce password size
-- ddos protection
 - overdue shows seconds instead of days, minutes granularity
+- create another screenshot with mixed icons
+- need convert existing gravatar hashes to the correct value
+- backup the config files
 
 icebox:
+- ddos protection
+- email validation
+- username validation
 - major issues for apple cinema display, wide view
 - url shortener
 - logging
@@ -54,6 +58,7 @@ icebox:
 
 
 closed:
+- enforce password size
 - icon hash incorrect for home page
 - signup form needs to be hidden on opening page when logged in
 - icon support
