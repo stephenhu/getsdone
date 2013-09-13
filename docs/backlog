@@ -6,8 +6,11 @@ open:
 - create another screenshot with mixed icons
 - need convert existing gravatar hashes to the correct value
 - backup the config files
+- prevent input of nil comment
 
 icebox:
+- automatic refresh
+- need to see task after it's been completed (via history), maybe a today tab
 - ddos protection
 - email validation
 - username validation
