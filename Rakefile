@@ -55,7 +55,7 @@ task :config do
   file = File.dirname(__FILE__) + "/db/getsdone.db"
 
   puts "configure postgresql"
-  username = ask("username: ")
+  #username = ask("username: ")
   #password = ask("password: ") {|q| q.echo = "*"}
 
   config = ERB.new(File.read("./config/database.yml.erb"))
