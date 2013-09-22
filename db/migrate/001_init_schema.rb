@@ -64,7 +64,7 @@ class InitSchema < ActiveRecord::Migration
   def self.down
 
     drop_table :users
-    drop_table :followers
+    drop_table :follows
     drop_table :actions
     drop_table :delegates
     drop_table :tags
