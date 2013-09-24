@@ -3,9 +3,10 @@ sed 's/INTEGER PRIMARY/SERIAL PRIMARY/gi' test.sql > stage0.sql
 sed 's/DATETIME/TIMESTAMP/gi' stage0.sql > stage1.sql
 sed 's/AUTOINCREMENT//gi' stage1.sql > stage2.sql
 sed '/sqlite_sequence/d' stage2.sql > stage3.sql
+sed '/PRAGMA/d' stage3.sql > stage4.sql
 dropdb getsdone
 createdb getsdone
-psql getsdone < stage3.sql
+psql getsdone < stage4.sql
 psql getsdone -c "select setval('users_id_seq', (select max(id) from users));"
 psql getsdone -c "select setval('actions_id_seq', (select max(id) from actions));"
 psql getsdone -c "select setval('delegates_id_seq', (select max(id) from delegates));"
