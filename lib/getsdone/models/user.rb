@@ -14,7 +14,7 @@ module Getsdone
 # order or the hash_gravatar call is important
 # must happen before hash_uuid since self.uuid is overwritten
     before_create :hash_gravatar
-    before_create :hash_uuid
+    #before_create :hash_uuid
 
     def raw_password
       return Password.new(self.password)
@@ -28,6 +28,7 @@ module Getsdone
       return Password.new(self.uuid)
     end
 
+    # kept for historical purposes, not used
     def hash_uuid
       self.uuid = Password.create(self.uuid)
     end

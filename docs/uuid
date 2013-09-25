@@ -1,0 +1,19 @@
+used a one way hash on the email address, obviously this makes it problematic
+to retrieve the email address.  either encrypt it or keep it clear text, the
+password being hashed is fine.
+
+need to preserve the current 20 users, though i don't have a good way of
+doing it automatically.
+
+steps:
+
+1.  purge gravatar entries
+2.  keep uuid since it's required for creating tokens, or you can force
+them to update email records
+3.  notification to existing users to update via profile page
+
+new users are unaffected.
+
+the alternative is just to purge all users and start fresh, none of the users
+are active and this is an alpha.
+

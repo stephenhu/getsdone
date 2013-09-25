@@ -1,8 +1,12 @@
 open:
 - create another screenshot with mixed icons
-- need convert existing gravatar hashes to the correct value
+- clear the gravatar column
+- profile page
+- user search
+- gravatar or store icon
 
 icebox:
+- need convert existing gravatar hashes to the correct value
 - automatic refresh
 - need to see task after it's been completed (via history), maybe a today tab
 - ddos protection
@@ -47,9 +51,7 @@ icebox:
 - view of today's accomplishments
 - server side validation to block sql injection
 - emoticons support
-- profile page
 - gmail oauth2
-- user search
 - n tier layout
 - optimizations
 
