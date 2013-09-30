@@ -4,13 +4,14 @@ module Getsdone
 
     def self.time_ago_in_web(seconds)
 
+      puts seconds
       seconds_in_day 	  = 24 * 60 * 60
       seconds_in_hours	= 60 * 60
       seconds_in_mins	  = 60
 
       days = (seconds / seconds_in_day).to_i
 
-      if days > 1
+      if days >= 1
         return "#{days.truncate}d"
       end
 
@@ -22,7 +23,7 @@ module Getsdone
 
       mins  = (seconds / seconds_in_mins).to_i
 
-      if mins > 0 and mins < 60
+      if mins > 0 and mins <= 60
         return "#{mins.truncate}m"
       end
 
