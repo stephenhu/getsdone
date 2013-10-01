@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in getsdone.gemspec
 
 gem "activerecord"
+#gem "backup"
+# do not add backup gem to gemfile, install manually
 gem "bcrypt-ruby"
 gem "capistrano"
 gem "github_api"
