@@ -1,5 +1,4 @@
 open:
-- database backup scripts
 - create another screenshot with mixed icons
 - need convert existing gravatar hashes to the correct value
 
@@ -56,6 +55,7 @@ icebox:
 
 
 closed:
+- database backup scripts
 - increase comment width
 - prevent input of nil comment
 - overdue shows seconds instead of days, minutes granularity
