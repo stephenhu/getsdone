@@ -12,7 +12,7 @@
           %div.title
             %img{:src => url(profile[:icon]), :width => "32"}
             %a.since{:href => "/users/#{profile[:name]}"}= "@#{profile[:name]}"
-            %p.since= a.time_remaining
+            %p.since= a.time_elapsed
           %div.content
             %p.medium= a.encoded_action
             %button.btn.btn-mini{:id => "vc#{a.id}", :onclick => "viewComments(#{a.id}); return false;"}= "comments (#{comments.length})"
@@ -28,5 +28,5 @@
                 %div.comment-header.form-inline
                   %img.pull-left.spacing{:src => url(comment[:icon]), :width => "32"}
                   %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: "
-                  %p.since= "#{c.comment} (#{c.time_remaining})"
+                  %p.since= "#{c.comment} (#{c.time_elapsed})"
 %input{:id => "username", :type => "hidden", :value => "#{@user.name}"}

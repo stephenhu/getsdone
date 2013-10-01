@@ -16,7 +16,16 @@ module Getsdone
       self.estimate = self.created_at + self.duration.days.to_i
       self.save
     end
-  
+ 
+
+    def time_elapsed
+
+      elapsed = Getsdone::AppHelper.duration_calc(self.created_at)
+
+      return elapsed
+
+    end
+ 
     def time_remaining
   
       rem = Getsdone::AppHelper.duration_calc(self.estimate)

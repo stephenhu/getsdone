@@ -13,11 +13,11 @@ module Getsdone
 
     end
 
-    def time_remaining
+    def time_elapsed
 
-      delta = Time.now - self.created_at
+      #delta = Time.now - self.created_at
 
-      return Getsdone::AppHelper.time_ago_in_web(delta)
+      return Getsdone::AppHelper.duration_calc(self.created_at)
 
     end
 

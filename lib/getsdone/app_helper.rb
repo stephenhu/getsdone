@@ -4,7 +4,6 @@ module Getsdone
 
     def self.time_ago_in_web(seconds)
 
-      puts seconds
       seconds_in_day 	  = 24 * 60 * 60
       seconds_in_hours	= 60 * 60
       seconds_in_mins	  = 60
@@ -31,19 +30,23 @@ module Getsdone
  
     end
 
-    def self.duration_calc(estimate)
+    def self.duration_calc(t1)
 
       now = Time.now
 
-      delta = estimate - now
+      delta = now - t1
 
-      wtime = time_ago_in_web(delta.abs)
+      #wtime = time_ago_in_web(delta.abs)
 
-      if delta > 0
-        return wtime
-      else
-        return "#{wtime} overdue"
-      end
+      #if delta > 0
+      #  return wtime
+      #else
+      #  return "#{wtime} overdue"
+      #end
+
+      wtime = time_ago_in_web(delta)
+
+      return "#{wtime} open"
 
     end
 
