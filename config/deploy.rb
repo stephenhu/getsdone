@@ -20,7 +20,7 @@ set :runner, user
 #set :rbenv_ruby_version, "1.9.2-p290"
 
 #hostname  = Capistrano::CLI.ui.ask("server hostname: ")
-hostname = "192.168.174.139"
+hostname = "192.168.176.135"
 
 set :host, "#{user}@#{hostname}"
 # should allow for config file as well and prompt if not -T
@@ -105,15 +105,15 @@ namespace :ruby do
     if check.empty?
       run "git clone https://github.com/sstephenson/rbenv.git ~/.rbenv"
     end
-    check2 = capture "if [ -f #{HOME}/.profile ]; then echo 'true'; fi"
+    check2 = capture "if [ -f #{HOME}/.bash_profile ]; then echo 'true'; fi"
     if check2.empty?
-      #run "echo 'export LC_CTYPE=\"en_US.UTF-8\"' >> #{HOME}/.profile"
+      #run "echo 'export LC_CTYPE=\"en_US.UTF-8\"' >> #{HOME}/.bash_profile"
       # not needed if you setup ubuntu correctly
     end
-    check3 = capture "if grep rbenv #{HOME}/.profile; then echo \"true\"; fi"
+    check3 = capture "if grep rbenv #{HOME}/.bash_profile; then echo \"true\"; fi"
     if check3.empty?
-      run "echo 'export PATH=\"#{HOME}/.rbenv/bin:$PATH\"' >> #{HOME}/.profile"
-      run "echo 'eval \"$(rbenv init -)\"' >> #{HOME}/.profile"
+      run "echo 'export PATH=\"#{HOME}/.rbenv/bin:$PATH\"' >> #{HOME}/.bash_profile"
+      run "echo 'eval \"$(rbenv init -)\"' >> #{HOME}/.bash_profile"
     end
     check4 = capture "if [ -d #{HOME}/.rbenv/plugins/ruby-build ]; then echo 'true'; fi"
     if check4.empty?
