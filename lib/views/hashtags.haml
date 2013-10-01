@@ -12,7 +12,7 @@
           %div.title
             %img{:src => url(profile[:icon]), :width => "32"}
             %a.since{:href => "/users/#{profile[:name]}"}= "@#{profile[:name]}"
-            %p.since= a.time_elapsed
+            %p.since= "#{a.time_elapsed} open"
           %div.content
             %p.medium= a.encoded_action
             %button.btn.btn-mini{:id => "vc#{a.id}", :onclick => "viewComments(#{a.id}); return false;"}= "comments (#{comments.length})"

@@ -46,7 +46,7 @@ module Getsdone
 
       wtime = time_ago_in_web(delta)
 
-      return "#{wtime} open"
+      return "#{wtime}"
 
     end
 
