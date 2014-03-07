@@ -1,9 +1,9 @@
-.container-fluid
-  .row-fluid
-    .span14
+.container
+  .row
+    .col-lg-12
       %a.large{:href => ""}= "##{@hashtag}"
-  .row-fluid
-    .span14
+  .row
+    .col-lg-12
       %br
       - @actions.each do |a|
         - profile  = a.get_delegate_profile
@@ -30,3 +30,4 @@
                   %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: "
                   %p.since= "#{c.comment} (#{c.time_elapsed})"
 %input{:id => "username", :type => "hidden", :value => "#{@user.name}"}
+

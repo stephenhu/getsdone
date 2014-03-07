@@ -1,10 +1,10 @@
-.navbar.navbar-fixed-bottom
+.navbar.navbar-default.navbar-fixed-bottom
   .navbar-inner
     .container
-      %a.brand{:href => "/"}
+      %a.navbar-brand{:href => "/"}
         getsdone.io
         %sup alpha
-      %ul.nav
+      %ul.nav.navbar-nav
         %li
           %a{:href => "/home"} home
         %li
@@ -19,12 +19,11 @@
           %a{:href => "/help"} help
         %li
           %a{:href => "/about"} about
-      %ul.nav.pull-right
-        %li
-          - if @user.nil?
-            - if @loginpage.nil?
-              %button.btn.btn-success{:onclick => "goto('/login'); return false;"} login
-            %button.btn.btn-primary{:onclick => "goto('/signup'); return false;"} signup
-          - else
-            %button.btn.btn-success{:onclick => "logout(); return false;"} logout
+      %form.navbar-form.navbar-right
+        - if @user.nil?
+          - if @loginpage.nil?
+            %button.btn.btn-success{:onclick => "goto('/login'); return false;"} login
+          %button.btn.btn-primary{:onclick => "goto('/signup'); return false;"} signup
+        - else
+          %button.btn.btn-success{:onclick => "logout(); return false;"} logout
 

@@ -9,57 +9,64 @@
     });
     openComments();
   });
-.container-fluid
-  .row-fluid
-    .span14
+.container
+  .row
+    .col-lg-12
       - if @hashtags.nil?
         - @actions.each do |a|
           - if @who == "delegate"
             - profile = a.get_delegate_profile
           - else
-            - profile  = a.get_assigner_profile
+            - profile = a.get_assigner_profile
           - comments = a.get_origin_comments
           %div.action
             %div.title
-              %img{:src => url(@user.icon_url), :width => "32"}
+              %img{:src => url(profile[:icon]), :width => "32"}
               %a.since{:href =>""}= "@#{profile[:name]}"
               %p.since= "#{a.time_elapsed} open"
             %div.content
               %p.medium{:id => "#{a.id}"}= a.encoded_action
-              %button.btn.btn-mini{:id => "vc#{a.id}", :onclick => "viewComments(#{a.id}); return false;"}= "comments (#{comments.length})"
+              %button.btn.btn-xs{:id => "vc#{a.id}", :onclick => "viewComments(#{a.id}); return false;"}= "comments (#{comments.length})"
               - if @view != "assigned"
-                %button.btn.btn-info.btn-mini{:onclick => "reassignDialog(#{a.id}); return false;"} reassign
-              - if @view != "assigned"
-                %button.btn.btn-success.btn-mini{:onclick => "completeAction(#{a.id}); return false;"} complete
+                %button.btn.btn-info.btn-xs{:onclick => "reassignDialog(#{a.id}); return false;"} reassign
+                %button.btn.btn-success.btn-xs{:onclick => "completeAction(#{a.id}); return false;"} complete
             %div.operations
               - if a.get_origin_user_id == @user.id
                 %a.pull-right{:href => "", :onclick => "deleteAction(#{a.id}); return false;"}
                   %img{:src => url("images/glyphicons_207_remove_2.png"), :width => "16"}
             %br
-            %div.comment-box.form-inline.hide{:id => "c#{a.id}"}
-              %input.input-xxlarge{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
-              %button.btn{:onclick => "addComment(#{a.id}); return false;"} comment
+            %br
+            %div.comment-box.hide{:id => "c#{a.id}"}
+              .row
+                .col-lg-6
+                  %input.form-control.input-sm{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
+                .col-lg-2
+                  %button.btn.btn-sm{:onclick => "addComment(#{a.id}); return false;"} comment
               %br
-              %br
-              %div.comments{:id => "clist#{a.id}"}
-                - comments.each do |c|
-                  - comment = c.get_profile
-                  %div.comment{:id => "dd#{c.id}"}
-                    %div.comment-header.form-inline
-                      %img.pull-left.spacing{:src => url(comment[:icon]), :width => "16"}
-                      %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
-                      %p.since= "#{c.encoded_comment} (#{c.time_elapsed})"
+              .row
+                .col-lg-12
+                  %div.comments{:id => "clist#{a.id}"}
+                    - comments.each do |c|
+                      .row
+                        .col-lg-12
+                          - comment = c.get_profile
+                          %div.comment{:id => "dd#{c.id}"}
+                            %div.comment-header.form-inline
+                              %img.pull-left.spacing{:src => url(comment[:icon]), :width => "16"}
+                              %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
+                              %p.since= "#{c.encoded_comment} (#{c.time_elapsed})"
       - else
         - @hashtags.each do |h|
           %button.btn.btn-info{:onclick => "goto('/hashtags/#{h}'); return false;"}= "##{h}"
-.container-fluid
-  .row-fluid
-    .span8
+.container
+  .row
+    .col-lg-12
       %div{:id => "reassign-dialog"}
         %input{:id => "actionid", :type => "hidden"}
         %p.alert.alert-info.small{:id => "current"}
         %p.since{:id => "rcounter"} 140
-        %textarea.input-xlarge{:id => "reassignment", :maxlength => "140", :rows => "4", :onkeyup => "count( this, 'rcounter' ); return false;"}
-        %br
-        %button.btn.btn-danger{:onclick => "addAction(true); return false;"} reassign
+        %div.input-group
+          %textarea.form-control.input-lg{:id => "reassignment", :maxlength => "140", :rows => "4", :onkeyup => "count( this, 'rcounter' ); return false;"}
+        %div.input-group
+          %button.btn.btn-danger{:onclick => "addAction(true); return false;"} reassign
 

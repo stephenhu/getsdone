@@ -1,32 +1,31 @@
-.container-fluid
-  .row-fluid
-  .row-fluid
-  .row-fluid
-  .row-fluid
-  .row-fluid
-    .span6
+.container
+  .row
+    .col-lg-6
       %h2 welcome to getsdone.io
       %p.lead getting things done socially
     - if @user.nil?
-      .span4
-        %input.input-xlarge{:type => "text", :id => "username", :maxlength => "15", :placeholder => "username"}
-        %br
-        %input.input-xlarge{:type => "email", :id => "email", :maxlength => "64", :placeholder => "email"}
-        %br
-        %input.input-xlarge{:type => "password", :id => "password", :maxlength => "20", :placeholder => "password"}
-        %br
-        %button.btn.btn-primary.btn-large{:onclick => "signup(); return false;"} sign up
-  .row-fluid
+      .col-lg-6
+        %div.input-group
+          %input.form-control.input-lg{:type => "text", :id => "username", :maxlength => "15", :placeholder => "username"}
+        %div.input-group
+          %input.form-control.input-lg{:type => "email", :id => "email", :maxlength => "64", :placeholder => "email"}
+        %div.input-group
+          %input.form-control.input-lg{:type => "password", :id => "password", :maxlength => "20", :placeholder => "password"}
+        %div.input-group
+          %button.btn.btn-primary.btn-lg{:onclick => "signup(); return false;"} sign up
+  .row
     %br
     %br
     %hr
-    .span6
+    .col-lg-12
       %h2 track actions:
       %img{:src => url("images/screenshot2.png")}
-    .span4
+  .row
+    .col-lg-12
       %h2 build a following:
       %img.img-polaroid{:src => url("images/screenshot3.png")}
-    .span4
+  .row
+    .col-lg-12
       %h2 manage:
       %img.img-polaroid{:src => url("images/activity.png")}
 

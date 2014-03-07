@@ -1,15 +1,14 @@
-.container-fluid
-  .row-fluid
-    .span14
+.container
+  .row
+    .col-lg-6
       %h2 login to your account
       <!--%button.btn.btn-info login with google-->
       %br
-      %br
-      %input.input-xlarge{:type => "text", :maxlength => "15", :id => "username", :placeholder => "username"}
-      %br
-      %input.input-xlarge{:type => "password", :maxlength => "20", :id => "password", :placeholder => "password"}
-      %br
-      %button.btn.btn-primary.btn-large{:onclick => "login(); return false;"} login
-      %a.since{:href => "/forgot"} forgot your password?
-    .span14
+      %div.input-group
+        %input.form-control.input-lg{:type => "text", :maxlength => "15", :id => "username", :placeholder => "username"}
+      %div.input-group
+        %input.form-control.input-lg{:type => "password", :maxlength => "20", :id => "password", :placeholder => "password"}
+      %div.input-group
+        %button.btn.btn-primary.btn-lg{:onclick => "login(); return false;"} login
+        %a.since{:href => "/forgot"}  forgot your password?
 

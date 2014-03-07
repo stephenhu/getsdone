@@ -1,19 +1,21 @@
-.container-fluid
-  .row-fluid
-    .span14
+.container
+  .row
+    .col-lg-12
       %table.table.table-hover
-        %th
+        %th assigned by
         %th action
-        %th finished
-        %th estimate
+        %th completion
+        %th duration
         %th comments
         - @actions.each do |a|
+          - profile  = a.get_assigner_profile
+          - comments = a.get_origin_comments 
           %tr
             %td
-              %img{:src => url("images/glyphicons_387_amazon.png"), :width => "32"}
+              %img{:src => url(profile[:icon]), :width => "32"}
             %td= a.action
             %td= a.finished
-            %td= a.estimate
+            %td= a.get_duration
             %td
-              %a{:href => ""} comments (3)
+              %button.btn.btn-xs= "comments (#{comments.length})"
 

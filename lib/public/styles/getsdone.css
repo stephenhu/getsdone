@@ -11,12 +11,6 @@ sup {
   color: #ff1010;
 }
 
-input {
-  font-size: 28px;
-  height: 400px;
-  line-height: 28px;
-}
-
 h2 {
   font-weight: normal;
   color: #484848;
@@ -91,6 +85,10 @@ dd {
   margin-right: 5px;
 }
 
+.left-spacing {
+  margin-left: 10px;
+}
+
 .value {
   font-size: 18px;
   font-weight: 400;
@@ -109,13 +107,15 @@ dd {
 .comment-box {
   float: left;
   padding: 3px;
+  min-width: 500px;
 }
 
 .comment {
   //height: auto;
-  width: 70%;
+  //width: 70%;
+  //width: auto;
   min-height: 40px;
-  min-width: 50px;
+  //min-width: 200px;
   //margin-left: 50px;
   margin-bottom: 1px;
   border-radius: 5px;
@@ -203,8 +203,9 @@ div.title img {
 /* bootstrap overrides */
 
 .container {
-  margin: 0 auto;
-  max-width: 920px;
+  margin: 0px;
+  //margin: 0 auto;
+  //max-width: 920px;
 }
 
 .nav {
@@ -214,5 +215,9 @@ div.title img {
 .hero-unit {
   background-color: #ff0000;
   color: #ffffff;
+}
+
+.input-group {
+  margin-bottom: 1px;
 }
 

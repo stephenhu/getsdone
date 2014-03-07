@@ -1,14 +1,14 @@
-.container-fluid
-  .row-fluid
-    .span14
+.container
+  .row
+    .col-lg-12
       %a.xlarge{:href => "/users/#{@profile.name}"}= "@#{@profile.name}"
-  .row-fluid
-    .span14
+  .row
+    .col-lg-12
       %br
       %img{:src => url(@profile.icon_url), :width => "64"}
   %br
-  .row-fluid
-    .span14
+  .row
+    .col-lg-12
       %a.gauge{:href => "/users/#{@profile.name}/followers"}
         %div.value= @info[:followers]
         %div.key followers
@@ -19,8 +19,8 @@
         %div.value= @info[:completed]
         %div.key completed
   %br
-  .row-fluid
-    .span14
+  .row
+    .col-lg-12
       %h2 followers
       %dl
         - @profile.followers.each do |f|

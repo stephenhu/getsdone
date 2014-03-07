@@ -15,9 +15,7 @@ module Getsdone
 
     def time_elapsed
 
-      #delta = Time.now - self.created_at
-
-      return Getsdone::AppHelper.duration_calc(self.created_at)
+      return Getsdone::AppHelper.duration_calc( Time.now, self.created_at )
 
     end
 
@@ -35,3 +33,4 @@ module Getsdone
   end
 
 end
+

@@ -1,4 +1,4 @@
-.container-fluid
+.container
   .masthead
     %ul.nav.pull-right
       %li
@@ -46,9 +46,11 @@
           %a{:href => "/statistics"} statistics
     %hr
     %p.since{:id => "counter"} 140
-    %div.form-inline
-      %textarea.input-xxlarge{:id => "action", :placeholder => "action", :type => "text", :maxlength => "140", :onkeyup => "count( this, 'counter' ); return false;", :rows => "2"}
-      %button.btn.btn-primary.btn-large{:onclick => "addAction(false); return false;"} add action
-
-    %br
+.container
+  .row
+    .col-lg-8.col-md-6.col-sm-6
+      %textarea.form-control{:id => "action", :placeholder => "action", :type => "text", :maxlength => "140", :onkeyup => "count( this, 'counter' ); return false;", :rows => "2"}
+    .col-lg-2
+      %button.btn.btn-primary.btn-lg{:onclick => "addAction(false); return false;"} add action
+%br
 

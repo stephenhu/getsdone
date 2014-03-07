@@ -1,18 +1,16 @@
-.container-fluid
-  .row-fluid
-    .span14
+.container
+  .row
+    .col-lg-8
       %h2 sign up for getsdone.io
       %p.since by creating your getsdone.io account you agree to our <a href="/terms">terms</a> and <a href="/privacy">privacy</a> policy
       %br
       <!--%button.btn.btn-info signup with google-->
-      %br
-      %br
-      %input.input-xlarge{:type => "text", :maxlength => "15", :id => "username", :placeholder => "username"}
-      %br
-      %input.input-xlarge{:type => "email", :maxlength => "64", :id => "email", :placeholder => "email"}
-      %br
-      %input.input-xlarge{:type => "password", :maxlength => "20", :id => "password", :placeholder => "password"}
-      %br
-      %button.btn.btn-primary.btn-large{:onclick => "signup(); return false;"} sign up
-    .span14
+      %div.input-group
+        %input.form-control.input-lg{:type => "text", :maxlength => "15", :id => "username", :placeholder => "username"}
+      %div.input-group
+        %input.form-control.input-lg{:type => "email", :maxlength => "64", :id => "email", :placeholder => "email"}
+      %div.input-group
+        %input.form-control.input-lg{:type => "password", :maxlength => "20", :id => "password", :placeholder => "password"}
+      %div.input-group
+        %button.btn.btn-primary.btn-lg{:onclick => "signup(); return false;"} sign up
 

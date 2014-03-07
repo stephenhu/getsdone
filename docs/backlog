@@ -4,11 +4,11 @@ open:
 - profile page
 - user search
 - gravatar or store icon
+- need to see task after it's been completed (via history), maybe a today tab
 
 icebox:
 - need convert existing gravatar hashes to the correct value
 - automatic refresh
-- need to see task after it's been completed (via history), maybe a today tab
 - ddos protection
 - email validation
 - username validation

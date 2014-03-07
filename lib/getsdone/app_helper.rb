@@ -30,11 +30,11 @@ module Getsdone
  
     end
 
-    def self.duration_calc(t1)
+    def self.duration_calc( t1, t2 )
 
-      now = Time.now
+      #now = Time.now
 
-      delta = now - t1
+      delta = t1 - t2
 
       #wtime = time_ago_in_web(delta.abs)
 
