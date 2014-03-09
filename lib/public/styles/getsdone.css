@@ -3,7 +3,7 @@ body {
   color: #484848;
   font-weight: 100;
   padding-top: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 80px;
 }
 
 sup {
@@ -81,14 +81,6 @@ dd {
   float: left;
 }
 
-.spacing {
-  margin-right: 5px;
-}
-
-.left-spacing {
-  margin-left: 10px;
-}
-
 .value {
   font-size: 18px;
   font-weight: 400;
@@ -104,45 +96,35 @@ dd {
   padding: 1px;
 }
 
+.spacing {
+  margin-right: 5px;
+}
+
 .comment-box {
-  float: left;
   padding: 3px;
-  min-width: 500px;
 }
 
 .comment {
-  //height: auto;
-  //width: 70%;
-  //width: auto;
   min-height: 40px;
-  //min-width: 200px;
-  //margin-left: 50px;
   margin-bottom: 1px;
   border-radius: 5px;
   padding: 5px;
   display: block;
   border: 1px solid #eeeeee;
+  float: none;
 }
 
-.comment-header {
-  //background: #eeeeee;
-  //border-bottom: 1px solid #cccccc;
-}
-
-.comment-body {
-  margin-left: 10px;
+.comments {
+  margin: 30px;
 }
 
 .action {
-  height: auto;
-  width: auto;
   min-height: 80px;
   margin-bottom: 1px;
   border: 1px solid #eeeeee;
   border-radius: 5px;
   padding: 5px;
   display: block;
-  float: left;
 }
 
 .action:hover {
@@ -150,10 +132,6 @@ dd {
 }
 
 .title {
-  width: 70px;
-  max-width: 70px;
-  float: left;
-  padding: 2px;
   min-height: 30px;
   display: block;
   height: auto;
@@ -168,22 +146,16 @@ div.title img {
 }
 
 .content {
-  width: 550px;
-  margin-left: 40px;
   height: auto;
   min-height: 75px;
   display: block;
-  padding-left: 10px;
   border-left: 1px solid #dddddd;
-  float: left;
 }
 
 .content p {
 }
 
 .operations {
-  margin-left: 660px;
-  width: 50px;
   min-height: 30px;
   display: block;
 }

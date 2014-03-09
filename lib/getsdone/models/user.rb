@@ -50,7 +50,8 @@ module Getsdone
       #return Action.joins(:delegates).where(
       #  :user_id => self.id, "delegates.user_id" => 1, :completed => false )
       return Action.joins(:delegate).where(
-        "delegates.user_id" => self.id, :state => STATE[:open] )
+        "delegates.user_id" => self.id, :state => STATE[:open] ).order(
+        "created_at DESC" )
   
     end
   

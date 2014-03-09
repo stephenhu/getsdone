@@ -9,55 +9,50 @@
     });
     openComments();
   });
-.container
-  .row
-    .col-lg-12
-      - if @hashtags.nil?
-        - @actions.each do |a|
-          - if @who == "delegate"
-            - profile = a.get_delegate_profile
-          - else
-            - profile = a.get_assigner_profile
-          - comments = a.get_origin_comments
-          %div.action
-            %div.title
-              %img{:src => url(profile[:icon]), :width => "32"}
-              %a.since{:href =>""}= "@#{profile[:name]}"
-              %p.since= "#{a.time_elapsed} open"
-            %div.content
-              %p.medium{:id => "#{a.id}"}= a.encoded_action
-              %button.btn.btn-xs{:id => "vc#{a.id}", :onclick => "viewComments(#{a.id}); return false;"}= "comments (#{comments.length})"
-              - if @view != "assigned"
-                %button.btn.btn-info.btn-xs{:onclick => "reassignDialog(#{a.id}); return false;"} reassign
-                %button.btn.btn-success.btn-xs{:onclick => "completeAction(#{a.id}); return false;"} complete
-            %div.operations
-              - if a.get_origin_user_id == @user.id
-                %a.pull-right{:href => "", :onclick => "deleteAction(#{a.id}); return false;"}
-                  %img{:src => url("images/glyphicons_207_remove_2.png"), :width => "16"}
-            %br
-            %br
-            %div.comment-box.hide{:id => "c#{a.id}"}
-              .row
-                .col-lg-6
-                  %input.form-control.input-sm{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
-                .col-lg-2
-                  %button.btn.btn-sm{:onclick => "addComment(#{a.id}); return false;"} comment
-              %br
-              .row
-                .col-lg-12
-                  %div.comments{:id => "clist#{a.id}"}
-                    - comments.each do |c|
-                      .row
-                        .col-lg-12
-                          - comment = c.get_profile
-                          %div.comment{:id => "dd#{c.id}"}
-                            %div.comment-header.form-inline
-                              %img.pull-left.spacing{:src => url(comment[:icon]), :width => "16"}
-                              %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
-                              %p.since= "#{c.encoded_comment} (#{c.time_elapsed})"
-      - else
-        - @hashtags.each do |h|
-          %button.btn.btn-info{:onclick => "goto('/hashtags/#{h}'); return false;"}= "##{h}"
+- if @hashtags.nil?
+  - @actions.each do |a|
+    - if @who == "delegate"
+      - profile = a.get_delegate_profile
+    - else
+      - profile = a.get_assigner_profile
+    - comments = a.get_origin_comments 
+    .container-fluid
+      %div.action.row
+        %div.title.col-lg-1
+          %img{:src => url(profile[:icon]), :width => "32"}
+          %a.since{:href =>""}= "@#{profile[:name]}"
+          %p.since= "#{a.time_elapsed} open"
+        %div.content.col-lg-10
+          %p.medium{:id => "#{a.id}"}= a.encoded_action
+          %button.btn.btn-warning.btn-xs{:id => "vc#{a.id}", :onclick => "viewComments(#{a.id}); return false;"}
+            %span.glyphicon.glyphicon-comment
+            = " (#{comments.length})"
+          - if a.get_origin_user_id == @user.id
+            %button.btn.btn-danger.btn-xs{:onclick => "deleteAction(#{a.id}); return false;"}
+              %span.glyphicon.glyphicon-trash
+          - if @view != "assigned"
+            %button.btn.btn-info.btn-xs{:onclick => "reassignDialog(#{a.id}); return false;"}
+              %span.glyphicon.glyphicon-share
+            %button.btn.btn-success.btn-xs{:onclick => "completeAction(#{a.id}); return false;"}
+              %span.glyphicon.glyphicon-thumbs-up
+      %div.comment-box.hide{:id => "c#{a.id}"}
+        .row
+          %div.col-lg-6
+            %input.form-control{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
+          %div.col-lg-2
+            %button.btn{:onclick => "addComment(#{a.id}); return false;"} comment
+          %br
+          .row
+            %div.comments{:id => "clist#{a.id}"}
+              - comments.each do |c|
+                - comment = c.get_profile
+                %div.comment.col-lg-6{:id => "dd#{c.id}"}
+                  %img.pull-left.spacing{:src => url(comment[:icon]), :width => "16"}
+                  %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
+                  %p.since= "#{c.encoded_comment} (#{c.time_elapsed})"
+- else
+  - @hashtags.each do |h|
+    %button.btn.btn-info{:onclick => "goto('/hashtags/#{h}'); return false;"}= "##{h}"
 .container
   .row
     .col-lg-12
