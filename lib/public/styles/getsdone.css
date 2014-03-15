@@ -31,11 +31,15 @@ a, a:hover, a:visited, a:link {
 }
 
 hr {
-  margin: 2px;
+//  margin: 2px;
 }
 
 dd {
   padding: 5px;
+}
+
+p {
+  word-wrap: break-word;
 }
 
 /* custom classes */
@@ -112,6 +116,7 @@ dd {
   display: block;
   border: 1px solid #eeeeee;
   float: none;
+  overflow: hidden;
 }
 
 .comments {
@@ -132,7 +137,7 @@ dd {
 }
 
 .title {
-  min-height: 30px;
+//  min-height: 30px;
   display: block;
   height: auto;
 }
@@ -147,17 +152,9 @@ div.title img {
 
 .content {
   height: auto;
-  min-height: 75px;
+//  min-height: 75px;
   display: block;
   border-left: 1px solid #dddddd;
-}
-
-.content p {
-}
-
-.operations {
-  min-height: 30px;
-  display: block;
 }
 
 .left {
@@ -175,7 +172,7 @@ div.title img {
 /* bootstrap overrides */
 
 .container {
-  margin: 0px;
+  margin: 5px;
   //margin: 0 auto;
   //max-width: 920px;
 }
