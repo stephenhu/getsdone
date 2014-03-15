@@ -41,8 +41,11 @@
                   %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
                   %p.since= "#{c.encoded_comment} (#{c.time_elapsed})"
 - else
-  - @hashtags.each do |h|
-    %button.btn.btn-info{:onclick => "goto('/hashtags/#{h}'); return false;"}= "##{h}"
+  .container
+    .row
+      .col-lg-12
+        - @hashtags.each do |h|
+          %button.btn.btn-info{:onclick => "goto('/hashtags/#{h}'); return false;"}= "##{h}"
 .container
   .row
     .col-lg-12
