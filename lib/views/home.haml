@@ -17,10 +17,10 @@
             %span.glyphicon.glyphicon-comment
             %span{:id => "vc#{a.id}"}
               = " (#{comments.length})"
-          - if a.get_origin_user_id == @user.id
+          - if a.get_origin_user_id == @user.id and @view != "closed"
             %button.btn.btn-danger.btn-xs{:onclick => "deleteAction(#{a.id}); return false;"}
               %span.glyphicon.glyphicon-trash
-          - if @view != "assigned"
+          - if @view != "assigned" and @view != "closed"
             %button.btn.btn-info.btn-xs{:onclick => "reassignDialog(#{a.id}); return false;"}
               %span.glyphicon.glyphicon-share
             %button.btn.btn-success.btn-xs{:onclick => "completeAction(#{a.id}); return false;"}

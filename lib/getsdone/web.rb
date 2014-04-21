@@ -136,6 +136,8 @@ module Getsdone
       elsif @view == "assigned"
         @actions = @user.assigned_actions
         @who     = "delegate"
+      elsif @view == "closed"
+        @actions = @user.completed_actions
       elsif @view == "hashtags"
         @hashtags = AppHelper.get_hashtags(@user.hashtag_actions)
       elsif @view == "history"

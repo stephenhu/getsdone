@@ -13,38 +13,43 @@
         %a.gauge{:href => ""}
           %div.value #{@info[:completed]} 
           %div.key completed
-    %ul.nav.nav-pills
+    %ul.nav.nav-tabs
       - if @view.nil? or @view == "open"
         %li.active
-          %a{:href => "/home?view=open"} open (#{@user.open_actions.length})
+          %a{:href => "/home?view=open"}
+            open
+            - if @user.open_actions.length > 0
+              %span.label.label-danger #{@user.open_actions.length}
       - else
         %li
-          %a{:href => "/home?view=open"} open (#{@user.open_actions.length})
+          %a{:href => "/home?view=open"}
+            open
+            - if @user.open_actions.length > 0
+              %span.label.label-danger #{@user.open_actions.length}
       - if @view == "assigned"
         %li.active
-          %a{:href => "/home?view=assigned"} assigned (#{@user.assigned_actions.length})
+          %a{:href => "/home?view=assigned"}
+            assigned
+            - if @user.assigned_actions.length > 0
+              %span.label.label-danger #{@user.assigned_actions.length}
       - else
         %li
-          %a{:href => "/home?view=assigned"} assigned (#{@user.assigned_actions.length})
-      - if @view == "hashtags"
+          %a{:href => "/home?view=assigned"}
+            assigned
+            - if @user.assigned_actions.length > 0
+              %span.label.label-danger #{@user.assigned_actions.length}
+      - if @view == "closed"
         %li.active
-          %a{:href => "/home?view=hashtags"} hashtags
+          %a{:href => "/home?view=closed"}
+            closed
+            - if @user.completed_actions.length > 0
+              %span.label.label-success #{@user.completed_actions.length}
       - else
         %li
-          %a{:href => "/home?view=hashtags"} hashtags
-      - if @view == "history"
-        %li.active
-          %a{:href => "/history"} history
-      - else
-        %li
-          %a{:href => "/history"} history
-      - if @view == "statistics"
-        %li.active
-          %a{:href => "/statistics"} statistics
-      - else
-        %li
-          %a{:href => "/statistics"} statistics
-    %hr
+          %a{:href => "/home?view=closed"}
+            closed
+            - if @user.completed_actions.length > 0
+              %span.label.label-success #{@user.completed_actions.length}
 .container
   .row
     .col-lg-12.col-md-12.col-sm-12
