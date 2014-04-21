@@ -42,14 +42,10 @@
         %li.active
           %a{:href => "/home?view=closed"}
             closed
-            - if @user.completed_actions.length > 0
-              %span.label.label-success #{@user.completed_actions.length}
       - else
         %li
           %a{:href => "/home?view=closed"}
             closed
-            - if @user.completed_actions.length > 0
-              %span.label.label-success #{@user.completed_actions.length}
 .container
   .row
     .col-lg-12.col-md-12.col-sm-12
