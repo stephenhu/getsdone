@@ -28,11 +28,11 @@
             %br
             .row
               %div.comments{:id => "clist#{a.id}"}
-              - comments.each do |c|
-                - comment = c.get_profile
-                %div.comment.col-lg-6.col-md-6.col-sm-6{:id => "dd#{c.id}"}
-                  %img.pull-left.spacing{:src => url(comment[:icon]), :width => "16"}
-                  %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: "
-                  %p.since= "#{c.encoded_comment} (#{c.time_elapsed})"
+                - comments.each do |c|
+                  - comment = c.get_profile
+                  %div.comment.col-lg-6.col-md-6.col-sm-6{:id => "dd#{c.id}"}
+                    %img.pull-left.spacing{:src => url(comment[:icon]), :width => "16"}
+                    %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: "
+                    %p.since= "#{c.encoded_comment} (#{c.time_elapsed})"
 %input{:id => "username", :type => "hidden", :value => "#{@user.name}"}
 
