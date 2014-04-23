@@ -1,11 +1,10 @@
-.container
-  - if @view != "closed"
-    - if not @hashtags.nil?
-      .container
-        .row
-          .col-lg-12
-            - @hashtags.each do |h|
-              %button.btn.btn-info{:onclick => "goto('/hashtags/#{h}'); return false;"}= "##{h}"
+- if @view != "closed"
+  - if not @hashtags.nil?
+    .container
+      .row
+        .col-lg-12
+          - @hashtags.each do |h|
+            %button.btn.btn-info{:onclick => "goto('/hashtags/#{h}'); return false;"}= "##{h}"
 .container
   - @actions.each do |a|
     - if @who == "delegate"
