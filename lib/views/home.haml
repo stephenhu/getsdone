@@ -1,54 +1,55 @@
-- if @hashtags.nil?
+.container
+  - if @view != "closed"
+    - if not @hashtags.nil?
+      .container
+        .row
+          .col-lg-12
+            - @hashtags.each do |h|
+              %button.btn.btn-info{:onclick => "goto('/hashtags/#{h}'); return false;"}= "##{h}"
+.container
   - @actions.each do |a|
     - if @who == "delegate"
       - profile = a.get_delegate_profile
     - else
       - profile = a.get_assigner_profile
     - comments = a.get_origin_comments 
-    .container
-      %div.action.row
-        %div.title.col-lg-1.col-md-1.col-sm-2
-          %img{:src => url(profile[:icon]), :width => "32"}
-          %a.since{:href =>""}= "@#{profile[:name]}"
-          - if @view == "closed"
-            %p.since= "#{a.get_duration} open"
-          - else
-            %p.since= "#{a.time_elapsed} open"
-        %div.content.col-lg-8.col-md-8.col-sm-8
-          %p.medium{:id => "#{a.id}"}= a.encoded_action
-          %button.btn.btn-warning.btn-xs{:onclick => "viewComments(#{a.id}); return false;"}
-            %span.glyphicon.glyphicon-comment
-            %span{:id => "vc#{a.id}"}
-              = " (#{comments.length})"
-          - if a.get_origin_user_id == @user.id and @view != "closed"
-            %button.btn.btn-danger.btn-xs{:onclick => "deleteAction(#{a.id}); return false;"}
-              %span.glyphicon.glyphicon-trash
-          - if @view != "assigned" and @view != "closed"
-            %button.btn.btn-info.btn-xs{:onclick => "reassignDialog(#{a.id}); return false;"}
-              %span.glyphicon.glyphicon-share
-            %button.btn.btn-success.btn-xs{:onclick => "completeAction(#{a.id}); return false;"}
-              %span.glyphicon.glyphicon-thumbs-up
-      %div.comment-box.hide{:id => "c#{a.id}"}
+    %div.action.row
+      %div.title.col-lg-1.col-md-1.col-sm-2
+        %img{:src => url(profile[:icon]), :width => "32"}
+        %a.since{:href =>""}= "@#{profile[:name]}"
+        - if @view == "closed"
+          %p.since= "#{a.get_duration} open"
+        - else
+          %p.since= "#{a.time_elapsed} open"
+      %div.content.col-lg-8.col-md-8.col-sm-8
+        %p.medium{:id => "#{a.id}"}= a.encoded_action
+        %button.btn.btn-warning.btn-xs{:onclick => "viewComments(#{a.id}); return false;"}
+          %span.glyphicon.glyphicon-comment
+          %span{:id => "vc#{a.id}"}
+            = " (#{comments.length})"
+        - if a.get_origin_user_id == @user.id and @view != "closed"
+          %button.btn.btn-danger.btn-xs{:onclick => "deleteAction(#{a.id}); return false;"}
+            %span.glyphicon.glyphicon-trash
+        - if @view != "assigned" and @view != "closed"
+          %button.btn.btn-info.btn-xs{:onclick => "reassignDialog(#{a.id}); return false;"}
+            %span.glyphicon.glyphicon-share
+          %button.btn.btn-success.btn-xs{:onclick => "completeAction(#{a.id}); return false;"}
+            %span.glyphicon.glyphicon-thumbs-up
+    %div.comment-box.hide{:id => "c#{a.id}"}
+      .row
+        %div.col-lg-6.col-md-8.col-sm-8
+          %input.form-control{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
+        %div.col-lg-1.col-md-1.col-sm-1
+          %button.btn{:onclick => "addComment(#{a.id}); return false;"} comment
+        %br
         .row
-          %div.col-lg-6.col-md-8.col-sm-8
-            %input.form-control{:id => "comment#{a.id}", :type => "text", :placeholder => "add comment"}
-          %div.col-lg-1.col-md-1.col-sm-1
-            %button.btn{:onclick => "addComment(#{a.id}); return false;"} comment
-          %br
-          .row
-            %div.comments{:id => "clist#{a.id}"}
-              - comments.each do |c|
-                - comment = c.get_profile
-                %div.comment.col-lg-6.col-md-6.col-sm-6{:id => "dd#{c.id}"}
-                  %img.pull-left.spacing{:src => url(comment[:icon]), :width => "16"}
-                  %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
-                  %p.since= "#{c.encoded_comment} (#{c.time_elapsed})"
-- else
-  .container
-    .row
-      .col-lg-12
-        - @hashtags.each do |h|
-          %button.btn.btn-info{:onclick => "goto('/hashtags/#{h}'); return false;"}= "##{h}"
+          %div.comments{:id => "clist#{a.id}"}
+            - comments.each do |c|
+              - comment = c.get_profile
+              %div.comment.col-lg-6.col-md-6.col-sm-6{:id => "dd#{c.id}"}
+                %img.pull-left.spacing{:src => url(comment[:icon]), :width => "16"}
+                %a.pull-left.spacing{:href => "/users/#{comment[:name]}"}= "@#{comment[:name]}: " 
+                %p.since= "#{c.encoded_comment} (#{c.time_elapsed})"
 .container
   .row
     .col-lg-12

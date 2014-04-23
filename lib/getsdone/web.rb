@@ -127,6 +127,8 @@ module Getsdone
       @info = @user.info
       @who  = "owner"
 
+      @hashtags = AppHelper.get_hashtags(@user.hashtag_actions)
+
       if @view == "week"
         @actions = @user.weeks_actions
       elsif @view == "upcoming"
@@ -138,12 +140,6 @@ module Getsdone
         @who     = "delegate"
       elsif @view == "closed"
         @actions = @user.completed_actions
-      elsif @view == "hashtags"
-        @hashtags = AppHelper.get_hashtags(@user.hashtag_actions)
-      elsif @view == "history"
-        redirect "/history"
-      elsif @view == "statistics"
-        redirect "/statistics"
       else
         @view = "open"
         @actions = @user.open_actions
