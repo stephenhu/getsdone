@@ -52,8 +52,11 @@
       %p.since{:id => "counter"} 140
   .row
     .col-lg-8.col-md-8.col-sm-8
-      %textarea.form-control{:id => "action", :placeholder => "action", :type => "text", :maxlength => "140", :onkeyup => "count( this, 'counter' ); return false;", :rows => "2"}
+      %textarea.form-control{:id => "action", :placeholder => "Post an action here", :maxlength => "140", :onkeyup => "count( this, 'counter' ); return false;", :rows => "2"}
     .col-lg-2.col-md-2.col-sm-2
       %button.btn.btn-primary.btn-lg{:onclick => "addAction(false); return false;"} add action
 %br
+
+:javascript
+  read_cache();
 

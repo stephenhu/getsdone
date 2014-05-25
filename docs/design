@@ -62,3 +62,20 @@ action state:
 3 - reassigned
 
 
+there are 2 elements that need to be updated periodically:
+
+1.  actions
+2.  comments
+
+a simple solution would be to refresh the entire page thus doing a server
+side refresh of all data no matter if data was changed.  this introduces
+an issue where any form content needs to be cached.
+
+a better solution would be to have periodic checks on the server side for
+new content.  all actions and comments would be pulled and checked against
+currently cached, this could involve some processing on the client side,
+but should be neglible.
+
+another solution would be to open a long life connection where the client
+checks periodically for updates, and the server responds whenever there's
+a response.

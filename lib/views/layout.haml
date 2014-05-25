@@ -1,6 +1,7 @@
 !!!
 %html{:lang => "en"}
   %head
+    <meta http-equiv="refresh" content="120">
     %title= @title
     %link{:rel => "stylesheet", :href => "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"}
     %link{:rel => "stylesheet", :href => url("styles/getsdone.css")}
@@ -19,6 +20,8 @@
 
     ga('create', 'UA-42203221-1', 'getsdone.io');
     ga('send', 'pageview');
+
+    setInterval( "cache();", CACHING_INTERVAL );
 
   %body
     - if @user.nil?
