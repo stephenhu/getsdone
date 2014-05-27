@@ -1,31 +1,18 @@
+.jumbotron
+  .container
+    %h1 Welcome to getsdone.io
+    %p.lead A modern task management tool.
+  - if @user.nil?
+    %div.input-group
+      %input.form-control.input-lg{:type => "text", :id => "username", :maxlength => "15", :placeholder => "Username"}
+    %div.input-group
+      %input.form-control.input-lg{:type => "email", :id => "email", :maxlength => "64", :placeholder => "Email"}
+    %div.input-group
+      %input.form-control.input-lg{:type => "password", :id => "password", :maxlength => "20", :placeholder => "Password"}
+    %div.input-group
+      %button.btn.btn-primary.btn-lg{:onclick => "signup(); return false;"} Sign up for free
 .container
   .row
-    .col-lg-6
-      %h2 welcome to getsdone.io
-      %p.lead getting things done socially
-    - if @user.nil?
-      .col-lg-6
-        %div.input-group
-          %input.form-control.input-lg{:type => "text", :id => "username", :maxlength => "15", :placeholder => "username"}
-        %div.input-group
-          %input.form-control.input-lg{:type => "email", :id => "email", :maxlength => "64", :placeholder => "email"}
-        %div.input-group
-          %input.form-control.input-lg{:type => "password", :id => "password", :maxlength => "20", :placeholder => "password"}
-        %div.input-group
-          %button.btn.btn-primary.btn-lg{:onclick => "signup(); return false;"} sign up
-  .row
-    %br
-    %br
-    %hr
     .col-lg-12
-      %h2 track actions:
-      %img{:src => url("images/screenshot2.png")}
-  .row
-    .col-lg-12
-      %h2 build a following:
-      %img.img-polaroid{:src => url("images/screenshot3.png")}
-  .row
-    .col-lg-12
-      %h2 manage:
-      %img.img-polaroid{:src => url("images/activity.png")}
+      %img{:src => url("images/sample.png"), :width => "1024"}
 
